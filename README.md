@@ -24,7 +24,7 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [x] Redux/Context API
 
 ### Getting Started
-1. Clone the repository: `git clone https://github.com/your-username/mental-health-support-app.git`
+1. Clone the repository: `git clone https://github.com/hppanpaliya/CS-545`
 2. Install dependencies: `npm install`
 3. Start the server: `npm start`
 
