@@ -22,6 +22,9 @@ import MemoryMatch from "./components/MemoryMatch";
 import CopingStrategies from "./components/CopingStrategies";
 import CBT from "./components/CBT";
 import GoalSetting from "./components/GoalSetting";
+import UsersList from "./components/Chat/UserList";
+import ChatMessages from "./components/Chat/ChatMessages";
+
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -55,6 +58,8 @@ function App() {
           <Route path="/mood-tracker" Component={MoodTracker} />
           <Route path="/support-groups" Component={SupportGroups} />
           <Route path="/goal-setting" Component={GoalSetting} />
+          <Route path="/chat" Component={UsersList} />
+          <Route path="/chat/:id" Component={ChatMessages} />
 
           {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />

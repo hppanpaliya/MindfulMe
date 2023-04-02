@@ -1,0 +1,56 @@
+.users-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .users-list-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .users-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .user-item {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .user-link {
+    display: block;
+    text-decoration: none;
+    color: #47555c;
+    width: 100%;
+  }
+  
+  .user-link:hover .user-item {
+    background-color: #e0e0e0;
+    animation: bubble-hover 0.3s;
+  }
+  
+  @keyframes bubble-hover {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

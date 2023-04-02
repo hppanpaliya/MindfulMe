@@ -23,6 +23,7 @@ const links = {
   user: [
     { path: "/", text: "Home" },
     { path: "/support-groups", text: "Support Groups" },
+    { path: "/chat", text: "Chat" },
     { path: "/mood-tracker", text: "Mood Tracker" },
     { path: "/goal-setting", text: "Goal Setting" },
     { path: "/memory-match", text: "Memory Match" },

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Box, TextField, IconButton, List, ListItem, ListItemText, Divider } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 import app from "../../utils/firebase";
+import "./Chats.css";
 
 const Chats = ({ groupId }) => {
   const user = useSelector((state) => state.auth.user);
   const [chatText, setChatText] = useState("");
   const [chats, setChats] = useState([]);
-  console.log("user", user);
+
   useEffect(() => {
     const unsubscribe = app
       .firestore()
@@ -48,33 +47,32 @@ const Chats = ({ groupId }) => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" height="100%">
-      <Box flexGrow={1} overflow="auto">
-        <List>
-          {chats.map((chat) => (
-            <React.Fragment key={chat.id}>
-              <ListItem>
-                <ListItemText
-                  primary={`${chat.text}`}
-                  secondary={`${chat.timestamp ? chat.timestamp.toDate().toLocaleString() : null} - ${
-                    chat.userId === user.uid ? "You" : chat.displayName
-                  }`}
-                />
-              </ListItem>
-              <Divider variant="inset" component="li" />
-            </React.Fragment>
-          ))}
-        </List>
-      </Box>
+    <div className="chats-container">
+      <div className="chats-list">
+        {chats.map((chat) => (
+          <div key={chat.id} className={`chat-message ${chat.userId === user.uid ? "sent" : "received"}`}>
+            <p className="chat-text">{chat.text}</p>
+            <p className="chat-meta">
+              {chat.timestamp ? chat.timestamp.toDate().toLocaleString() : null} - {chat.userId === user.uid ? "You" : chat.displayName}
+            </p>
+          </div>
+        ))}
+      </div>
       <form onSubmit={handleChatSubmit}>
-        <Box display="flex" alignItems="center" mt={1}>
-          <TextField variant="outlined" fullWidth placeholder="Type a message..." value={chatText} onChange={handleChatTextChange} />
-          <IconButton type="submit">
-            <SendIcon />
-          </IconButton>
-        </Box>
+        <div className="chat-input-container">
+          <input
+            type="text"
+            className="chat-input"
+            placeholder="Type a message..."
+            value={chatText}
+            onChange={handleChatTextChange}
+          />
+          <button type="submit" className="chat-send-button">
+            Send
+          </button>
+        </div>
       </form>
-    </Box>
+    </div>
   );
 };
 

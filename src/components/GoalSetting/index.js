@@ -85,6 +85,13 @@ const GoalSetting = () => {
     });
     setGoals(updatedGoals);
   };
+  
+  const handleEditReminder = async (goalId, reminderIndex, newReminderText) => {
+    const updatedReminders = [...goals.find((goal) => goal.id === goalId).reminders];
+    updatedReminders[reminderIndex].text = newReminderText;
+    await handleUpdateReminders(goalId, updatedReminders);
+  };
+  
 
   return (
     <div className="goal-tracker-container">
@@ -132,24 +139,35 @@ const GoalSetting = () => {
               <button onClick={() => handleAddReminder(goal.id)}>Add Reminder</button>
             </div>
             <div className="reminders-list">
-              {goal.reminders &&
-                goal.reminders.map((reminder, reminderIndex) => (
-                  <div key={reminderIndex}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={reminder.isChecked}
-                        onChange={() => {
-                          const updatedReminders = [...goal.reminders];
-                          updatedReminders[reminderIndex].isChecked = !reminder.isChecked;
-                          handleUpdateReminders(goal.id, updatedReminders);
-                        }}
-                      />
-                      {reminder.text}
-                    </label>
-                  </div>
-                ))}
-            </div>
+  {goal.reminders &&
+    goal.reminders.map((reminder, reminderIndex) => (
+      <div key={reminderIndex}>
+        <label>
+          <input
+            type="checkbox"
+            checked={reminder.isChecked}
+            onChange={() => {
+              const updatedReminders = [...goal.reminders];
+              updatedReminders[reminderIndex].isChecked = !reminder.isChecked;
+              handleUpdateReminders(goal.id, updatedReminders);
+            }}
+          />
+          {reminder.text}
+        </label>
+        <button
+          onClick={() => {
+            const newReminderText = window.prompt("Enter the new reminder text", reminder.text);
+            if (newReminderText) {
+              handleEditReminder(goal.id, reminderIndex, newReminderText);
+            }
+          }}
+        >
+          Edit
+        </button>
+      </div>
+    ))}
+</div>
+
             <br /> <br />
           </li>
         ))}

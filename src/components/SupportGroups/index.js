@@ -5,8 +5,7 @@ import GroupsList from "./groupsList";
 import Chats from "./chats";
 import CreateGroup from "./createGroup";
 import { useState } from "react";
-
-
+import './SupportGroups.css';
 
 const SupportGroups = () => {
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -22,12 +21,14 @@ const SupportGroups = () => {
   };
 
   return (
-    <div>
-      <div style={{ display: "flex" }}>
+    <div className="support-groups-container">
+      <div className="groups-list-container">
         <GroupsList groups={groups} handleSelectGroup={handleSelectGroup} />
+        <CreateGroup />
+      </div>
+      <div className="chats-container">
         {selectedGroup && <Chats groupId={selectedGroup} />}
       </div>
-      <CreateGroup />
     </div>
   );
 };

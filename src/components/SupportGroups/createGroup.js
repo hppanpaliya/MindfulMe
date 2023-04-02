@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createGroup } from "../../store/features/supportGroups/supportGroupsSlice";
+import "./CreateGroup.css";
 
 const CreateGroup = () => {
   const [groupName, setGroupName] = useState("");
@@ -8,21 +9,24 @@ const CreateGroup = () => {
 
   const handleCreateGroup = () => {
     if (groupName.trim() !== "") {
-        dispatch(createGroup({ name: groupName })); 
+      dispatch(createGroup({ name: groupName }));
       setGroupName("");
     }
   };
 
   return (
-    <div>
-      <h3>Create New Group:</h3>
+    <div className="create-group-container">
+      <h3 className="create-group-title">Create New Group:</h3>
       <input
         type="text"
         placeholder="Group Name"
         value={groupName}
         onChange={(e) => setGroupName(e.target.value)}
+        className="create-group-input"
       />
-      <button onClick={handleCreateGroup}>Create</button>
+      <button onClick={handleCreateGroup} className="create-group-button">
+        Create
+      </button>
     </div>
   );
 };
