@@ -30,7 +30,7 @@ const MemoryMatch = () => {
   };
 
   const selectCard = (index) => {
-    if (selected.length === 2) {
+    if (selected.length === 2 || selected.includes(index)) {
       return;
     }
     setSelected([...selected, index]);
@@ -46,6 +46,7 @@ const MemoryMatch = () => {
       }
     }
   };
+  
 
   return (
     <div>

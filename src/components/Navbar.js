@@ -15,6 +15,8 @@ const links = {
   guest: [
     { path: "/", text: "Home" },
     { path: "/memory-match", text: "Memory Match" },
+    { path: "/coping-strategies", text: "Coping Strategies" },
+    { path: "/cbt", text: "CBT" },
     { path: "/login", text: "Login" },
     { path: "/join", text: "Join" },
   ],
@@ -23,6 +25,8 @@ const links = {
     { path: "/support-groups", text: "Support Groups" },
     { path: "/mood-tracker", text: "Mood Tracker" },
     { path: "/memory-match", text: "Memory Match" },
+    { path: "/coping-strategies", text: "Coping Strategies" },
+    { path: "/cbt", text: "CBT" },
     { path: "/logout", text: "Logout" },
   ],
 };
@@ -58,9 +62,7 @@ const NavBar = () => {
       </Toolbar>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer} sx={{ background: "lightgrey" }}>
         <div onClick={toggleDrawer}>
-          <List>
-            {user ? renderLinks(links.user) : renderLinks(links.guest)}
-          </List>
+          <List>{user ? renderLinks(links.user) : renderLinks(links.guest)}</List>
         </div>
       </Drawer>
     </AppBar>

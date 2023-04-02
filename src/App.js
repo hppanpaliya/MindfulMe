@@ -19,6 +19,8 @@ import { getAuth } from "firebase/auth";
 import NavBar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import MemoryMatch from "./components/MemoryMatch";
+import CopingStrategies from "./components/CopingStrategies";
+import CBT from "./components/CBT";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -46,12 +48,14 @@ function App() {
         <Route path="/logout" Component={Logout} />
         <Route path="/join" Component={Join} />
         <Route path="/memory-match" Component={MemoryMatch} />
+        <Route path="/coping-strategies" Component={CopingStrategies} />
+        <Route path="/cbt" Component={CBT} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/mood-tracker" Component={MoodTracker} />
           <Route path="/support-groups" Component={SupportGroups} />
         {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />
-        <Route path="/coping-strategies" Component={CopingStrategies} />
+
         <Route path="/goal-setting" Component={GoalSetting} />
         
         <Route path="/profile" Component={Profile} /> */}
