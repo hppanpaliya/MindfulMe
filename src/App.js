@@ -18,6 +18,7 @@ import React, { useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import NavBar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
+import MemoryMatch from "./components/MemoryMatch";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -44,7 +45,7 @@ function App() {
         <Route path="/login" Component={Login} />
         <Route path="/logout" Component={Logout} />
         <Route path="/join" Component={Join} />
-
+        <Route path="/memory-match" Component={MemoryMatch} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/mood-tracker" Component={MoodTracker} />
           <Route path="/support-groups" Component={SupportGroups} />

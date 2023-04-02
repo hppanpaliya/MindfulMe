@@ -11,12 +11,40 @@ const NavLink = styled(Link)({
   margin: "0 16px",
 });
 
+const links = {
+  guest: [
+    { path: "/", text: "Home" },
+    { path: "/memory-match", text: "Memory Match" },
+    { path: "/login", text: "Login" },
+    { path: "/join", text: "Join" },
+  ],
+  user: [
+    { path: "/", text: "Home" },
+    { path: "/support-groups", text: "Support Groups" },
+    { path: "/mood-tracker", text: "Mood Tracker" },
+    { path: "/memory-match", text: "Memory Match" },
+    { path: "/logout", text: "Logout" },
+  ],
+};
+
 const NavBar = () => {
   const { user } = useSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
+  };
+
+  const renderLinks = (links) => {
+    return (
+      <>
+        {links.map((link) => (
+          <NavLink key={link.path} to={link.path}>
+            {link.text}
+          </NavLink>
+        ))}
+      </>
+    );
   };
 
   return (
@@ -26,52 +54,12 @@ const NavBar = () => {
           <MenuIcon />
         </IconButton>
         <div style={{ flexGrow: 1 }} />
-        {!user ? (
-          <>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/join">Join</NavLink>
-          </>
-        ) : (
-          <>
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/support-groups">Support Groups</NavLink>
-            <NavLink to="/mood-tracker">Mood Tracker</NavLink>
-            <NavLink to="/logout">Logout</NavLink>
-          </>
-        )}
+        {user ? renderLinks(links.user) : renderLinks(links.guest)}
       </Toolbar>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer} sx={{ background: "lightgrey" }}>
         <div onClick={toggleDrawer}>
           <List>
-            <ListItem key="home">
-              <NavLink to="/">Home</NavLink>
-            </ListItem>
-            {!user ? (
-              <>
-                <ListItem key="home">
-                  <NavLink to="/">Home</NavLink>
-                </ListItem>
-                <ListItem key="login">
-                  <NavLink to="/login">Login</NavLink>
-                </ListItem>
-                <ListItem key="join">
-                  <NavLink to="/join">Join</NavLink>
-                </ListItem>
-              </>
-            ) : (
-              <>
-                <ListItem key="home">
-                  <NavLink to="/">Home</NavLink>
-                </ListItem>
-                <ListItem key="mood-tracker">
-                  <NavLink to="/mood-tracker">Mood Tracker</NavLink>
-                </ListItem>
-                <ListItem key="logout">
-                  <NavLink to="/logout">Logout</NavLink>
-                </ListItem>
-              </>
-            )}
+            {user ? renderLinks(links.user) : renderLinks(links.guest)}
           </List>
         </div>
       </Drawer>
