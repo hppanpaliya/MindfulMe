@@ -1,9 +1,13 @@
-
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import userReducers from "./features/auth/authSlice";
+import authReducer from "./features/auth/authSlice";
+import moodReducer from "./features/mood/moodSlice";
+import supportGroupsReducer from "./features/supportGroups/supportGroupsSlice";
+
 
 const rootReducer = combineReducers({
-  auth: userReducers,
+  auth: authReducer,
+  mood: moodReducer,
+  supportGroups: supportGroupsReducer,
 });
 
 const store = configureStore({

@@ -8,9 +8,9 @@ export const authSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      const { uid, email, username, photoURL } = action.payload;
+      const { uid, email, displayName } = action.payload;
       state.loading = false;
-      state.user = { uid, email, username, photoURL };
+      state.user = { uid, email, displayName };
     },
     logout: (state) => {
       state.user = null;
