@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Home from "./components/Home";
-import MoodTracker from './components/MoodTracker';
+import MoodTracker from "./components/MoodTracker";
 // import GuidedMeditation from './components/GuidedMeditation';
 // import SelfAssessment from './components/SelfAssessment';
 // import CopingStrategies from './components/CopingStrategies';
 // import GoalSetting from './components/GoalSetting';
-import SupportGroups from './components/SupportGroups';
+import SupportGroups from "./components/SupportGroups";
 // import Profile from './components/Profile';
 import Login from "./components/Profile/Login.js";
 import Logout from "./components/Profile/Logout.js";
@@ -21,6 +21,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import MemoryMatch from "./components/MemoryMatch";
 import CopingStrategies from "./components/CopingStrategies";
 import CBT from "./components/CBT";
+import GoalSetting from "./components/GoalSetting";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -53,14 +54,14 @@ function App() {
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/mood-tracker" Component={MoodTracker} />
           <Route path="/support-groups" Component={SupportGroups} />
-        {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
+          <Route path="/goal-setting" Component={GoalSetting} />
+
+          {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />
 
-        <Route path="/goal-setting" Component={GoalSetting} />
         
         <Route path="/profile" Component={Profile} /> */}
         </Route>
-        
       </Routes>
     </Router>
   );

@@ -8,11 +8,12 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 ### Features
 - [X] Mood tracking and journaling with data visualization
 - [X] Virtual support groups 
+- [X] MemoryMatching game for improving memory and concentration
+- [X] Cognitive-behavioral therapy (CBT) techniques and resources
+- [X] Coping strategies for managing stress and anxiety
+- [X] Personalized goal setting and progress tracking with reminders
 - [ ] Personalized self-assessment tools and diagnostic quizzes
 - [ ] Guided meditations and mindfulness exercises
-- [ ] Cognitive-behavioral therapy (CBT) techniques and resources
-- [ ] Coping strategies for managing stress and anxiety
-- [ ] Personalized goal setting and progress tracking with reminders
 - [ ] Access to mental health professionals and therapists with teletherapy
 - [ ] Educational resources and articles on mental health topics with gamification elements
 - [ ] AI chatbot for 24/7 support and assistance with coping skills and self-care

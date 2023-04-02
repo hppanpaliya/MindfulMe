@@ -24,6 +24,7 @@ const links = {
     { path: "/", text: "Home" },
     { path: "/support-groups", text: "Support Groups" },
     { path: "/mood-tracker", text: "Mood Tracker" },
+    { path: "/goal-setting", text: "Goal Setting" },
     { path: "/memory-match", text: "Memory Match" },
     { path: "/coping-strategies", text: "Coping Strategies" },
     { path: "/cbt", text: "CBT" },
