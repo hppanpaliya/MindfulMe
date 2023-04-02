@@ -6,7 +6,8 @@
 This is a Mental Health Support Web App that provides resources and tools to help users manage their mental health and well-being.
 
 ### Features
-- [ ] Mood tracking and journaling with data visualization
+- [X] Mood tracking and journaling with data visualization
+- [X] Virtual support groups 
 - [ ] Personalized self-assessment tools and diagnostic quizzes
 - [ ] Guided meditations and mindfulness exercises
 - [ ] Cognitive-behavioral therapy (CBT) techniques and resources
@@ -15,7 +16,7 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [ ] Access to mental health professionals and therapists with teletherapy
 - [ ] Educational resources and articles on mental health topics with gamification elements
 - [ ] AI chatbot for 24/7 support and assistance with coping skills and self-care
-- [ ] Virtual support groups and peer-to-peer communication
+- [ ] Peer-to-peer communication
 - [ ] Multi-language support
 
 ### Technology Stack
