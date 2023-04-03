@@ -11,9 +11,9 @@ import SupportGroups from "./components/SupportGroups";
 import Login from "./components/Profile/Login.js";
 import Logout from "./components/Profile/Logout.js";
 import Join from "./components/Profile/Join.js";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
 import { login, logout } from "./store/features/auth/authSlice.js";
-import firebase from "firebase/compat/app";
 import React, { useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import NavBar from "./components/Navbar";
@@ -26,9 +26,10 @@ import UsersList from "./components/Chat/UserList";
 import ChatMessages from "./components/Chat/ChatMessages";
 import SelfAssessment from "./components/SelfAssessment";
 
+import GuidedMeditation from "./components/GuidedMeditation";
 
 function App() {
-  const auth = useSelector((state) => state.auth);
+//  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,13 +50,14 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" Component={Home} />
-        <Route path="/self-assessment" Component={SelfAssessment} />
         <Route path="/login" Component={Login} />
         <Route path="/logout" Component={Logout} />
         <Route path="/join" Component={Join} />
         <Route path="/memory-match" Component={MemoryMatch} />
         <Route path="/coping-strategies" Component={CopingStrategies} />
         <Route path="/cbt" Component={CBT} />
+        <Route path="/guided-meditation" Component={GuidedMeditation} />
+        <Route path="/self-assessment" Component={SelfAssessment} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/mood-tracker" Component={MoodTracker} />
           <Route path="/support-groups" Component={SupportGroups} />

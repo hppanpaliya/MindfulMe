@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { authSlice } from '../../store/features/auth/authSlice';
 import firebase from '../../utils/firebase';
 import { useSelector } from 'react-redux';
 import './ChatMessages.css';

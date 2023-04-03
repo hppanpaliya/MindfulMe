@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { AppBar, Toolbar, IconButton, Drawer, List, ListItem } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Drawer, List, Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -64,11 +64,23 @@ const NavBar = () => {
       </Toolbar>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer} sx={{ background: "lightgrey" }}>
         <div onClick={toggleDrawer}>
-          <List>{user ? renderLinks(links.user) : renderLinks(links.guest)}</List>
+          <List
+            component={Box}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "250px",
+            }}
+          >
+            {user ? renderLinks(links.user) : renderLinks(links.guest)}
+          </List>
         </div>
       </Drawer>
     </AppBar>
   );
+  
 };
 
 export default NavBar;

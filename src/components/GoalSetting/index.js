@@ -24,6 +24,7 @@ const GoalSetting = () => {
     };
 
     fetchGoals();
+    // eslint-disable-next-line
   }, []);
 
   const handleUpdateGoal = async (goalId, updatedGoal) => {

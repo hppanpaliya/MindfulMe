@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { authSlice } from "../../store/features/auth/authSlice";
 import firebase from "../../utils/firebase";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
