@@ -24,6 +24,7 @@ import CBT from "./components/CBT";
 import GoalSetting from "./components/GoalSetting";
 import UsersList from "./components/Chat/UserList";
 import ChatMessages from "./components/Chat/ChatMessages";
+import SelfAssessment from "./components/SelfAssessment";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" Component={Home} />
+        <Route path="/self-assessment" Component={SelfAssessment} />
         <Route path="/login" Component={Login} />
         <Route path="/logout" Component={Logout} />
         <Route path="/join" Component={Join} />

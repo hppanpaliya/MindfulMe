@@ -12,12 +12,11 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [X] Cognitive-behavioral therapy (CBT) techniques and resources
 - [X] Coping strategies for managing stress and anxiety
 - [X] Personalized goal setting and progress tracking with reminders
-- [ ] Personalized self-assessment tools and diagnostic quizzes
+- [X] Personalized self-assessment tools and diagnostic quizzes
 - [ ] Guided meditations and mindfulness exercises
-- [ ] Access to mental health professionals and therapists with teletherapy
 - [ ] Educational resources and articles on mental health topics with gamification elements
 - [ ] AI chatbot for 24/7 support and assistance with coping skills and self-care
-- [ ] Peer-to-peer communication
+- [X] Peer-to-peer communication
 - [ ] Multi-language support
 
 ### Technology Stack
