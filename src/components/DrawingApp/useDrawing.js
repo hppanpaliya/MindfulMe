@@ -117,8 +117,9 @@ const useDrawing = (color, brushSize) => {
     const touch = e.type === "touchend" ? e.changedTouches[0] : e.touches[0];
     const { pageX, pageY } = touch;
     const { left, top } = canvasRef.current.getBoundingClientRect();
-    const offsetX = pageX - left;
-    const offsetY = pageY - top;
+    const { scrollTop, scrollLeft } = document.documentElement;
+    const offsetX = pageX - left - scrollLeft;
+    const offsetY = pageY - top - scrollTop;
 
     const syntheticEvent = { nativeEvent: { offsetX, offsetY } };
 
@@ -149,8 +150,6 @@ const useDrawing = (color, brushSize) => {
     const context = canvasRef.current.getContext("2d");
     context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   };
-    
-
 
   return {
     canvasRef,
