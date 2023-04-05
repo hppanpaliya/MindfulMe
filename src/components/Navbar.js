@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { AppBar, Toolbar, IconButton, Drawer, List, Box, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Drawer, List, Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 

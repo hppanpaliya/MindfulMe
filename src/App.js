@@ -25,12 +25,14 @@ import GoalSetting from "./components/GoalSetting";
 import UsersList from "./components/Chat/UserList";
 import ChatMessages from "./components/Chat/ChatMessages";
 import SelfAssessment from "./components/SelfAssessment";
+// eslint-disable-next-line no-unused-vars
 import firebase from "./utils/firebase";
 import DrawingApp from "./components/DrawingApp";
 
 import GuidedMeditation from "./components/GuidedMeditation";
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const currentUser = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
