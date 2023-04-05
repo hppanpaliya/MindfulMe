@@ -12,7 +12,7 @@ import Login from "./components/Profile/Login.js";
 import Logout from "./components/Profile/Logout.js";
 import Join from "./components/Profile/Join.js";
 import { useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { login, logout } from "./store/features/auth/authSlice.js";
 import React, { useEffect } from "react";
 import { getAuth } from "firebase/auth";
@@ -25,12 +25,51 @@ import GoalSetting from "./components/GoalSetting";
 import UsersList from "./components/Chat/UserList";
 import ChatMessages from "./components/Chat/ChatMessages";
 import SelfAssessment from "./components/SelfAssessment";
+import firebase from "./utils/firebase";
+import DrawingApp from "./components/DrawingApp";
 
 import GuidedMeditation from "./components/GuidedMeditation";
 
 function App() {
-//  const auth = useSelector((state) => state.auth);
+  const currentUser = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     const updateActiveChatAndStatus = async () => {
+  //       const userStatusDatabaseRef = firebase.database().ref(`/status/${currentUser.user.uid}`);
+  //       const isOfflineForDatabase = {
+  //         isOnline: false,
+  //         lastChanged: Date.now(),
+  //       };
+  
+  //       const isOnlineForDatabase = {
+  //         isOnline: true,
+  //         lastChanged: Date.now(),
+  //       };
+  
+  //       await userStatusDatabaseRef.set(isOnlineForDatabase);
+  
+  //       // Set up an interval to update the lastChanged field every 10 minutes
+  //       const intervalId = setInterval(() => {
+  //         userStatusDatabaseRef.update({ lastChanged: Date.now() });
+  //       }, 10 * 60 * 1000);
+  
+  //       // Clean up: reset the online status when the user leaves the website
+  //       userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase);
+  
+  //       return () => {
+  //         clearInterval(intervalId);
+  //       };
+  //     };
+  
+  //     updateActiveChatAndStatus();
+  //   }
+  // }, [currentUser]);
+  
+  
 
   useEffect(() => {
     const auth = getAuth();
@@ -42,6 +81,8 @@ function App() {
       }
       console.log(auth.currentUser);
     });
+
+    
     return unsubscribe;
   }, [dispatch]);
 
@@ -58,6 +99,7 @@ function App() {
         <Route path="/cbt" Component={CBT} />
         <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />
+        <Route path="/Draw" Component={DrawingApp} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/mood-tracker" Component={MoodTracker} />
           <Route path="/support-groups" Component={SupportGroups} />
@@ -67,8 +109,6 @@ function App() {
 
           {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />
-
-        
         <Route path="/profile" Component={Profile} /> */}
         </Route>
       </Routes>

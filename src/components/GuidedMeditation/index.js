@@ -47,14 +47,11 @@ const GuidedMeditation = () => {
         <li>Repeat this process for a few minutes.</li>
       </ol>
       <div className="breathingContainer">
-        <div className="breathingCircle circle1" />
+      <div className="breathingCircle circle1" />
         <div className="breathingCircle circle2" />
         <div className="breathingCircle circle3" />
         <div className="breathingCircle circle4" />
         <div className="breathingCircle circle5" />
-        <div className="breathingCircle circle6" />
-        <div className="breathingCircle circle7" />
-        <div className="breathingCircle circle8" />
       </div>
       <label htmlFor="audioSelect">Select background audio:</label>
       <select id="audioSelect" value={currentAudio} onChange={handleAudioChange}>
@@ -67,6 +64,7 @@ const GuidedMeditation = () => {
       <ReactAudioPlayer src={currentAudio} autoPlay controls loop />
     </div>
   );
+
 };
 
 export default GuidedMeditation;

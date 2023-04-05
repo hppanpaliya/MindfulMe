@@ -13,10 +13,10 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [X] Coping strategies for managing stress and anxiety
 - [X] Personalized goal setting and progress tracking with reminders
 - [X] Personalized self-assessment tools and diagnostic quizzes
-- [ ] Guided meditations and mindfulness exercises
+- [X] Guided meditations and mindfulness exercises
+- [X] Peer-to-peer communication
 - [ ] Educational resources and articles on mental health topics with gamification elements
 - [ ] AI chatbot for 24/7 support and assistance with coping skills and self-care
-- [X] Peer-to-peer communication
 - [ ] Multi-language support
 
 ### Technology Stack
@@ -26,8 +26,8 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 
 ### Getting Started
 1. Clone the repository: `git clone https://github.com/hppanpaliya/CS-545`
-2. Install dependencies: `npm install`
-3. Start the server: `npm start`
+2. Install dependencies: `npm install` or `yarn install`
+3. Start the server: `npm start` or `yarn start`
 
 ### Contributing
 If you would like to contribute to the project, please create a pull request and describe the changes you are proposing.
