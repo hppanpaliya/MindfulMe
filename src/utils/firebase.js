@@ -3,6 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import "firebase/compat/database";
+import "firebase/compat/messaging";
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,5 +23,7 @@ const app = firebase.initializeApp({
 
 // Initialize Firebase
 // const analytics = getAnalytics(app);
+const messaging = firebase.messaging();
 app.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 export default app;
+export {  messaging };

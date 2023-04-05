@@ -28,6 +28,8 @@ import SelfAssessment from "./components/SelfAssessment";
 // eslint-disable-next-line no-unused-vars
 import firebase from "./utils/firebase";
 import DrawingApp from "./components/DrawingApp";
+import useNotificationPermission from "./utils/useNotificationPermission";
+import NotificationPermissionModal from "./utils/NotificationPermissionModal";
 
 import GuidedMeditation from "./components/GuidedMeditation";
 
@@ -71,6 +73,9 @@ function App() {
   //   }
   // }, [currentUser]);
   
+
+ //NotificationPermissionModal();
+
   
 
   useEffect(() => {
@@ -89,6 +94,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <>
     <Router>
       <NavBar />
       <Routes>
@@ -114,7 +120,10 @@ function App() {
         <Route path="/profile" Component={Profile} /> */}
         </Route>
       </Routes>
-    </Router>
+      </Router>
+      <NotificationPermissionModal />
+
+    </>
   );
 }
 
