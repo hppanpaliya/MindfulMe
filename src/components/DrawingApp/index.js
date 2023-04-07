@@ -8,7 +8,7 @@ const DrawingApp = () => {
   const [color, setColor] = useState("#000000");
   const [brushSize, setBrushSize] = useState(5);
 
-  const { canvasRef, contextRef, startDrawing, finishDrawing, draw, handleTouchEvent, exportCanvasAsJPG, clearCanvas, save, undo } = useDrawing(
+  const { canvasRef, contextRef, startDrawing, finishDrawing, draw, handleTouchEvent, exportCanvasAsJPG, clearCanvas, save, undo, redo } = useDrawing(
     color,
     brushSize
   );
@@ -25,6 +25,7 @@ const DrawingApp = () => {
         clearCanvas={clearCanvas}
         save={save}
         undo={undo}
+        redo={redo}
       />
       <Canvas canvasRef={canvasRef} startDrawing={startDrawing} finishDrawing={finishDrawing} draw={draw} handleTouchEvent={handleTouchEvent} />
     </div>

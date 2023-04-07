@@ -6,27 +6,31 @@ const useDrawing = (color, brushSize) => {
   const contextRef = useRef(null);
   const drawingHistoryRef = useRef([]);
   const isDrawingRef = useRef(false);
+  const redoHistoryRef = useRef([]);
 
   useEffect(() => {
     prepareCanvas();
 
     const handleKeyDown = (e) => {
-      if (e.key === "z" && e.ctrlKey) {
+      if (e.key === "z" && e.ctrlKey && e.shiftKey) {
+        e.preventDefault();
+        redo();
+      } else if (e.key === "z" && e.ctrlKey) {
         undo();
-      }
-      if (e.key === "s" && e.ctrlKey) {
+      } else if (e.key === "s" && e.ctrlKey) {
         e.preventDefault();
         save();
-      }
-
-      if (e.key === "z" && e.metaKey) {
+      } else if (e.key === "z" && e.metaKey && e.shiftKey) {
+        e.preventDefault();
+        redo();
+      } else if (e.key === "z" && e.metaKey) {
         undo();
-      }
-      if (e.key === "s" && e.metaKey) {
+      } else if (e.key === "s" && e.metaKey) {
         e.preventDefault();
         save();
       }
     };
+    
 
     document.addEventListener("keydown", handleKeyDown);
 
@@ -71,10 +75,24 @@ const useDrawing = (color, brushSize) => {
   const undo = () => {
     if (drawingHistoryRef.current.length > 1) {
       const context = canvasRef.current.getContext("2d");
-      drawingHistoryRef.current.pop();
+      redoHistoryRef.current.push(drawingHistoryRef.current.pop());
       context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
       const image = new Image();
       image.src = drawingHistoryRef.current[drawingHistoryRef.current.length - 1];
+      image.onload = () => {
+        context.drawImage(image, 0, 0);
+      };
+    }
+  };
+
+  const redo = () => {
+    if (redoHistoryRef.current.length > 0) {
+      const context = canvasRef.current.getContext("2d");
+      const lastRedo = redoHistoryRef.current.pop();
+      drawingHistoryRef.current.push(lastRedo);
+      context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      const image = new Image();
+      image.src = lastRedo;
       image.onload = () => {
         context.drawImage(image, 0, 0);
       };
@@ -161,6 +179,7 @@ const useDrawing = (color, brushSize) => {
     exportCanvasAsJPG,
     clearCanvas,
     undo,
+    redo,
     save,
   };
 };
