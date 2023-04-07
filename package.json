@@ -31,9 +31,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
     "predeploy": "npm run build && cp build/index.html build/404.html",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "deploy": "gh-pages -d build",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "delete": "ssh pi@192.168.1.201 'sudo rm -r /var/www/html/* && sudo mkdir -p /var/www/html/static/ && sudo chmod -R 777 /var/www/html '",
+    "copy" : "scp -rp ./build/* pi@192.168.1.201:/var/www/html/",
+    "permission" : "ssh pi@192.168.1.201 sudo chmod -R 777 /var/www/html",
+    "deploy-rpi": "npm run build && npm run delete && npm run copy && npm run permission",
+    "noPassword" : "./noPassword.exp",
+    "noPassword-deploy" : "npm run build && ./noPassword.exp",
+    "upload" : "npm run delete && npm run copy && npm run permission"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "prettier": "^2.8.7",
     "gh-pages": "^5.0.0"
   }
 }

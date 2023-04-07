@@ -7,6 +7,9 @@ export const authSlice = createSlice({
     user: null,
   },
   reducers: {
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
     login: (state, action) => {
       const { uid, email, displayName } = action.payload;
       state.loading = false;
@@ -18,6 +21,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { setLoading, login, logout } = authSlice.actions;
 export const selectUser = (state) => state.auth; // selectors
 export default authSlice.reducer;

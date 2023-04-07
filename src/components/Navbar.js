@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import { AppBar, Toolbar, IconButton, Drawer, List, Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
+import SelfAssessment from "./SelfAssessment";
 
 const NavLink = styled(Link)({
   color: "black",
@@ -29,12 +30,14 @@ const links = {
     { path: "/support-groups", text: "Support Groups" },
     { path: "/chat", text: "Chat" },
     { path: "/mood-tracker", text: "Mood Tracker" },
-    { path: "/draw", text: "DrawingApp" },
+    { path: "/draw", text: "Drawing" },
     { path: "/goal-setting", text: "Goal Setting" },
     { path: "/memory-match", text: "Memory Match" },
-    { path: "/guided-meditation", text: "Guided Meditation" },
+    { path: "/guided-meditation", text: "Meditation" },
     { path: "/coping-strategies", text: "Coping Strategies" },
     { path: "/cbt", text: "CBT" },
+    { path: "/self-assessment", text: "Self Assessment" },
+    { path: "/survey", text: "Survey" },
     { path: "/logout", text: "Logout" },
   ],
 };
@@ -60,23 +63,15 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "#87CEFA" }}>
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={toggleDrawer}
-          sx={{ display: { xs: "block", sm: "none" } }}
-        >
+        <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer} sx={{ display: { xs: "block", sm: "none" } }}>
           <MenuIcon />
         </IconButton>
         <Typography variant="h6">
           <NavLink to="/">Mental Health App</NavLink>
         </Typography>
-        <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-          {user ? renderLinks(links.user) : renderLinks(links.guest)}
-        </Box>
+        <Box sx={{ display: { xs: "none", sm: "flex" } }}>{user ? renderLinks(links.user) : renderLinks(links.guest)}</Box>
       </Toolbar>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer} sx={{ background: "lightgrey" }}>
         <div onClick={toggleDrawer}>

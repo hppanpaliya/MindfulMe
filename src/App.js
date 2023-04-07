@@ -13,7 +13,7 @@ import Logout from "./components/Profile/Logout.js";
 import Join from "./components/Profile/Join.js";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { login, logout } from "./store/features/auth/authSlice.js";
+import { login, logout, setLoading } from "./store/features/auth/authSlice.js";
 import React, { useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import NavBar from "./components/Navbar";
@@ -30,15 +30,14 @@ import firebase from "./utils/firebase";
 import DrawingApp from "./components/DrawingApp";
 import useNotificationPermission from "./utils/useNotificationPermission";
 import NotificationPermissionModal from "./utils/NotificationPermissionModal";
-
 import GuidedMeditation from "./components/GuidedMeditation";
+import Survey from "./components/Survey";
+import AdminSurveyReplies from "./components/Survey/AdminSurveyReplies.js";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const currentUser = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
-
 
   // useEffect(() => {
   //   if (currentUser) {
@@ -48,35 +47,32 @@ function App() {
   //         isOnline: false,
   //         lastChanged: Date.now(),
   //       };
-  
+
   //       const isOnlineForDatabase = {
   //         isOnline: true,
   //         lastChanged: Date.now(),
   //       };
-  
+
   //       await userStatusDatabaseRef.set(isOnlineForDatabase);
-  
+
   //       // Set up an interval to update the lastChanged field every 10 minutes
   //       const intervalId = setInterval(() => {
   //         userStatusDatabaseRef.update({ lastChanged: Date.now() });
   //       }, 10 * 60 * 1000);
-  
+
   //       // Clean up: reset the online status when the user leaves the website
   //       userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase);
-  
+
   //       return () => {
   //         clearInterval(intervalId);
   //       };
   //     };
-  
+
   //     updateActiveChatAndStatus();
   //   }
   // }, [currentUser]);
-  
 
- //NotificationPermissionModal();
-
-  
+  //NotificationPermissionModal();
 
   useEffect(() => {
     const auth = getAuth();
@@ -85,44 +81,45 @@ function App() {
         dispatch(login(user));
       } else {
         dispatch(logout());
+        dispatch(setLoading(false));
       }
       console.log(auth.currentUser);
     });
 
-    
     return unsubscribe;
   }, [dispatch]);
 
   return (
     <>
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route exact path="/" Component={Home} />
-        <Route path="/login" Component={Login} />
-        <Route path="/logout" Component={Logout} />
-        <Route path="/join" Component={Join} />
-        <Route path="/memory-match" Component={MemoryMatch} />
-        <Route path="/coping-strategies" Component={CopingStrategies} />
-        <Route path="/cbt" Component={CBT} />
-        <Route path="/guided-meditation" Component={GuidedMeditation} />
-        <Route path="/self-assessment" Component={SelfAssessment} />
-        <Route path="/Draw" Component={DrawingApp} />
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/mood-tracker" Component={MoodTracker} />
-          <Route path="/support-groups" Component={SupportGroups} />
-          <Route path="/goal-setting" Component={GoalSetting} />
-          <Route path="/chat" Component={UsersList} />
-          <Route path="/chat/:id" Component={ChatMessages} />
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route exact path="/" Component={Home} />
+          <Route path="/login" Component={Login} />
+          <Route path="/logout" Component={Logout} />
+          <Route path="/join" Component={Join} />
+          <Route path="/memory-match" Component={MemoryMatch} />
+          <Route path="/coping-strategies" Component={CopingStrategies} />
+          <Route path="/cbt" Component={CBT} />
+          <Route path="/guided-meditation" Component={GuidedMeditation} />
+          <Route path="/self-assessment" Component={SelfAssessment} />
+          <Route path="/Draw" Component={DrawingApp} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/mood-tracker" Component={MoodTracker} />
+            <Route path="/support-groups" Component={SupportGroups} />
+            <Route path="/goal-setting" Component={GoalSetting} />
+            <Route path="/chat" Component={UsersList} />
+            <Route path="/chat/:id" Component={ChatMessages} />
+            <Route path="/survey" Component={Survey} />
+            <Route path="/survey-list" Component={AdminSurveyReplies} />
 
-          {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
+            {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />
         <Route path="/profile" Component={Profile} /> */}
-        </Route>
-      </Routes>
+          </Route>
+        </Routes>
       </Router>
       <NotificationPermissionModal />
-
     </>
   );
 }
