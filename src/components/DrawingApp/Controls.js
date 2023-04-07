@@ -134,17 +134,16 @@ const Controls = ({ color, setColor, brushSize, setBrushSize, contextRef, export
           &nbsp;&nbsp;&nbsp;
           <Tooltip title="Color Picker">
             <div style={{ position: "relative" }}>
-              <div
+              {pickerType !== "built-in" ? <div
                 onClick={openBuiltInPicker}
                 style={{
                   cursor: "pointer",
                   height: "24px",
                   width: "24px",
                   padding: "0",
-                  backgroundColor: color,
-                  opacity: pickerType === "built-in" ? 0 : 1,
+                  backgroundColor: color
                 }}
-              ></div>
+              ></div> : ``}
               <input
                 id="colorInput"
                 type="color"
@@ -155,7 +154,7 @@ const Controls = ({ color, setColor, brushSize, setBrushSize, contextRef, export
                 }}
                 style={
                   pickerType === "built-in"
-                    ? { cursor: "pointer", height: "24px", width: "24px", padding: "0", backgroundColor: color, position: "absolute" }
+                    ? { cursor: "pointer", height: "24px", width: "24px", padding: "0", backgroundColor: color }
                     : { cursor: "pointer", height: "24px", width: "24px", padding: "0", backgroundColor: color, position: "absolute", opacity: 0 }
                 }
                 ref={inputRef}
