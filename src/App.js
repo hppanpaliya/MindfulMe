@@ -33,10 +33,12 @@ import NotificationPermissionModal from "./utils/NotificationPermissionModal";
 import GuidedMeditation from "./components/GuidedMeditation";
 import Survey from "./components/Survey";
 import AdminSurveyReplies from "./components/Survey/AdminSurveyReplies.js";
+import HabitTracker from "./components/HabitTracker";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const currentUser = useSelector((state) => state.auth);
+    //console.log(user.user.uid);
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -104,6 +106,7 @@ function App() {
           <Route path="/guided-meditation" Component={GuidedMeditation} />
           <Route path="/self-assessment" Component={SelfAssessment} />
           <Route path="/Draw" Component={DrawingApp} />
+          <Route path="/habit-tracker" Component={HabitTracker} />
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/mood-tracker" Component={MoodTracker} />
             <Route path="/support-groups" Component={SupportGroups} />

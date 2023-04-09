@@ -159,6 +159,7 @@ const links = {
         { path: "/mood-tracker", text: "Mood Tracker" },
         { path: "/goal-setting", text: "Goal Setting" },
         { path: "/self-assessment", text: "Self Assessment" },
+        { path: "/habit-tracker", text: "Habit Tracker" },
       ],
     },
     {
