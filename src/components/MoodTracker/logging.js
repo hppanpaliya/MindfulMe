@@ -9,6 +9,8 @@ const MoodLogging = () => {
   const userId = useSelector((state) => state.auth.user.uid);
   const [moodValue, setMoodValue] = useState(5);
 
+  const emoticons = ["😭", "😢", "😔", "😐", "🙂", "😀", "😄", "😁", "😆", "😍"];
+
   const handleMoodLogging = async (e) => {
     e.preventDefault();
     try {
@@ -31,15 +33,15 @@ const MoodLogging = () => {
         Log Mood
       </Typography>
       <div className="mood-logging-container">
-        <Typography gutterBottom>Select your mood (1 - 10):</Typography>
+        <Typography gutterBottom>Select your mood:</Typography>
         <Select
           value={moodValue}
           onChange={(e) => setMoodValue(e.target.value)}
           className="mood-select"
         >
-          {[...Array(10)].map((_, i) => (
-            <MenuItem value={i + 1} key={i + 1}>
-              {i + 1}
+          {emoticons.map((emoticon, index) => (
+            <MenuItem value={index + 1} key={index + 1}>
+              {emoticon}
             </MenuItem>
           ))}
         </Select>
