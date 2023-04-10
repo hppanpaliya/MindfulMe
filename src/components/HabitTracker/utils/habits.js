@@ -76,3 +76,65 @@ export const toggleCompletion = async (uid, habitId) => {
     console.error(error);
   }
 };
+
+
+export const maintainHabit = async (uid, habitId) => {
+  try {
+    const habitRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .collection("habits")
+      .doc(habitId);
+
+    const habitSnapshot = await habitRef.get();
+    const habitData = habitSnapshot.data();
+    const currentDate = new Date().setHours(0, 0, 0, 0);
+
+    if (
+      !habitData.previousDaysMaintained.includes(currentDate) &&
+      currentDate !== habitData.lastMaintained
+    ) {
+      const newStreak =
+        currentDate - habitData.lastMaintained === 24 * 60 * 60 * 1000
+          ? habitData.streak + 1
+          : 1;
+
+      await habitRef.update({
+        previousDaysMaintained: [
+          ...habitData.previousDaysMaintained,
+          currentDate,
+        ],
+        streak: newStreak,
+        lastMaintained: currentDate,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const resetStreak = async (uid, habitId) => {
+  try {
+    const habitRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .collection("habits")
+      .doc(habitId);
+
+    const habitSnapshot = await habitRef.get();
+    const habitData = habitSnapshot.data();
+    const currentDate = new Date().setHours(0, 0, 0, 0);
+
+    if (
+      currentDate - habitData.lastMaintained > 2 * 24 * 60 * 60 * 1000
+    ) {
+      await habitRef.update({
+        streak: 0,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

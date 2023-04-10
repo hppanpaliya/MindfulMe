@@ -1,14 +1,46 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Typography, IconButton, TextField } from "@mui/material";
+import { Box, Typography, IconButton, TextField, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
-import { deleteHabitAsync, updateHabitAsync, toggleCompletionAsync,  fetchHabitsAsync  } from "../../../../store/features/habits/habitsSlice";
+
+import {
+  deleteHabitAsync,
+  updateHabitAsync,
+  toggleCompletionAsync,
+  fetchHabitsAsync,
+  maintainHabitAsync,
+} from "../../../../store/features/habits/habitsSlice";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 const HabitItem = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(props.name);
+  const [open, setOpen] = useState(false);
+  const [calendarDate, setCalendarDate] = useState(new Date());
+  const previousDaysMaintained = props.previousDaysMaintained;
+
+
+  const handleStreakNumberClick = () => {
+    setOpen(true);
+  };
+
+
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleMaintainHabit = async () => {
+    //(user.user.uid, props.id);
+    dispatch(maintainHabitAsync({ uid: user.user.uid, habitId: props.id }));
+    dispatch(fetchHabitsAsync(user.user.uid));
+  };
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
 
@@ -29,7 +61,7 @@ const HabitItem = (props) => {
   };
 
   const handleToggleCompletion = async () => {
-    dispatch(toggleCompletionAsync({ uid: user.user.uid, habitId: props.id}));
+    dispatch(toggleCompletionAsync({ uid: user.user.uid, habitId: props.id }));
     props.setRefreshHabits(!props.refreshHabits);
     dispatch(fetchHabitsAsync(user.user.uid));
   };
@@ -50,9 +82,23 @@ const HabitItem = (props) => {
       {isEditing ? (
         <TextField value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} fullWidth size="small" />
       ) : (
-        <Typography onClick={handleToggleCompletion} variant="body1" sx={{ cursor: "pointer" }} color={props.isCompleted ? "green" : "black"}>
-          {props.name}
-        </Typography>
+        <>
+          <Typography onClick={handleToggleCompletion} variant="body1" sx={{ cursor: "pointer" }} color={props.isCompleted ? "green" : "black"}>
+            {props.name}
+          </Typography>
+          <Typography variant="body1" sx={{ cursor: "pointer", marginLeft: "0.5rem" }} onClick={handleStreakNumberClick}>
+            Streak: {props.streak}
+          </Typography>
+          {/* <Dialog onClose={handleClose} open={open}>
+              <DialogContent>
+                
+            </DialogContent>
+          </Dialog> */}
+          <Button onClick={handleMaintainHabit} size="small">
+            {" "}
+            Maintain Habit
+          </Button>
+        </>
       )}
       <Box component="div">
         {isEditing ? (

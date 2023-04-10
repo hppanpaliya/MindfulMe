@@ -1,0 +1,4 @@
+.maintained-date .react-calendar__tile--now::before,
+.maintained-date .react-calendar__tile::before {
+  content: "";
+}

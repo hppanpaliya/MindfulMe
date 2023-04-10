@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addHabit, getHabits, updateHabit, deleteHabit, toggleCompletion } from "../../../components/HabitTracker/utils/habits";
+import { addHabit, getHabits, updateHabit, deleteHabit, toggleCompletion, maintainHabit } from "../../../components/HabitTracker/utils/habits";
 
 export const addHabitAsync = createAsyncThunk("habits/addHabit", async (payload) => {
     const { uid, habit } = payload;
@@ -25,6 +25,18 @@ export const addHabitAsync = createAsyncThunk("habits/addHabit", async (payload)
     const { uid, habitId } = payload;
     await toggleCompletion(uid, habitId);
   });
+
+  //import { maintainHabit } from "../../../../utils/habits";
+
+
+export const maintainHabitAsync = createAsyncThunk("habits/maintainHabit", async (payload) => {
+    const { uid, habitId} = payload;
+    await maintainHabit(uid, habitId);
+});
+  
+
+
+
   
   const habitSlice = createSlice({
     name: "habits",

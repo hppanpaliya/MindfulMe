@@ -51,7 +51,20 @@ const HabitList = (props) => {
     <Box component="div" sx={{ flexDirection: "column", gap: "1rem", display: "flex" }}>
       <Insights habits={habits} />
       {sortedHabits.map((habit) => (
-        <HabitItem key={habit.id} id={habit.id} name={habit.name} isCompleted={habit.isCompleted} createdAt={habit.createdAt} setRefreshHabits={props.setRefreshHabits} refreshHabits={props.refreshHabits}  />
+        <HabitItem
+          key={habit.id}
+          id={habit.id}
+          name={habit.name}
+          isCompleted={habit.isCompleted}
+          createdAt={habit.createdAt}
+          setRefreshHabits={props.setRefreshHabits}
+          refreshHabits={props.refreshHabits}
+          streakStartDate={habit.streakStartDate}
+          streakEndDate={habit.streakEndDate}
+          streak={habit.streak} 
+          lastUpdated={habit.lastUpdated}
+          previousDaysMaintained={habit.previousDaysMaintained}
+        />
       ))}
     </Box>
   );

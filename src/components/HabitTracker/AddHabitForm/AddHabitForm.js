@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch,  useSelector } from "react-redux";
-import { addHabitAsync,  fetchHabitsAsync } from "../../../store/features/habits/habitsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addHabitAsync, fetchHabitsAsync } from "../../../store/features/habits/habitsSlice";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { FormControl } from "@mui/material";
@@ -8,7 +8,6 @@ import { FormControl } from "@mui/material";
 const AddHabitForm = (props) => {
   const [newHabit, setNewHabit] = useState("");
   const user = useSelector((state) => state.auth);
-
 
   const dispatch = useDispatch();
 
@@ -23,9 +22,16 @@ const AddHabitForm = (props) => {
       const habit = {
         name: newHabit,
         isCompleted: false,
+        previousDaysMaintained: [],
+        streak: 0,
+        createdAt: Date.now(),
+        streakStartDate: null,
+        streakEndDate: null,
+        lastUpdated: null,
       };
+
       // uid, habit
-      await dispatch(addHabitAsync({ uid: user.user.uid, habit:habit }));
+      dispatch(addHabitAsync({ uid: user.user.uid, habit: habit }));
       //props.setRefreshHabits(!props.refreshHabits);
       console.log(habit);
       dispatch(fetchHabitsAsync(user.user.uid));
