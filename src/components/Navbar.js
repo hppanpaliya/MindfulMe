@@ -68,7 +68,7 @@ const DesktopDropdown = ({ title, items }) => {
   );
 };
 
-const MobileDropdown = ({ title, items, toggleDrawer }) => {
+const MobileDropdown = ({ title, items, closeDrawer }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const handleClick = () => {
@@ -76,7 +76,7 @@ const MobileDropdown = ({ title, items, toggleDrawer }) => {
   };
 
   const handleLinkClick = () => {
-    toggleDrawer();
+    closeDrawer();
   };
 
   return (
@@ -107,7 +107,7 @@ const MobileDropdown = ({ title, items, toggleDrawer }) => {
   );
 };
 
-const Dropdown = ({ title, items, toggleDrawer }) => {
+const Dropdown = ({ title, items, closeDrawer }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const Dropdown = ({ title, items, toggleDrawer }) => {
   }, []);
 
   return isMobile ? (
-    <MobileDropdown title={title} items={items} toggleDrawer={toggleDrawer} onClick={(e) => e.stopPropagation()} />
+    <MobileDropdown title={title} items={items} closeDrawer={closeDrawer} onClick={(e) => e.stopPropagation()} />
   ) : (
     <DesktopDropdown title={title} items={items} />
   );
@@ -193,21 +193,31 @@ const NavBar = () => {
     setIsOpenMenu(!isOpen);
   };
 
+  const openDrawer = () => {
+    setIsOpenMenu(true);
+  };
+
+  const closeDrawer = () => {
+    setIsOpenMenu(false);
+  };
+
   const handleMouseLeave = () => {
     setIsOpenMenu(false);
   };
 
-  const renderLinks = (dropdowns, toggleDrawer) => {
+  const renderLinks = (dropdowns, closeDrawer) => {
     return (
       <>
         {dropdowns.map((dropdown) => {
           if (dropdown.items) {
-            return <Dropdown key={dropdown.category} title={dropdown.category} items={dropdown.items} toggleDrawer={toggleDrawer} />;
+            return <Dropdown key={dropdown.category} title={dropdown.category} items={dropdown.items} closeDrawer={closeDrawer} />;
           } else {
             return (
               <NavLink key={dropdown.path} to={dropdown.path} sx={{
-                paddingTop: "0.5rem",
-              }} >
+                paddingTop: "0.5rem"
+              }}
+                onClick={closeDrawer}
+              >
                 {dropdown.text}
               </NavLink>
             );
@@ -221,7 +231,7 @@ const NavBar = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "#87CEFA" }} onMouseLeave={handleMouseLeave}>
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer} sx={{ display: { xs: "block", sm: "none" } }}>
+        <IconButton edge="start" color="inherit" aria-label="menu" onClick={openDrawer} sx={{ display: { xs: "block", sm: "none" } }}>
           <MenuIcon />
         </IconButton>
         <Typography variant="h6">
@@ -229,11 +239,11 @@ const NavBar = () => {
         </Typography>
         {/* Wrap the links in a flex container */}
         <Box sx={{ display: { xs: "none", sm: "flex" }, flexGrow: 1, justifyContent: "flex-end" }}>
-          {user ? renderLinks(links.user, toggleDrawer) : renderLinks(links.guest, toggleDrawer)}
+          {user ? renderLinks(links.user) : renderLinks(links.guest)}
         </Box>
       </Toolbar>
-      <Drawer anchor="left" open={isOpenMenu} onClose={toggleDrawer} sx={{ background: "lightgrey" }}>
-        <div onClick={toggleDrawer}>
+      <Drawer anchor="left" open={isOpenMenu} onClose={closeDrawer} sx={{ background: "lightgrey" }}>
+        <div>
           <List
             component={Box}
             sx={{
@@ -244,7 +254,7 @@ const NavBar = () => {
               width: "250px",
             }}
           >
-            {user ? renderLinks(links.user) : renderLinks(links.guest)}
+          {user ? renderLinks(links.user, closeDrawer) : renderLinks(links.guest, closeDrawer)}
           </List>
         </div>
       </Drawer>

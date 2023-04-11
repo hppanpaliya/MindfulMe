@@ -106,7 +106,6 @@ function App() {
           <Route path="/guided-meditation" Component={GuidedMeditation} />
           <Route path="/self-assessment" Component={SelfAssessment} />
           <Route path="/Draw" Component={DrawingApp} />
-          <Route path="/habit-tracker" Component={HabitTracker} />
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/mood-tracker" Component={MoodTracker} />
             <Route path="/support-groups" Component={SupportGroups} />
@@ -115,6 +114,7 @@ function App() {
             <Route path="/chat/:id" Component={ChatMessages} />
             <Route path="/survey" Component={Survey} />
             <Route path="/survey-list" Component={AdminSurveyReplies} />
+            <Route path="/habit-tracker" Component={HabitTracker} />
 
             {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />
