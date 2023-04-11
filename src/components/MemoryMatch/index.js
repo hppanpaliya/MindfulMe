@@ -63,10 +63,49 @@ const FlipCard = ({ isFlipped, front: Front, back: Back }) => (
   </div>
 );
 
+const ResetGameButton = ({ shuffleCards }) => (
+  <Button variant="contained" color="primary" onClick={shuffleCards}>
+    Reset Game
+  </Button>
+);
 
-// Main component for the memory match game
+const SoundControlButton = ({ isMuted, toggleMute }) => (
+  <Button variant="contained" color="primary" onClick={toggleMute}>
+    {isMuted ? <VolumeOff /> : <VolumeUp />}
+    {isMuted ? "Turn Off" : "Turn On"}
+  </Button>
+);
+
+const MovesDisplay = ({ moves }) => (
+  <Typography variant="h6">Moves: {moves}</Typography>
+);
+
+const TimeDisplay = ({ timeElapsed }) => (
+  <Typography variant="h6">Time: {timeElapsed}s</Typography>
+);
+
+const MemoryMatchCard = ({ card, index, selected, matched, selectCard }) => (
+  <Grid item xs={4} sm={3} md={2} key={index}>
+    <CardContainer onClick={() => selectCard(index)} isSelected={selected.includes(index)} isMatched={matched.includes(index)}>
+      <FlipCard
+        isFlipped={matched.includes(index) || selected.includes(index)}
+        front={() => (
+          <CardFront>
+            <CardContent>{card}</CardContent>
+          </CardFront>
+        )}
+        back={() => (
+          <CardBack>
+            <CardContent>{"❓"}</CardContent>
+          </CardBack>
+        )}
+      />
+    </CardContainer>
+  </Grid>
+);
+
 const MemoryMatch = () => {
-  // Declare state variables
+// Declare state variables
   const cardValues = ["🐶", "🐱", "🐻", "🐼", "🦊", "🐯", "🐷", "🐰", "🐸"];
   const [cards, setCards] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -144,7 +183,7 @@ const MemoryMatch = () => {
       }
     }
   };
-
+    
   return (
     <Container maxWidth="md">
       <ScoreModal open={openScoreModal} handleClose={closeModal} moves={moves} timeElapsed={timeElapsed} />
@@ -158,49 +197,30 @@ const MemoryMatch = () => {
       </Box>
       <Grid container justifyContent="center" alignItems="center" spacing={2} style={{ marginTop: "1rem" }}>
         <Grid item>
-          <Button variant="contained" color="primary" onClick={shuffleCards}>
-            Reset Game
-          </Button>
+          <ResetGameButton shuffleCards={shuffleCards} />
         </Grid>
         <Grid item>
-          <Button variant="contained" color="primary" onClick={() => setIsMuted(!isMuted)}>
-            {isMuted ? <VolumeOff /> : <VolumeUp />}
-            {isMuted ? "Turn Off" : "Turn On"}
-          </Button>
+          <SoundControlButton isMuted={isMuted} toggleMute={() => setIsMuted(!isMuted)} />
         </Grid>
         <Grid item>
-          <Typography variant="h6">Moves: {moves}</Typography>
+          <MovesDisplay moves={moves} />
         </Grid>
         <Grid item>
-          <Typography variant="h6">Time: {timeElapsed}s</Typography>
+          <TimeDisplay timeElapsed={timeElapsed} />
         </Grid>
       </Grid>
 
       <Grid container spacing={2} justifyContent="center" alignItems="center" style={{ marginTop: "1rem" }}>
         {/* Map over the cards and create a MemoryMatchCard for each one */}
         {cards.map((card, index) => (
-          <Grid item xs={4} sm={3} md={2} key={index}>
-            <CardContainer onClick={() => selectCard(index)} isSelected={selected.includes(index)} isMatched={matched.includes(index)}>
-              {/* Flip the card to show the front or back depending on its state */}
-              <FlipCard
-                isFlipped={matched.includes(index) || selected.includes(index)}
-                front={() => (
-                  <CardFront>
-                    <div>
-                      <CardContent>{card}</CardContent>
-                    </div>
-                  </CardFront>
-                )}
-                back={() => (
-                  <CardBack>
-                    <div>
-                      <CardContent>{"❓"}</CardContent>
-                    </div>
-                  </CardBack>
-                )}
-              />
-            </CardContainer>
-          </Grid>
+          <MemoryMatchCard
+            key={index}
+            card={card}
+            index={index}
+            selected={selected}
+            matched={matched}
+            selectCard={selectCard}
+          />
         ))}
       </Grid>
     </Container>
