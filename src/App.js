@@ -22,8 +22,8 @@ import MemoryMatch from "./components/MemoryMatch";
 import CopingStrategies from "./components/CopingStrategies";
 import CBT from "./components/CBT";
 import GoalSetting from "./components/GoalSetting";
-import UsersList from "./components/Chat/UserList";
-import ChatMessages from "./components/Chat/ChatMessages";
+import UsersList from "./components/Chat/UserList/UserList";
+import ChatMessages from "./components/Chat/ChatMessages/ChatMessages";
 import SelfAssessment from "./components/SelfAssessment";
 // eslint-disable-next-line no-unused-vars
 import firebase from "./utils/firebase";
