@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, CardContent, Grid, Typography, Container, Box } from "@mui/material";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import ScoreModal from "./ScoreModal";
+import flipcard from "../../assets/audio/background/flipcard.mp3";
+import cardflip from "../../assets/audio/background/cardflip.mp3";
+import gameWin from "../../assets/audio/background/game-win.wav";
+import shufflingCards from "../../assets/audio/background/shuffling-cards.mp3";
+import cardMatch from "../../assets/audio/background/cardMatch.mp3";
+import { VolumeUp, VolumeOff } from "@mui/icons-material";
 
-// Styled component for the card container
 const CardContainer = styled(Card)(({ theme, isSelected, isMatched }) => ({
   display: "flex",
   justifyContent: "center",
@@ -59,14 +63,6 @@ const FlipCard = ({ isFlipped, front: Front, back: Back }) => (
   </div>
 );
 
-// CSS for selected and matched cards
-const selectedCardStyle = css`
-  background-color: #a1c4fd;
-`;
-
-const matchedCardStyle = css`
-  background-color: #b2fefa;
-`;
 
 // Main component for the memory match game
 const MemoryMatch = () => {
@@ -78,122 +74,137 @@ const MemoryMatch = () => {
   const [moves, setMoves] = useState(0);
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [openScoreModal, setOpenScoreModal] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   // Shuffle the cards on component mount
   useEffect(() => {
     shuffleCards();
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Open score modal when all cards are matched
   useEffect(() => {
     if (matched.length === cards.length) {
+      //if(isMuted) new Audio(gameWin).play();
       setOpenScoreModal(true);
     }
   }, [matched, cards, moves]);
-// Close the score modal
-const closeModal = () => {
-  setOpenScoreModal(false);
+  // Close the score modal
+  const closeModal = () => {
+    setOpenScoreModal(false);
   };
-  
+
   // Increment the time elapsed every second while there are unmatched cards
   useEffect(() => {
-  if (matched.length < cards.length) {
-  const timer = setTimeout(() => setTimeElapsed(timeElapsed + 1), 1000);
-  return () => clearTimeout(timer);
-  }
+    if (matched.length < cards.length) {
+      const timer = setTimeout(() => setTimeElapsed(timeElapsed + 1), 1000);
+      return () => clearTimeout(timer);
+    }
   }, [timeElapsed, matched, cards]);
-  
+
   // Shuffle the cards and reset the game
   const shuffleCards = () => {
-  const shuffled = cardValues.concat(cardValues).sort(() => Math.random() - 0.5);
-  setCards(shuffled);
-  setSelected([]);
-  setMatched([]);
-  setMoves(0);
-  setTimeElapsed(0);
+    if (isMuted) new Audio(shufflingCards).play();
+    const shuffled = cardValues.concat(cardValues).sort(() => Math.random() - 0.5);
+    setCards(shuffled);
+    setSelected([]);
+    setMatched([]);
+    setMoves(0);
+    setTimeElapsed(0);
   };
-  
+
   // Select a card and check for matches
   const selectCard = (index) => {
-  // Don't allow selection of more than two cards or the same card twice
-  if (selected.length === 2 || selected.includes(index)) {
-  return;
-  }
-  setSelected([...selected, index]);
-
-  if (selected.length === 1) {
-    setMoves(moves + 1);
-  
-    if (cards[selected[0]] === cards[index]) {
-      setMatched([...matched, selected[0], index]);
-      setSelected([]);
-    } else {
-      // Unflip the cards after 1 second if they don't match
-      setTimeout(() => {
-        setSelected([]);
-      }, 1000);
+    // Don't allow selection of more than two cards or the same card twice
+    if (selected.length === 2 || selected.includes(index) || matched.includes(index)) {
+      return;
     }
-  }
-};
+    if (isMuted) new Audio(flipcard).play();
+    setSelected([...selected, index]);
+    if (selected.length === 1) {
+      setMoves(moves + 1);
+      if (cards[selected[0]] === cards[index]) {
+        setMatched([...matched, selected[0], index]);
+        setSelected([]);
+        // play audio with 0.5 seconds delay
+        setTimeout(() => {
+          if (matched.length === cards.length - 2) {
+            if (isMuted) new Audio(gameWin).play();
+          } else {
+            if (isMuted) new Audio(cardMatch).play();
+          }
+        }, 600);
+        //if(isMuted) new Audio(cardMatch).play();
+      } else {
+        // Unflip the cards after 1 second if they don't match
+        setTimeout(() => {
+          setSelected([]);
+          if (isMuted) new Audio(cardflip).play();
+        }, 1000);
+      }
+    }
+  };
 
-return (
-<Container maxWidth="md">
-<ScoreModal open={openScoreModal} handleClose={closeModal} moves={moves} timeElapsed={timeElapsed} />
-<Box textAlign="center" my={2}>
-<Typography variant="h4" gutterBottom>
-Memory Match Game
-</Typography>
-<Typography variant="subtitle1">
-Click on the cards to reveal them, and find matching pairs. <br /> Try to complete the game in the shortest time and with the fewest moves!
-</Typography>
-</Box>
-<Grid container justifyContent="center" alignItems="center" spacing={2} style={{ marginTop: "1rem" }}>
-<Grid item>
-<Button variant="contained" color="primary" onClick={shuffleCards}>
-Reset Game
-</Button>
-</Grid>
-<Grid item>
-<Typography variant="h6">Moves: {moves}</Typography>
-</Grid>
-<Grid item>
-<Typography variant="h6">Time: {timeElapsed}s</Typography>
-</Grid>
-    </Grid>
-
-    <Grid container spacing={2} justifyContent="center" alignItems="center" style={{ marginTop: "1rem" }}>
-    {/* Map over the cards and create a MemoryMatchCard for each one */}
-    {cards.map((card, index) => (
-      <Grid item xs={4} sm={3} md={2} key={index}>
-        <CardContainer
-          onClick={() => selectCard(index)}
-          isSelected={selected.includes(index)}
-          isMatched={matched.includes(index)}
-        >
-          {/* Flip the card to show the front or back depending on its state */}
-          <FlipCard
-            isFlipped={matched.includes(index) || selected.includes(index)}
-            front={() => (
-              <CardFront>
-                <div>
-                  <CardContent>{card}</CardContent>
-                </div>
-              </CardFront>
-            )}
-            back={() => (
-              <CardBack>
-                <div>
-                  <CardContent>{"❓"}</CardContent>
-                </div>
-              </CardBack>
-            )}
-          />
-        </CardContainer>
+  return (
+    <Container maxWidth="md">
+      <ScoreModal open={openScoreModal} handleClose={closeModal} moves={moves} timeElapsed={timeElapsed} />
+      <Box textAlign="center" my={2}>
+        <Typography variant="h4" gutterBottom>
+          Memory Match Game
+        </Typography>
+        <Typography variant="subtitle1">
+          Click on the cards to reveal them, and find matching pairs. <br /> Try to complete the game in the shortest time and with the fewest moves!
+        </Typography>
+      </Box>
+      <Grid container justifyContent="center" alignItems="center" spacing={2} style={{ marginTop: "1rem" }}>
+        <Grid item>
+          <Button variant="contained" color="primary" onClick={shuffleCards}>
+            Reset Game
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" color="primary" onClick={() => setIsMuted(!isMuted)}>
+            {isMuted ? <VolumeOff /> : <VolumeUp />}
+            {isMuted ? "Turn Off" : "Turn On"}
+          </Button>
+        </Grid>
+        <Grid item>
+          <Typography variant="h6">Moves: {moves}</Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="h6">Time: {timeElapsed}s</Typography>
+        </Grid>
       </Grid>
-    ))}
-  </Grid>
-</Container>
-);
+
+      <Grid container spacing={2} justifyContent="center" alignItems="center" style={{ marginTop: "1rem" }}>
+        {/* Map over the cards and create a MemoryMatchCard for each one */}
+        {cards.map((card, index) => (
+          <Grid item xs={4} sm={3} md={2} key={index}>
+            <CardContainer onClick={() => selectCard(index)} isSelected={selected.includes(index)} isMatched={matched.includes(index)}>
+              {/* Flip the card to show the front or back depending on its state */}
+              <FlipCard
+                isFlipped={matched.includes(index) || selected.includes(index)}
+                front={() => (
+                  <CardFront>
+                    <div>
+                      <CardContent>{card}</CardContent>
+                    </div>
+                  </CardFront>
+                )}
+                back={() => (
+                  <CardBack>
+                    <div>
+                      <CardContent>{"❓"}</CardContent>
+                    </div>
+                  </CardBack>
+                )}
+              />
+            </CardContainer>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+  );
 };
 
 export default MemoryMatch;

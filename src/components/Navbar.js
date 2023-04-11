@@ -42,38 +42,41 @@ const DesktopDropdown = ({ title, items }) => {
 
   return (
     <>
-          <Box component="div" onMouseLeave={handleMouseLeave}>
-      <Typography
-        onMouseEnter={handleMouseEnter}
-        aria-controls={`${title}-menu`}
-        aria-haspopup="true"
-        sx={{
-          cursor: "pointer",
-          padding: "0 16px",
-          color: "black",
-          fontWeight: "bold",
-        }}
-      >
-        {title} <ExpandMoreIcon />
-      </Typography>
-      <Menu open={openDesktop} anchorEl={anchorEl} onClose={handleMouseLeave} MenuListProps={{ onMouseLeave: handleMouseLeave }}>
-        {items.map((item) => (
-          <MenuItem key={item.path} component={Link} to={item.path} onClick={handleMouseLeave}>
-            {item.text}
-          </MenuItem>
-        ))}
-      </Menu>
+      <Box component="div" onMouseLeave={handleMouseLeave}>
+        <Typography
+          onMouseEnter={handleMouseEnter}
+          aria-controls={`${title}-menu`}
+          aria-haspopup="true"
+          sx={{
+            cursor: "pointer",
+            padding: "0 16px",
+            color: "black",
+            fontWeight: "bold",
+          }}
+        >
+          {title} <ExpandMoreIcon />
+        </Typography>
+        <Menu open={openDesktop} anchorEl={anchorEl} onClose={handleMouseLeave} MenuListProps={{ onMouseLeave: handleMouseLeave }}>
+          {items.map((item) => (
+            <MenuItem key={item.path} component={Link} to={item.path} onClick={handleMouseLeave}>
+              {item.text}
+            </MenuItem>
+          ))}
+        </Menu>
       </Box>
-
     </>
   );
 };
 
-const MobileDropdown = ({ title, items }) => {
+const MobileDropdown = ({ title, items, toggleDrawer }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const handleClick = () => {
     setIsOpenMenu(!isOpenMenu);
+  };
+
+  const handleLinkClick = () => {
+    toggleDrawer();
   };
 
   return (
@@ -94,7 +97,7 @@ const MobileDropdown = ({ title, items }) => {
       <Collapse in={isOpenMenu}>
         <List component="nav" aria-labelledby={`${title}-menu`}>
           {items.map((item) => (
-            <MenuItem key={item.path} component={Link} to={item.path}>
+            <MenuItem key={item.path} component={Link} to={item.path} onClick={handleLinkClick}>
               {item.text}
             </MenuItem>
           ))}
@@ -104,7 +107,7 @@ const MobileDropdown = ({ title, items }) => {
   );
 };
 
-const Dropdown = ({ title, items }) => {
+const Dropdown = ({ title, items, toggleDrawer }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
   useEffect(() => {
@@ -117,7 +120,7 @@ const Dropdown = ({ title, items }) => {
   }, []);
 
   return isMobile ? (
-    <MobileDropdown title={title} items={items} onClick={(e) => e.stopPropagation()} />
+    <MobileDropdown title={title} items={items} toggleDrawer={toggleDrawer} onClick={(e) => e.stopPropagation()} />
   ) : (
     <DesktopDropdown title={title} items={items} />
   );
@@ -194,12 +197,12 @@ const NavBar = () => {
     setIsOpenMenu(false);
   };
 
-  const renderLinks = (dropdowns) => {
+  const renderLinks = (dropdowns, toggleDrawer) => {
     return (
       <>
         {dropdowns.map((dropdown) => {
           if (dropdown.items) {
-            return <Dropdown key={dropdown.category} title={dropdown.category} items={dropdown.items} />;
+            return <Dropdown key={dropdown.category} title={dropdown.category} items={dropdown.items} toggleDrawer={toggleDrawer} />;
           } else {
             return (
               <NavLink key={dropdown.path} to={dropdown.path} sx={{
@@ -213,6 +216,7 @@ const NavBar = () => {
       </>
     );
   };
+  
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#87CEFA" }} onMouseLeave={handleMouseLeave}>
@@ -225,7 +229,7 @@ const NavBar = () => {
         </Typography>
         {/* Wrap the links in a flex container */}
         <Box sx={{ display: { xs: "none", sm: "flex" }, flexGrow: 1, justifyContent: "flex-end" }}>
-          {user ? renderLinks(links.user) : renderLinks(links.guest)}
+          {user ? renderLinks(links.user, toggleDrawer) : renderLinks(links.guest, toggleDrawer)}
         </Box>
       </Toolbar>
       <Drawer anchor="left" open={isOpenMenu} onClose={toggleDrawer} sx={{ background: "lightgrey" }}>
