@@ -4,7 +4,7 @@
     "imageUrl": "https://tinyurl.com/snb55",
     "description": "Welcome to our Mental Health Support Web App! The app is divided into 6 categories. Each category contains a variety of tools and resources to help you manage your mental health. The following is a brief overview of each category.",
     "items": ["Games", "Social", "Resources", "Tracking Tools", "Meditation", "Account"],
-    "links": []
+    "links": ["/1", "/2", "/3", "/4", "/5", "/6"]
   },
   {
     "title": "Games",

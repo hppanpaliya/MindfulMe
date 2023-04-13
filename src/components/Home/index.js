@@ -4,10 +4,15 @@ import { motion, useAnimation } from "framer-motion";
 import slideImages from "./slideImages.json";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import blueBackground from "../../assets/images/blue-gradient-background.jpg";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
   const slideRefs = useRef([]);
+
+  const { slide } = useParams();
+  console.log(slide);
 
   const handleScroll = () => {
     slideRefs.current.forEach((ref, index) => {
@@ -32,11 +37,13 @@ const Home = () => {
     slideRefs.current = slideRefs.current.slice(0, slideImages.length);
 
     window.addEventListener("scroll", handleScroll);
+    if (slide) scrollToSlide(slide);
+    else scrollToSlide(0);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [slide]);
 
   return (
     <Box>
@@ -47,37 +54,7 @@ const Home = () => {
         <Typography variant="h5" align="center" gutterBottom>
           Discover our features
         </Typography>
-{/* 
-<Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
-  {slideImages.map((slide, index) => (
-    <Box key={index} sx={{ marginX: 2 }}>
-{slide.items && (
-  <ul>
-    {slide.items.slice(1).map((item, idx) => (
-      <li key={idx}>
-        {slide.links && slide.links[idx] ? (
-          <Link to={slide.links[idx]}>
-            <Typography variant="body1" align="center">
-              {item}
-            </Typography>
-          </Link>
-        ) : (
-          <Typography variant="body1" align="center">
-            {item}
-          </Typography>
-        )}
-      </li>
-    ))}
-  </ul>
-)}
-
-
-      
-    </Box>
-  ))}
-        </Box>
-         */}
-<br />
+        <br />
 
         {slideImages.map((slide, index) => (
           <Box
@@ -88,15 +65,15 @@ const Home = () => {
           >
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: currentSlide - 1 === index ? 1 : 0 }}
-              transition={{ duration: 0.5 }}
+              animate={{ opacity: currentSlide - 1 === index ? 1 : 0.5 }}
+              transition={{ duration: 1.5 }}
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 width: "100%",
                 height: "100%",
-                backgroundImage: `url(${slide.imageUrl})`,
+                backgroundImage: `url(${blueBackground})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -117,8 +94,8 @@ const Home = () => {
                         <li key={idx}>
                           {slide.links && slide.links[idx] ? (
                             <Link to={slide.links[idx]}>
-                            <Typography variant="body1" align="center">
-                              {item}
+                              <Typography variant="body1" align="center">
+                                {item}
                               </Typography>
                             </Link>
                           ) : (

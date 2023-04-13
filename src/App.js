@@ -63,6 +63,7 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route exact path="/" Component={Home} />
+          <Route path="/:slide" Component={Home} />
           <Route path="/login" Component={Login} />
           <Route path="/logout" Component={Logout} />
           <Route path="/join" Component={Join} />
