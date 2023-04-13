@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createMood, getMoods } from "../../store/features/mood/moodSlice";
-import { Button, Typography, Select, MenuItem } from "@mui/material";
+import { Button, Typography, Slider, Box, Grow } from "@mui/material";
+import { styled } from "@mui/system";
+import { motion } from "framer-motion";
 import "./logging.css";
 
 const MoodLogging = () => {
@@ -27,28 +29,40 @@ const MoodLogging = () => {
     }
   };
 
+  const valueLabelFormat = (value) => emoticons[value - 1];
+
+  const emojiVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
     <div>
-      <Typography variant="h5" gutterBottom>
-        Log Mood
-      </Typography>
-      <div className="mood-logging-container">
-        <Typography gutterBottom>Select your mood:</Typography>
-        <Select
-          value={moodValue}
-          onChange={(e) => setMoodValue(e.target.value)}
-          className="mood-select"
-        >
-          {emoticons.map((emoticon, index) => (
-            <MenuItem value={index + 1} key={index + 1}>
-              {emoticon}
-            </MenuItem>
-          ))}
-        </Select>
+      <Box className="mood-logging-container">
+        <motion.div initial="hidden" animate="visible" transition={{ duration: 1 }} variants={emojiVariants}>
+          <Typography component={"span"} gutterBottom>
+            Select your mood:{" "}
+          </Typography>{" "}
+          <Typography component={"span"} style={{ fontSize: "2rem" }}>
+            {emoticons[moodValue - 1]}
+          </Typography>
+        </motion.div>
+        <Grow in>
+          <Slider
+            value={moodValue}
+            min={1}
+            max={10}
+            step={1}
+            onChange={(e, value) => setMoodValue(value)}
+            valueLabelDisplay="auto"
+            valueLabelFormat={valueLabelFormat}
+          />
+        </Grow>
         <Button variant="contained" onClick={handleMoodLogging} className="log-mood-button">
           Log Mood
         </Button>
-      </div>
+      </Box>
+      <br></br>
     </div>
   );
 };

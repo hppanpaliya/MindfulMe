@@ -1,80 +1,131 @@
-//home/index.js
+// home/index.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { styled } from '@mui/material/styles';
-import { Typography, Box, Button } from '@mui/material';
-
-const Root = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100vh',
-  padding: theme.spacing(2),
-}));
-
-const Title = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: '2rem',
-  textAlign: 'center',
-  margin: theme.spacing(2, 0),
-}));
-
-const Subtitle = styled(Typography)(({ theme }) => ({
-  fontSize: '1.2rem',
-  textAlign: 'center',
-  marginBottom: theme.spacing(2),
-}));
-
-const LinkContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginTop: theme.spacing(2),
-}));
-
-const StyledLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  textDecoration: 'none',
-  fontSize: '1.2rem',
-  margin: theme.spacing(0, 2),
-}));
+import { Typography, Box, Container, Grid } from '@mui/material';
 
 const Home = () => {
-  const { user } = useSelector((state) => state.auth);
-
   return (
-    <Root>
-      <Title>Welcome to our Mental Health Support Web App</Title>
-      <Subtitle>This app provides a range of resources and tools to support mental health and well-being, including:</Subtitle>
-      <ul>
-        <li>Mood tracking and journaling with data visualization</li>
-        <li>Personalized self-assessment tools and diagnostic quizzes</li>
-        <li>Guided meditations and mindfulness exercises</li>
-        <li>Cognitive-behavioral therapy (CBT) techniques and resources</li>
-        <li>Coping strategies for managing stress and anxiety</li>
-        <li>Personalized goal setting and progress tracking with reminders</li>
-        <li>Access to mental health professionals and therapists with teletherapy</li>
-        <li>Educational resources and articles on mental health topics with gamification elements</li>
-        <li>AI chatbot for 24/7 support and assistance with coping skills and self-care</li>
-        <li>Virtual support groups and peer-to-peer communication</li>
-        <li>Multi-language support</li>
-      </ul>
-      <LinkContainer>
-        {user ? (
-          <>
-            <Button variant="contained" color="primary" component={Link} to="/logout">Logout</Button>
-          </>
-        ) : null}
-        {!user ? (
-          <>
-            <StyledLink to="/login">Login</StyledLink>
-            <StyledLink to="/join">Join</StyledLink>
-          </>
-        ) : null}
-      </LinkContainer>
-    </Root>
+    <Box>
+      <Container maxWidth="md">
+        <Typography variant="h4" align="center" gutterBottom>
+          Welcome to our Mental Health Support Web App
+        </Typography>
+        <Typography variant="h5" align="center" gutterBottom>
+          Discover our features
+        </Typography>
+
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Typography variant="h6">App Overview</Typography>
+            <Typography variant="body1">
+              Welcome to our Mental Health Support Web App! Our app provides a range of resources and tools to support mental health and well-being.
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">Games</Typography>
+            <ul>
+              <li>
+                <Typography variant="body1">
+                  Memory Match: Test your memory skills.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1">
+                  DrawingApp: Unleash your creativity.
+                </Typography>
+              </li>
+            </ul>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">Social</Typography>
+            <ul>
+              <li>
+                <Typography variant="body1">
+                  Support Groups: Join virtual support groups.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1">
+                  Chat: Connect with peers.
+                </Typography>
+              </li>
+            </ul>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">Resources</Typography>
+            <ul>
+              <li>
+                <Typography variant="body1">
+                  Coping Strategies: Learn effective coping strategies.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1">
+                  CBT: Discover Cognitive-Behavioral Therapy Techniques and Resources
+                </Typography>
+              </li>
+            </ul>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">Tracking Tools</Typography>
+            <ul>
+              <li>
+                <Typography variant="body1">
+                  Mood Tracker: Track your mood and gain insights.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1">
+                  Goal Setting: Set and track your personal goals.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1">
+                  Self Assessment: Evaluate your mental health status.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1">
+                  Habit Tracker: Monitor and build healthy habits.
+                </Typography>
+              </li>
+            </ul>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">Meditation</Typography>
+            <ul>
+              <li>
+                <Typography variant="body1">
+                  Guided Meditation: Relax and find inner peace.
+                </Typography>
+              </li>
+            </ul>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">Account</Typography>
+            <ul>
+              <li>
+                <Typography variant="body1">
+                  Login / Logout: Access or sign out from your account.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1">
+                  Survey: Provide valuable feedback
+                  </Typography>
+          </li>
+        </ul>
+      </Grid>
+    </Grid>
+  </Container>
+</Box>
+
   );
 };
 

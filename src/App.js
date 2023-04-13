@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import { login, logout, setLoading } from "./store/features/auth/authSlice.js";
 import React, { useEffect } from "react";
 import { getAuth } from "firebase/auth";
-import NavBar from "./components/Navbar";
+//import NavBar from "./components/utils/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import MemoryMatch from "./components/MemoryMatch";
 import CopingStrategies from "./components/CopingStrategies";
@@ -26,55 +26,21 @@ import UsersList from "./components/Chat/UserList/UserList";
 import ChatMessages from "./components/Chat/ChatMessages/ChatMessages";
 import SelfAssessment from "./components/SelfAssessment";
 // eslint-disable-next-line no-unused-vars
-import firebase from "./utils/firebase";
+//import firebase from "./utils/firebase";
 import DrawingApp from "./components/DrawingApp";
-import useNotificationPermission from "./utils/useNotificationPermission";
+//import useNotificationPermission from "./utils/useNotificationPermission";
 import NotificationPermissionModal from "./utils/NotificationPermissionModal";
 import GuidedMeditation from "./components/GuidedMeditation";
 import Survey from "./components/Survey";
 import AdminSurveyReplies from "./components/Survey/AdminSurveyReplies.js";
 import HabitTracker from "./components/HabitTracker";
+import NavigationBar from "./components/NavigationBar";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const currentUser = useSelector((state) => state.auth);
     //console.log(user.user.uid);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     const updateActiveChatAndStatus = async () => {
-  //       const userStatusDatabaseRef = firebase.database().ref(`/status/${currentUser.user.uid}`);
-  //       const isOfflineForDatabase = {
-  //         isOnline: false,
-  //         lastChanged: Date.now(),
-  //       };
-
-  //       const isOnlineForDatabase = {
-  //         isOnline: true,
-  //         lastChanged: Date.now(),
-  //       };
-
-  //       await userStatusDatabaseRef.set(isOnlineForDatabase);
-
-  //       // Set up an interval to update the lastChanged field every 10 minutes
-  //       const intervalId = setInterval(() => {
-  //         userStatusDatabaseRef.update({ lastChanged: Date.now() });
-  //       }, 10 * 60 * 1000);
-
-  //       // Clean up: reset the online status when the user leaves the website
-  //       userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase);
-
-  //       return () => {
-  //         clearInterval(intervalId);
-  //       };
-  //     };
-
-  //     updateActiveChatAndStatus();
-  //   }
-  // }, [currentUser]);
-
-  //NotificationPermissionModal();
 
   useEffect(() => {
     const auth = getAuth();
@@ -94,7 +60,7 @@ function App() {
   return (
     <>
       <Router>
-        <NavBar />
+        <NavigationBar />
         <Routes>
           <Route exact path="/" Component={Home} />
           <Route path="/login" Component={Login} />

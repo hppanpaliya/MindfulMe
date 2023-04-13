@@ -92,13 +92,13 @@ const Survey = () => {
   return (
     <HciSurvey>
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-      <Typography variant="h1">HCI Survey</Typography>
+      <Typography variant="h3">HCI Survey</Typography>
   
       <Box sx={{ width: '100%', maxWidth: '800px' }}>
         <form onSubmit={handleSubmit}>
           {surveyQuestions.map((page) => (
             <Box key={page.page} sx={{ mt: '40px' }}>
-              <Typography variant="h2" sx={{ mb: '20px' }}>{page.page}</Typography>
+              <Typography variant="h4" sx={{ mb: '20px' }}>{page.page}</Typography>
               {page.questions.map((question) => (
                 <Box key={question.id} sx={{ mb: '20px' }}>
                   <Typography variant="h6">{question.question}</Typography>
@@ -109,7 +109,7 @@ const Survey = () => {
                         <FormControlLabel
                           key={index}
                           value={option}
-                          control={<Radio onChange={(e) => handleChange(e, question.id)} />}
+                          control={<Radio name={question.id} onChange={(e) => handleChange(e, question.id)} checked={answers[question.id] === option} />}
                           label={option}
                         />
                       ))}

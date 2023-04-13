@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { AppBar, Toolbar, IconButton, Drawer, List, Box, Typography, Menu, MenuItem, Popper, Paper, Collapse } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Drawer, List, Box, Typography, Menu, MenuItem, Collapse } from "@mui/material";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 // dropdown menu icon
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import links from "./utils/links";
 
 const NavLink = styled(Link)({
   color: "black",
@@ -127,71 +128,12 @@ const Dropdown = ({ title, items, closeDrawer }) => {
 };
 
 // Define the dropdown menu items
-const links = {
-  guest: [
-    { path: "/", text: "Home" },
-    {
-      category: "Games",
-      items: [
-        { path: "/memory-match", text: "Memory Match" },
-        { path: "/draw", text: "DrawingApp" },
-      ],
-    },
-    {
-      category: "Resources",
-      items: [
-        { path: "/coping-strategies", text: "Coping Strategies" },
-        { path: "/cbt", text: "CBT" },
-      ],
-    },
-    { path: "/login", text: "Login" },
-    { path: "/join", text: "Join" },
-  ],
-  user: [
-    { path: "/", text: "Home" },
-    {
-      category: "Social",
-      items: [
-        { path: "/support-groups", text: "Support Groups" },
-        { path: "/chat", text: "Chat" },
-      ],
-    },
-    {
-      category: "Tracking Tools",
-      items: [
-        { path: "/mood-tracker", text: "Mood Tracker" },
-        { path: "/goal-setting", text: "Goal Setting" },
-        { path: "/self-assessment", text: "Self Assessment" },
-        { path: "/habit-tracker", text: "Habit Tracker" },
-      ],
-    },
-    {
-      category: "Games",
-      items: [
-        { path: "/memory-match", text: "Memory Match" },
-        { path: "/draw", text: "Drawing" },
-        { path: "/guided-meditation", text: "Meditation" },
-      ],
-    },
-    {
-      category: "Resources",
-      items: [
-        { path: "/coping-strategies", text: "Coping Strategies" },
-        { path: "/cbt", text: "CBT" },
-      ],
-    },
-    { path: "/survey", text: "Survey" },
-    { path: "/logout", text: "Logout" },
-  ],
-};
+
 const NavBar = () => {
   const { user } = useSelector((state) => state.auth);
-  const [isOpen, setIsOpen] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-  const toggleDrawer = () => {
-    setIsOpenMenu(!isOpen);
-  };
+
 
   const openDrawer = () => {
     setIsOpenMenu(true);
