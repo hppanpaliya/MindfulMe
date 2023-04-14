@@ -25,6 +25,10 @@ const Home = () => {
         const slideIndex = slideImages.findIndex((slide) => slide.tag === tag);
         console.log("scrolling", index);
         setCurrentSlide(index + 1);
+        
+        if (slide) {
+          window.history.replaceState(null, "", `/`); 
+        }
       }
     });
   };
