@@ -25,7 +25,7 @@ const Home = () => {
         const slideIndex = slideImages.findIndex((slide) => slide.tag === tag);
         console.log("scrolling", index);
         setCurrentSlide(index + 1);
-        
+
         if (slide) {
           window.history.replaceState(null, "", `/`); 
         }
@@ -42,7 +42,6 @@ const Home = () => {
 
     window.addEventListener("scroll", handleScroll);
     if (slide) scrollToSlide(slide);
-    else scrollToSlide(0);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -52,13 +51,7 @@ const Home = () => {
   return (
     <Box>
       <Box>
-        <Typography variant="h4" align="center" gutterBottom>
-          Welcome to our Mental Health Support Web App
-        </Typography>
-        <Typography variant="h5" align="center" gutterBottom>
-          Discover our features
-        </Typography>
-        <br />
+
 
         {slideImages.map((slide, index) => (
           <Box

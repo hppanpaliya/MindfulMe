@@ -91,7 +91,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#87CEFA" }} onMouseLeave={handleMouseLeave}>
+    <AppBar position="sticky" sx={{ backgroundColor: "#87CEFA" }} onMouseLeave={handleMouseLeave}>
       <Toolbar>
         <NavigationBarMenu isOpenMenu={isOpenMenu} openDrawer={openDrawer} />
         <NavigationBarTitle />

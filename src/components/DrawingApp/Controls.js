@@ -15,6 +15,8 @@ import CheckIcon from "@mui/icons-material/Check";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import FormatColorResetIcon from "@mui/icons-material/FormatColorReset";
 import Eraser from "../../assets/images/eraser.svg";
+// Pen Icons MUI
+import ModeEditRoundedIcon from "@mui/icons-material/ModeEditRounded";
 
 const ControlWrapper = styled("div")({
   display: "flex",
@@ -106,7 +108,17 @@ const Controls = ({ color, setColor, brushSize, setBrushSize, contextRef, export
   };
 
   const handleEraser = () => {
+    console.log("eraser");
+    if (color !== "#FFFFFF") {
+      console.log(color);
+      console.log("tempset");
+      setTempColor(contextRef.current.strokeStyle);
+    }
     handleColorChange("#FFFFFF");
+  };
+
+  const handlePen = () => {
+    handleColorChange(tempColor);
   };
 
   const handlePickerTypeChange = (event) => {
@@ -134,52 +146,57 @@ const Controls = ({ color, setColor, brushSize, setBrushSize, contextRef, export
           &nbsp;&nbsp;&nbsp;
           <Tooltip title="Color Picker">
             <div style={{ position: "relative" }}>
-              {pickerType !== "built-in" ? <div
-                onClick={openBuiltInPicker}
-                style={{
-                  cursor: "pointer",
-                  height: "24px",
-                  width: "24px",
-                  padding: "0",
-                  backgroundColor: color
-                }}
-              ></div> : ``}
-              <input
-                id="colorInput"
-                type="color"
-                value={color}
-                onChange={(e) => {
-                  setColor(e.target.value);
-                  contextRef.current.strokeStyle = e.target.value;
-                }}
-                style={
-                  pickerType === "built-in"
-                    ? { cursor: "pointer", height: "24px", width: "24px", padding: "0", backgroundColor: color }
-                    : { cursor: "pointer", height: "24px", width: "24px", padding: "0", backgroundColor: color, position: "absolute", opacity: 0 }
-                }
-                ref={inputRef}
-                onClick={(e) => e.stopPropagation()}
-              />
+              {pickerType !== "built-in" ? (
+                <div
+                  onClick={openBuiltInPicker}
+                  style={{
+                    cursor: "pointer",
+                    height: "24px",
+                    width: "24px",
+                    padding: "0",
+                    backgroundColor: color,
+                  }}
+                ></div>
+              ) : (
+                ``
+              )}
+              {pickerType === "built-in" ? (
+                <input
+                  id="colorInput"
+                  type="color"
+                  value={color}
+                  onChange={(e) => {
+                    setColor(e.target.value);
+                    setTempColor(e.target.value);
+                    contextRef.current.strokeStyle = e.target.value;
+                  }}
+                  style={{ cursor: "pointer", height: "24px", width: "24px", padding: "0", backgroundColor: color }}
+                  ref={inputRef}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              ) : (
+                ``
+              )}
               {showPicker && pickerType === "sketch" && (
-                <Modal onClose={handleClickOutsideModal}>
-                  <SketchPicker color={tempColor} onChange={handleColorChangeTemp} />
-                  <Grid container justifyContent="space-between" alignItems="center" sx={{ marginBottom: "1rem" }}>
-                    <Grid item xs>
-                      <Tooltip title="Cancel">
-                        <Button onClick={handleColorCancel} variant="contained" fullWidth>
-                          <CancelIcon />
-                        </Button>
-                      </Tooltip>
-                    </Grid>
-                    <Grid item xs>
-                      <Tooltip title="Accept">
-                        <Button onClick={handleColorAccept} variant="contained" fullWidth>
-                          <CheckIcon />
-                        </Button>
-                      </Tooltip>
-                    </Grid>
+              <Modal onClose={handleClickOutsideModal}>
+                <SketchPicker color={tempColor} onChange={handleColorChangeTemp} />
+                <Grid container justifyContent="space-between" alignItems="center" sx={{ marginBottom: "1rem" }}>
+                  <Grid item xs>
+                    <Tooltip title="Cancel">
+                      <Button onClick={handleColorCancel} variant="contained" fullWidth>
+                        <CancelIcon />
+                      </Button>
+                    </Tooltip>
                   </Grid>
-                </Modal>
+                  <Grid item xs>
+                    <Tooltip title="Accept">
+                      <Button onClick={handleColorAccept} variant="contained" fullWidth>
+                        <CheckIcon />
+                      </Button>
+                    </Tooltip>
+                  </Grid>
+                </Grid>
+              </Modal>
               )}
             </div>
           </Tooltip>
@@ -210,6 +227,11 @@ const Controls = ({ color, setColor, brushSize, setBrushSize, contextRef, export
             </CustomButton>
           </Grid>
           <Grid item xs={4} sm={2}>
+            <CustomButton title="Pen" onClick={handlePen} sx={buttonSx}>
+              <ModeEditRoundedIcon />
+            </CustomButton>
+          </Grid>
+          <Grid item xs={4} sm={2}>
             <CustomButton title="Undo (Ctrl + Z)" onClick={undo} sx={buttonSx}>
               <UndoIcon />
             </CustomButton>
@@ -235,7 +257,7 @@ const Controls = ({ color, setColor, brushSize, setBrushSize, contextRef, export
             </CustomButton>
           </Grid>
         </Grid>
-        </Grid>
+      </Grid>
     </Stack>
   );
 };

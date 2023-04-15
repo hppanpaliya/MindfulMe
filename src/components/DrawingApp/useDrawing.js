@@ -147,7 +147,18 @@ const useDrawing = (color, brushSize) => {
       draw(syntheticEvent);
     } else if (e.type === "touchend" || e.type === "touchcancel") {
       finishDrawing();
-    }
+    } else if (e.type === "touchleave") {
+      finishDrawing();
+    } else if (e.type === "mousedown") {
+      startDrawing(syntheticEvent);
+    } else if (e.type === "mouseup") {
+      finishDrawing();
+    } else if (e.type === "mousemove") {
+      draw(syntheticEvent);
+    } else if (e.type === "mouseleave") {
+      finishDrawing();
+    } 
+
   };
 
   const exportCanvasAsJPG = () => {
