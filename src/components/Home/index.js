@@ -3,29 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
-import { Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button, Container } from '@mui/material';
+import {List, ListItem, ListItemText} from '@mui/material';
 
-const Root = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100vh',
-  padding: theme.spacing(2),
-}));
-
-const Title = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: '2rem',
-  textAlign: 'center',
-  margin: theme.spacing(2, 0),
-}));
-
-const Subtitle = styled(Typography)(({ theme }) => ({
-  fontSize: '1.2rem',
-  textAlign: 'center',
-  marginBottom: theme.spacing(2),
-}));
+//theme import
+import theme from "../../theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 const LinkContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -41,13 +24,27 @@ const StyledLink = styled(Link)(({ theme }) => ({
   margin: theme.spacing(0, 2),
 }));
 
+const listStyle = {
+  listStyleType: 'circle',
+};
+
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <Root>
-      <Title>Welcome to our Mental Health Support Web App</Title>
-      <Subtitle>This app provides a range of resources and tools to support mental health and well-being, including:</Subtitle>
+    <ThemeProvider theme={theme}>
+    <Container sx={{mt: 5}}>
+      <Typography variant='h2'>Welcome to our Mental Health Support Web App</Typography>
+      <Typography variant='h5'>This app provides a range of resources and tools to support mental health and well-being, including:</Typography>
+      {/* <List>
+        <ListItem>
+          <ListItemText primary="Mood tracking and journaling with data visualization" />
+        </ListItem>
+
+        <ListItem>
+          <ListItemText primary="Personalized self-assessment tools and diagnostic quizzes" />
+        </ListItem>
+      </List> */}
       <ul>
         <li>Mood tracking and journaling with data visualization</li>
         <li>Personalized self-assessment tools and diagnostic quizzes</li>
@@ -74,7 +71,8 @@ const Home = () => {
           </>
         ) : null}
       </LinkContainer>
-    </Root>
+    </Container>
+    </ThemeProvider>
   );
 };
 

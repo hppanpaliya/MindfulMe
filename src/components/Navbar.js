@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { AppBar, Toolbar, IconButton, Drawer, List, Box } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Drawer, List, Box, Container } from "@mui/material";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
+
+//theme import
+import theme from "../theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 const NavLink = styled(Link)({
   color: "black",
@@ -54,8 +58,35 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Toolbar>
+    // <AppBar position="static">
+    //   <Toolbar>
+    //     <IconButton edge="start" color="inherit" onClick={toggleDrawer} sx={{ color: "black" }}>
+    //       <MenuIcon />
+    //     </IconButton>
+    //     <div style={{ flexGrow: 1 }} />
+    //     {user ? renderLinks(links.user) : renderLinks(links.guest)}
+    //   </Toolbar>
+    //   <Drawer anchor="left" open={isOpen} onClose={toggleDrawer} sx={{ background: "lightgrey" }}>
+    //     <div onClick={toggleDrawer}>
+    //       <List
+    //         component={Box}
+    //         sx={{
+    //           display: "flex",
+    //           flexDirection: "column",
+    //           justifyContent: "center",
+    //           alignItems: "center",
+    //           width: "250px",
+    //         }}
+    //       >
+    //         {user ? renderLinks(links.user) : renderLinks(links.guest)}
+    //       </List>
+    //     </div>
+    //   </Drawer>
+    // </AppBar>
+    <ThemeProvider theme={theme}>
+        <AppBar position="static">
+          <Toolbar disableGutters>
+          <Toolbar>
         <IconButton edge="start" color="inherit" onClick={toggleDrawer} sx={{ color: "black" }}>
           <MenuIcon />
         </IconButton>
@@ -78,7 +109,9 @@ const NavBar = () => {
           </List>
         </div>
       </Drawer>
-    </AppBar>
+          </Toolbar>
+        </AppBar>
+    </ThemeProvider>
   );
   
 };
