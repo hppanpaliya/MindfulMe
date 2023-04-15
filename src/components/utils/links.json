@@ -1,0 +1,57 @@
+{
+  "guest": [
+    { "path": "/", "text": "Home" },
+    {
+      "category": "Games",
+      "items": [
+        { "path": "/memory-match", "text": "Memory Match" },
+        { "path": "/draw", "text": "DrawingApp" }
+      ]
+    },
+    {
+      "category": "Resources",
+      "items": [
+        { "path": "/coping-strategies", "text": "Coping Strategies" },
+        { "path": "/cbt", "text": "CBT" }
+      ]
+    },
+    { "path": "/login", "text": "Login" },
+    { "path": "/join", "text": "Join" }
+  ],
+  "user": [
+    { "path": "/", "text": "Home" },
+    {
+      "category": "Social",
+      "items": [
+        { "path": "/support-groups", "text": "Support Groups" },
+        { "path": "/chat", "text": "Chat" }
+      ]
+    },
+    {
+      "category": "Tracking Tools",
+      "items": [
+        { "path": "/mood-tracker", "text": "Mood Tracker" },
+        { "path": "/goal-setting", "text": "Goal Setting" },
+        { "path": "/self-assessment", "text": "Self Assessment" },
+        { "path": "/habit-tracker", "text": "Habit Tracker" }
+      ]
+    },
+    {
+      "category": "Games",
+      "items": [
+        { "path": "/memory-match", "text": "Memory Match" },
+        { "path": "/draw", "text": "Drawing" },
+        { "path": "/guided-meditation", "text": "Meditation" }
+      ]
+    },
+    {
+      "category": "Resources",
+      "items": [
+        { "path": "/coping-strategies", "text": "Coping Strategies" },
+        { "path": "/cbt", "text": "CBT" }
+      ]
+    },
+    { "path": "/survey", "text": "Survey" },
+    { "path": "/logout", "text": "Logout" }
+  ]
+}

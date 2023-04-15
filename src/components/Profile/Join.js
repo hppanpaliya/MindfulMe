@@ -83,9 +83,7 @@ const Join = () => {
         email,
         username,
       });
-      await firebase.auth().signOut();
-      dispatch(logout());
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }

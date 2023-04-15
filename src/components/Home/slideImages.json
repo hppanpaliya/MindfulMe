@@ -1,0 +1,45 @@
+[
+  {
+    "title": "App Overview",
+    "imageUrl": "https://tinyurl.com/snb55",
+    "description": "Welcome to our Mental Health Support Web App! The app is divided into 6 categories. Each category contains a variety of tools and resources to help you manage your mental health. The following is a brief overview of each category.",
+    "items": ["Games", "Social", "Resources", "Tracking Tools", "Meditation", "Account"],
+    "links": ["/1", "/2", "/3", "/4", "/5", "/6"]
+  },
+  {
+    "title": "Games",
+    "imageUrl": "https://tinyurl.com/snb55",
+    "items": ["Memory Match", "DrawingApp"],
+    "links": ["/memory-match", "/draw"]
+  },
+  {
+    "title": "Social",
+    "imageUrl": "https://tinyurl.com/snb55",
+    "items": ["Support Groups", "Chat"],
+    "links": ["/support-groups", "/chat"]
+  },
+  {
+    "title": "Resources",
+    "imageUrl": "https://tinyurl.com/snb55",
+    "items": ["Coping Strategies", "CBT"],
+    "links": ["/coping-strategies", "/cbt"]
+  },
+  {
+    "title": "Tracking Tools",
+    "imageUrl": "https://tinyurl.com/snb55",
+    "items": ["Mood Tracker", "Goal Setting", "Self Assessment", "Habit Tracker"],
+    "links": ["/mood-tracker", "/goal-setting", "/self-assessment", "/habit-tracker"]
+  },
+  {
+    "title": "Meditation",
+    "imageUrl": "https://tinyurl.com/snb55",
+    "items": ["Guided Meditation"],
+    "links": ["/guided-meditation"]
+  },
+  {
+    "title": "Account",
+    "imageUrl": "https://tinyurl.com/snb55",
+    "items": ["Login / Logout", "Survey"],
+    "links": ["/login", "/survey"]
+  }
+]

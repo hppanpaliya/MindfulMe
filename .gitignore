@@ -40,3 +40,8 @@ yarn.lock
 
 .env
 .env.*
+
+
+sendNotification.js
+serviceAccountKey.json
+noPassword.exp

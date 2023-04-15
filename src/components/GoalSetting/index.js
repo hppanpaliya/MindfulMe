@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../utils/firebase";
-import "./GoalSetting.css";
 import { useSelector } from "react-redux";
-import { FaPencilAlt } from "react-icons/fa";
 
 const GoalSetting = () => {
+
   const [goals, setGoals] = useState([]);
   const [newGoal, setNewGoal] = useState("");
   const [newReminder, setNewReminder] = useState("");
@@ -86,25 +85,23 @@ const GoalSetting = () => {
     });
     setGoals(updatedGoals);
   };
-  
+
   const handleEditReminder = async (goalId, reminderIndex, newReminderText) => {
     const updatedReminders = [...goals.find((goal) => goal.id === goalId).reminders];
     updatedReminders[reminderIndex].text = newReminderText;
     await handleUpdateReminders(goalId, updatedReminders);
   };
-  
-
   return (
-    <div className="goal-tracker-container">
+    <div style={{ justifyContent: "center",  display: "flex", flexDirection: "column", alignItems: "center", fontSize: "1.3rem", }} >
       <h1>Goal Tracker</h1>
-      <div className="add-goal">
+      <div>
         <input type="text" value={newGoal} onChange={(e) => setNewGoal(e.target.value)} placeholder="Enter a new goal" />
         <button onClick={handleAddGoal}>Add Goal</button>
       </div>
-      <ul className="goals-list">
+      <div>
         {goals.map((goal, index) => (
-          <li key={index} className="goal-item">
-            <div className="goal-header">
+          <div key={index}>
+            <div>
               {goal.isEditing ? (
                 <>
                   <input
@@ -118,10 +115,19 @@ const GoalSetting = () => {
                     }}
                   />
                   <button onClick={() => handleUpdateGoal(goal.id, goal.title)}>Update</button>
+                  <button
+                    onClick={() => {
+                      const updatedGoals = [...goals];
+                      updatedGoals[index].isEditing = false;
+                      setGoals(updatedGoals);
+                    }}
+                  >
+                    Cancel
+                  </button>
                 </>
               ) : (
-                <>
-                  <span>{goal.title}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", paddingTop:"2rem",paddingBottom:"0.5rem" }} >
+                  <b>{goal.title}</b>
                   <button
                     onClick={() => {
                       const updatedGoals = [...goals];
@@ -129,50 +135,51 @@ const GoalSetting = () => {
                       setGoals(updatedGoals);
                     }}
                   >
-                    <FaPencilAlt />
+                    Edit
                   </button>
-                </>
+                </div>
               )}
             </div>
-            <p>Total Reminders: {goal.reminders ? goal.reminders.length : 0}</p>
-            <div className="reminder-input">
+            <div>
               <input type="text" value={newReminder} onChange={(e) => setNewReminder(e.target.value)} placeholder="Enter a reminder" />
               <button onClick={() => handleAddReminder(goal.id)}>Add Reminder</button>
             </div>
-            <div className="reminders-list">
-  {goal.reminders &&
-    goal.reminders.map((reminder, reminderIndex) => (
-      <div key={reminderIndex}>
-        <label>
-          <input
-            type="checkbox"
-            checked={reminder.isChecked}
-            onChange={() => {
-              const updatedReminders = [...goal.reminders];
-              updatedReminders[reminderIndex].isChecked = !reminder.isChecked;
-              handleUpdateReminders(goal.id, updatedReminders);
-            }}
-          />
-          {reminder.text}
-        </label>
-        <button
-          onClick={() => {
-            const newReminderText = window.prompt("Enter the new reminder text", reminder.text);
-            if (newReminderText) {
-              handleEditReminder(goal.id, reminderIndex, newReminderText);
-            }
-          }}
-        >
-          Edit
-        </button>
-      </div>
-    ))}
-</div>
+            <br />
+            <b>Total Reminders: {goal.reminders ? goal.reminders.length : 0}</b>
+            <div>
+              {goal.reminders &&
+                goal.reminders.map((reminder, reminderIndex) => (
+                  <div key={reminderIndex} style={{ display: "flex", justifyContent: "space-between" }}>
+        
+                      <input
+                      type="checkbox"
+                      aria-label="Checkbox for following text input"
+                        checked={reminder.isChecked}
+                        onChange={() => {
+                          const updatedReminders = [...goal.reminders];
+                          updatedReminders[reminderIndex].isChecked = !reminder.isChecked;
+                          handleUpdateReminders(goal.id, updatedReminders);
+                        }}
+                      />
+                      {reminder.text}
+                    <button
+                      onClick={() => {
+                        const newReminderText = window.prompt("Enter the new reminder text", reminder.text);
+                        if (newReminderText) {
+                          handleEditReminder(goal.id, reminderIndex, newReminderText);
+                        }
+                      }}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                ))}
+            </div>
+            <hr/>
 
-            <br /> <br />
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

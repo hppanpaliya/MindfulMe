@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import firebase from "../../utils/firebase";
@@ -74,6 +74,18 @@ const Login = () => {
       setError(error.message);
     }
   };
+
+  // navigate logged in users to home page
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigate("/");
+      }
+    });
+  }, [navigate]);
+  
+
 
   return (
     <Container>
