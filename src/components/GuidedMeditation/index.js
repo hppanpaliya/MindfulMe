@@ -7,13 +7,11 @@ import { Button } from "@mui/material";
 //play Icon and pause icon
 import PlayIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
-import { getDisplayName as formatDisplayName } from "../../utils/helper"
+import { getDisplayName as formatDisplayName } from "../../utils/helper";
 import { motion, AnimatePresence } from "framer-motion";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-
-
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 const GuidedMeditation = () => {
   // Define state to track the current audio file
@@ -29,17 +27,13 @@ const GuidedMeditation = () => {
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
 
   const handlePlayPause = () => {
-    setIsPlaying(
-      isPlaying === Sound.status.PLAYING
-        ? Sound.status.PAUSED
-        : Sound.status.PLAYING
-    );
+    setIsPlaying(isPlaying === Sound.status.PLAYING ? Sound.status.PAUSED : Sound.status.PLAYING);
   };
 
   const handleAudioEnd = () => {
@@ -65,40 +59,39 @@ const GuidedMeditation = () => {
 
   return (
     <AnimatePresence mode="wait">
-      <div  className="guided-meditation-page" >
-      <motion.div
-  className="guidedMeditation"
-  style={{ backgroundImage: `url(${currentAudio.backgroundImage})` }}
-  key={key}
-  animate={{ backgroundPosition: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"] }}
-  transition={{ duration: 1000, loop: Infinity, ease: "ease-in-out" }}
->
+      <div className="guided-meditation-page">
+        <motion.div
+          className="guidedMeditation"
+          style={{ backgroundImage: `url(${currentAudio.backgroundImage})` }}
+          key={key}
+          animate={{ backgroundPosition: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"] }}
+          transition={{ duration: 1000, loop: Infinity, ease: "ease-in-out" }}
+        >
           <div className="guidedMeditation__header">
             <h2>Guided Meditation</h2>
-             
-<Select
-  labelId="customized-menu"
-  value={selectedOption}
-  onChange={(e) => {
-    setCurrentAudio(audioFiles[e.target.value]);
-    setSelectedOption(e.target.value);
-  }}
-  onMouseEnter={handleMenuOpen}
-  onMouseOut={handleMenuClose}
-  MenuProps={{
-    onMouseLeave: handleMenuClose,
-  }}
+
+            <Select
+              labelId="customized-menu"
+              value={selectedOption}
+              onChange={(e) => {
+                setCurrentAudio(audioFiles[e.target.value]);
+                setSelectedOption(e.target.value);
+              }}
+              onMouseEnter={handleMenuOpen}
+              onMouseOut={handleMenuClose}
+              MenuProps={{
+                onMouseLeave: handleMenuClose,
+              }}
               sx={{ width: 300 }}
->
-  {audioFiles.map((audio, index) => (
-    <MenuItem key={audio.url} value={index} sx={{ background: `#eee` }}>
-      {formatDisplayName(audio.url)}
-    </MenuItem>
-  ))}
-</Select>
+            >
+              {audioFiles.map((audio, index) => (
+                <MenuItem key={audio.url} value={index} sx={{ background: `#eee` }}>
+                  {formatDisplayName(audio.url)}
+                </MenuItem>
+              ))}
+            </Select>
           </div>
           <div className="guidedMeditation_audio">
-
             <Sound
               url={currentAudio.url}
               playStatus={isPlaying}
@@ -112,9 +105,8 @@ const GuidedMeditation = () => {
               autoLoad={true}
               muted={false}
             />
-  
-            <div className="guidedMeditation_audio__progress">
 
+            <div className="guidedMeditation_audio__progress">
               <CircularProgressbarWithChildren
                 value={position}
                 text={``}
@@ -123,7 +115,7 @@ const GuidedMeditation = () => {
                 styles={{
                   path: {
                     transition: "stroke-dashoffset 1s ease 0s",
-                    stroke: "#5ECC99",
+                    stroke: "#87CEFA",
                     strokeWidth: 5,
                     strokeLinecap: "round",
                     strokeLinejoin: "round",
@@ -142,23 +134,20 @@ const GuidedMeditation = () => {
                   },
                 }}
               >
-
-                <Button onClick={handlePlayPause} >
-                {isPlaying === Sound.status.PLAYING ? (
-                  <PauseIcon fontSize="large" color="secondary" />
-                ) : (
-                  <PlayIcon fontSize="large" color="primary" />
-                )}
-              </Button>
+                <Button onClick={handlePlayPause}>
+                  {isPlaying === Sound.status.PLAYING ? (
+                    <PauseIcon style={{ fontSize: "5rem", color: "#87CEFA" }} />
+                  ) : (
+                    <PlayIcon style={{ fontSize: "5rem", color: "#87CEFA" }} />
+                  )}
+                </Button>
               </CircularProgressbarWithChildren>
-              
             </div>
           </div>
         </motion.div>
       </div>
     </AnimatePresence>
   );
-  
 };
 
 export default GuidedMeditation;

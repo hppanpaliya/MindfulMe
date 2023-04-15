@@ -53,4 +53,42 @@ const audioFiles = [
 
 ];
 
+// const audioFiles = [
+//   {
+//     url: calmMeditationMusic,
+//     backgroundImage: "linear-gradient(135deg, rgba(189, 143, 242, 0.8), rgba(160, 118, 219, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
+//     duration: 30000,
+//   },
+//   {
+//     url: gentleWaterSounds,
+//     backgroundImage: "linear-gradient(135deg, rgba(245, 182, 183, 0.8), rgba(218, 150, 151, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
+//     duration: 30000,
+//   },
+//   { 
+//     url: muladharaRootChakra,
+//     backgroundImage: "linear-gradient(135deg, rgba(240, 142, 100, 0.8), rgba(118, 219, 159, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
+//     duration: 30000,
+//   },
+//   {
+//     url: natureSoundsBirdsong,
+//     backgroundImage: "linear-gradient(135deg, rgba(142, 240, 193, 0.8), rgba(189, 208, 118, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
+//     duration: 30000,
+//   },
+//   {
+//     url: peacefulMusicForMeditation,
+//     backgroundImage: "linear-gradient(135deg, rgba(248, 173, 246, 0.8), rgba(222, 133, 221, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
+//     duration: 30000,
+//   },
+//   {
+//     url: tibetanBowls,
+//     backgroundImage: "linear-gradient(135deg, rgba(191, 246, 242, 0.8), rgba(159, 221, 219, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
+//     duration: 30000,
+//   },
+//   {
+//     url: vishuddhaThroatChakra,
+//     backgroundImage: "linear-gradient(135deg, rgba(177, 173, 236, 0.8), rgba(151, 148, 210, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
+//     duration: 30000,
+//   },
+
+// ];
 export default audioFiles;
