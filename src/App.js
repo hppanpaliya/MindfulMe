@@ -36,62 +36,77 @@ import AdminSurveyReplies from "./components/Survey/AdminSurveyReplies.js";
 import HabitTracker from "./components/HabitTracker";
 import NavigationBar from "./components/NavigationBar";
 
+import theme from "./theme";
+import { ThemeProvider } from "@mui/material/styles";
+
 function App() {
-  // eslint-disable-next-line no-unused-vars
-  const currentUser = useSelector((state) => state.auth);
+    // eslint-disable-next-line no-unused-vars
+    const currentUser = useSelector((state) => state.auth);
     //console.log(user.user.uid);
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(login(user));
-      } else {
-        dispatch(logout());
-        dispatch(setLoading(false));
-      }
-      console.log(auth.currentUser);
-    });
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(login(user));
+            } else {
+                dispatch(logout());
+                dispatch(setLoading(false));
+            }
+            console.log(auth.currentUser);
+        });
 
-    return unsubscribe;
-  }, [dispatch]);
+        return unsubscribe;
+    }, [dispatch]);
 
-  return (
-    <>
-      <Router>
-        <NavigationBar />
-        <Routes>
-          <Route exact path="/" Component={Home} />
-          <Route path="/:slide" Component={Home} />
-          <Route path="/login" Component={Login} />
-          <Route path="/logout" Component={Logout} />
-          <Route path="/join" Component={Join} />
-          <Route path="/memory-match" Component={MemoryMatch} />
-          <Route path="/coping-strategies" Component={CopingStrategies} />
-          <Route path="/cbt" Component={CBT} />
-          <Route path="/guided-meditation" Component={GuidedMeditation} />
-          <Route path="/self-assessment" Component={SelfAssessment} />
-          <Route path="/Draw" Component={DrawingApp} />
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path="/mood-tracker" Component={MoodTracker} />
-            <Route path="/support-groups" Component={SupportGroups} />
-            <Route path="/goal-setting" Component={GoalSetting} />
-            <Route path="/chat" Component={UsersList} />
-            <Route path="/chat/:id" Component={ChatMessages} />
-            <Route path="/survey" Component={Survey} />
-            <Route path="/survey-list" Component={AdminSurveyReplies} />
-            <Route path="/habit-tracker" Component={HabitTracker} />
+    return (
+        <ThemeProvider theme={theme}>
+            <Router>
+                <NavigationBar />
+                <Routes>
+                    <Route exact path="/" Component={Home} />
+                    <Route path="/:slide" Component={Home} />
+                    <Route path="/login" Component={Login} />
+                    <Route path="/logout" Component={Logout} />
+                    <Route path="/join" Component={Join} />
+                    <Route path="/memory-match" Component={MemoryMatch} />
+                    <Route
+                        path="/coping-strategies"
+                        Component={CopingStrategies}
+                    />
+                    <Route path="/cbt" Component={CBT} />
+                    <Route
+                        path="/guided-meditation"
+                        Component={GuidedMeditation}
+                    />
+                    <Route path="/self-assessment" Component={SelfAssessment} />
+                    <Route path="/Draw" Component={DrawingApp} />
+                    <Route path="/" element={<PrivateRoute />}>
+                        <Route path="/mood-tracker" Component={MoodTracker} />
+                        <Route
+                            path="/support-groups"
+                            Component={SupportGroups}
+                        />
+                        <Route path="/goal-setting" Component={GoalSetting} />
+                        <Route path="/chat" Component={UsersList} />
+                        <Route path="/chat/:id" Component={ChatMessages} />
+                        <Route path="/survey" Component={Survey} />
+                        <Route
+                            path="/survey-list"
+                            Component={AdminSurveyReplies}
+                        />
+                        <Route path="/habit-tracker" Component={HabitTracker} />
 
-            {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
+                        {/* <Route path="/guided-meditation" Component={GuidedMeditation} />
         <Route path="/self-assessment" Component={SelfAssessment} />
         <Route path="/profile" Component={Profile} /> */}
-          </Route>
-        </Routes>
-      </Router>
-      <NotificationPermissionModal />
-    </>
-  );
+                    </Route>
+                </Routes>
+            </Router>
+            <NotificationPermissionModal />
+        </ThemeProvider>
+    );
 }
 
 export default App;
