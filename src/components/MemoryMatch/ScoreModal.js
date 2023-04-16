@@ -2,7 +2,7 @@ import React from "react";
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from "@mui/material";
 
 const ScoreModal = ({ open, handleClose, moves, timeElapsed }) => {
-  const score = Math.floor(10000 / (moves * timeElapsed));
+  const score = Math.floor(10000 / (moves * (timeElapsed/10)));
 
   return (
     <Dialog open={open} onClose={handleClose}>

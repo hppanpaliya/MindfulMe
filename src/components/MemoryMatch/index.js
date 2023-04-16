@@ -8,6 +8,7 @@ import gameWin from "../../assets/audio/background/game-win.wav";
 import shufflingCards from "../../assets/audio/background/shuffling-cards.mp3";
 import cardMatch from "../../assets/audio/background/cardMatch.mp3";
 import { VolumeUp, VolumeOff } from "@mui/icons-material";
+import {motion} from "framer-motion";
 
 const CardContainer = styled(Card)(({ theme, isSelected, isMatched }) => ({
   display: "flex",
@@ -17,6 +18,8 @@ const CardContainer = styled(Card)(({ theme, isSelected, isMatched }) => ({
   padding: "3rem",
   height: "1rem",
   borderRadius: "0.5rem",
+  boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+  background: isSelected ? "#a1c4fd" : isMatched ? "#b2fefa" : "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)",
   backgroundColor: isSelected ? "#a1c4fd" : isMatched ? "#b2fefa" : "white",
   cursor: "pointer",
   transition: "all 0.5s ease-in-out",
@@ -24,6 +27,8 @@ const CardContainer = styled(Card)(({ theme, isSelected, isMatched }) => ({
     backgroundColor: "lightgray",
   },
 }));
+
+
 
 // Styled components for the front and back of the card
 const CardFace = styled.div`
@@ -48,19 +53,30 @@ const CardBack = styled(CardFace)`
 
 // Component for flipping the card
 const FlipCard = ({ isFlipped, front: Front, back: Back }) => (
+  <motion.div
+        style={{
+          position: "relative",
+          transformStyle: "preserve-3d",
+        }}
+        animate={{
+          rotateY: isFlipped ? -180 : 0,
+        }}
+        transition={{ duration: 0.5 }}
+      >
   <div
     style={{
       width: "100%",
       height: "100%",
       position: "relative",
       transformStyle: "preserve-3d",
-      transform: isFlipped ? "rotateY(-180deg)" : "rotateY(0)",
+      //transform: isFlipped ? "rotateY(-180deg)" : "rotateY(0)",
       transition: "transform 0.5s",
     }}
   >
     <Front />
     <Back />
   </div>
+  </motion.div>
 );
 
 const ResetGameButton = ({ shuffleCards }) => (
@@ -85,7 +101,6 @@ const TimeDisplay = ({ timeElapsed }) => (
 );
 
 const MemoryMatchCard = ({ card, index, selected, matched, selectCard }) => (
-  <Grid item xs={4} sm={3} md={2} key={index}>
     <CardContainer onClick={() => selectCard(index)} isSelected={selected.includes(index)} isMatched={matched.includes(index)}>
       <FlipCard
         isFlipped={matched.includes(index) || selected.includes(index)}
@@ -101,7 +116,6 @@ const MemoryMatchCard = ({ card, index, selected, matched, selectCard }) => (
         )}
       />
     </CardContainer>
-  </Grid>
 );
 
 const MemoryMatch = () => {
@@ -213,6 +227,18 @@ const MemoryMatch = () => {
       <Grid container spacing={2} justifyContent="center" alignItems="center" style={{ marginTop: "1rem" }}>
         {/* Map over the cards and create a MemoryMatchCard for each one */}
         {cards.map((card, index) => (
+          <Grid item xs={4} sm={3} md={2} key={index} >
+                <motion.div
+                style={{
+              transformStyle: "preserve-3d",
+              padding: "0.5rem",
+                }}
+                animate={{
+                  rotateY: matched.includes(index) || selected.includes(index) ? -180 : 0,
+                }}
+            transition={{ duration: 0.7 }}
+            key={index}
+              >
           <MemoryMatchCard
             key={index}
             card={card}
@@ -221,6 +247,8 @@ const MemoryMatch = () => {
             matched={matched}
             selectCard={selectCard}
           />
+            </motion.div>
+        </Grid>
         ))}
       </Grid>
     </Container>
