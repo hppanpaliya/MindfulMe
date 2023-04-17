@@ -4,6 +4,9 @@ import { Box, Typography, IconButton, TextField, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
+import "./HabitItem.css";
+import DeleteModal from "./DeleteModal";
+import Tooltip from '@mui/material/Tooltip';
 
 import {
   deleteHabitAsync,
@@ -21,15 +24,20 @@ const HabitItem = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(props.name);
   const [open, setOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [calendarDate, setCalendarDate] = useState(new Date());
   const previousDaysMaintained = props.previousDaysMaintained;
-
 
   const handleStreakNumberClick = () => {
     setOpen(true);
   };
 
+  const convertTimestampsToDates = (timestamps) => {
+    return timestamps.map((timestamp) => new Date(timestamp));
+  };
 
+  const previousDaysMaintainedDates = convertTimestampsToDates(previousDaysMaintained);
 
   const handleClose = () => {
     setOpen(false);
@@ -39,6 +47,7 @@ const HabitItem = (props) => {
     //(user.user.uid, props.id);
     dispatch(maintainHabitAsync({ uid: user.user.uid, habitId: props.id }));
     dispatch(fetchHabitsAsync(user.user.uid));
+    props.setRefreshHabits(!props.refreshHabits);
   };
 
   const dispatch = useDispatch();
@@ -66,6 +75,16 @@ const HabitItem = (props) => {
     dispatch(fetchHabitsAsync(user.user.uid));
   };
 
+  const openDeleteModal = () => {
+    setDeleteModal(true);
+    console.log("Open");
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
+    console.log("Close");
+  };
+
   return (
     <Box
       component="div"
@@ -82,37 +101,61 @@ const HabitItem = (props) => {
       {isEditing ? (
         <TextField value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} fullWidth size="small" />
       ) : (
-        <>
-          <Typography onClick={handleToggleCompletion} variant="body1" sx={{ cursor: "pointer" }} color={props.isCompleted ? "green" : "black"}>
+          <>
+            <Tooltip title="Click to mark as completed" placement="top">
+          <Button onClick={handleToggleCompletion} size="small" sx={{ color: props.isCompleted ? "primary" : "black" }}>
             {props.name}
-          </Typography>
-          <Typography variant="body1" sx={{ cursor: "pointer", marginLeft: "0.5rem" }} onClick={handleStreakNumberClick}>
+              </Button>
+            </Tooltip>
+            <Tooltip title="Click to see calendar" placement="top">
+          <Button sx={{ cursor: "pointer", marginLeft: "0.5rem" }} size="small" color="primary" onClick={handleStreakNumberClick}>
             Streak: {props.streak}
-          </Typography>
-          {/* <Dialog onClose={handleClose} open={open}>
-              <DialogContent>
-                
+              </Button>
+            </Tooltip>
+
+          <Dialog onClose={handleClose} open={open}>
+            <DialogContent>
+              <Calendar
+                value={calendarDate}
+                tileClassName={({ date, view }) => {
+                  if (view === "month" && previousDaysMaintainedDates.some((attendedDate) => attendedDate.toDateString() === date.toDateString())) {
+                    previousDaysMaintainedDates.some((attendedDate) =>
+                      console.log(attendedDate.toDateString(), date.toDateString(), attendedDate.toDateString() === date.toDateString())
+                    );
+                    return "attended";
+                  }
+                }}
+              />
+              <Typography variant="body1">Dates in green are days you maintained this habit.</Typography>
             </DialogContent>
-          </Dialog> */}
-          <Button onClick={handleMaintainHabit} size="small">
-            {" "}
+            </Dialog>
+            <Tooltip title="Click to maintain habit and streak" placement="top">
+          <Button onClick={handleMaintainHabit} size="small" color="primary">
             Maintain Habit
-          </Button>
+              </Button>
+            </Tooltip>
         </>
       )}
       <Box component="div">
         {isEditing ? (
+          <Tooltip title="Click to save changes" placement="top">
           <IconButton onClick={handleUpdate} size="small">
             <SaveIcon />
-          </IconButton>
+            </IconButton>
+            </Tooltip>
         ) : (
+            <Tooltip title="Click to edit habit" placement="top">
           <IconButton onClick={() => setIsEditing(true)} size="small" edge="end">
             <EditIcon />
-          </IconButton>
+              </IconButton>
+              </Tooltip>
         )}
-        <IconButton onClick={handleDelete} size="small" edge="end">
+        <Tooltip title="Click to delete habit" placement="top">
+        <IconButton onClick={openDeleteModal} size="small" edge="end">
           <DeleteIcon />
-        </IconButton>
+          </IconButton>
+          </Tooltip>
+        <DeleteModal open={deleteModal} handleClose={closeDeleteModal} deleteHabit={handleDelete} habit={props} />
       </Box>
     </Box>
   );
