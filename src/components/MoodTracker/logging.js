@@ -7,12 +7,26 @@ import { motion } from "framer-motion";
 import "./logging.css";
 
 const MoodLogging = () => {
+  // Initialize Redux hooks and local state
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user.uid);
   const [moodValue, setMoodValue] = useState(5);
 
-  const emoticons = ["😭", "😢", "😔", "😐", "🙂", "😀", "😄", "😁", "😆", "😍"];
+  // Define mood emoticons
+  const emoticons = [
+    "😭",
+    "😢",
+    "😔",
+    "😐",
+    "🙂",
+    "😀",
+    "😄",
+    "😁",
+    "😆",
+    "😍",
+  ];
 
+  // Handle mood logging by dispatching Redux actions
   const handleMoodLogging = async (e) => {
     e.preventDefault();
     try {
@@ -29,8 +43,10 @@ const MoodLogging = () => {
     }
   };
 
+  // Format the value label for the Slider component
   const valueLabelFormat = (value) => emoticons[value - 1];
 
+  // Define animation variants for the motion.div component
   const emojiVariants = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: { opacity: 1, scale: 1 },
@@ -39,7 +55,13 @@ const MoodLogging = () => {
   return (
     <div>
       <Box className="mood-logging-container">
-        <motion.div initial="hidden" animate="visible" transition={{ duration: 1 }} variants={emojiVariants}>
+        {/* Animate the mood selection text and emoticon */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1 }}
+          variants={emojiVariants}
+        >
           <Typography component={"span"} gutterBottom>
             Select your mood:{" "}
           </Typography>{" "}
@@ -47,6 +69,7 @@ const MoodLogging = () => {
             {emoticons[moodValue - 1]}
           </Typography>
         </motion.div>
+        {/* Render the Slider component for selecting mood value */}
         <Grow in>
           <Slider
             value={moodValue}
@@ -58,7 +81,12 @@ const MoodLogging = () => {
             valueLabelFormat={valueLabelFormat}
           />
         </Grow>
-        <Button variant="contained" onClick={handleMoodLogging} className="log-mood-button">
+        {/* Render the "Log Mood" button */}
+        <Button
+          variant="contained"
+          onClick={handleMoodLogging}
+          className="log-mood-button"
+        >
           Log Mood
         </Button>
       </Box>

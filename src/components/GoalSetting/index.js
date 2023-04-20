@@ -3,14 +3,17 @@ import firebase from "../../utils/firebase";
 import { useSelector } from "react-redux";
 
 const GoalSetting = () => {
-
   const [goals, setGoals] = useState([]);
   const [newGoal, setNewGoal] = useState("");
   const [newReminder, setNewReminder] = useState("");
   const user = useSelector((state) => state.auth.user);
   const uid = user.uid;
 
-  const goalsRef = firebase.firestore().collection("users").doc(uid).collection("goals");
+  const goalsRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(uid)
+    .collection("goals");
 
   useEffect(() => {
     const fetchGoals = async () => {
@@ -87,15 +90,30 @@ const GoalSetting = () => {
   };
 
   const handleEditReminder = async (goalId, reminderIndex, newReminderText) => {
-    const updatedReminders = [...goals.find((goal) => goal.id === goalId).reminders];
+    const updatedReminders = [
+      ...goals.find((goal) => goal.id === goalId).reminders,
+    ];
     updatedReminders[reminderIndex].text = newReminderText;
     await handleUpdateReminders(goalId, updatedReminders);
   };
   return (
-    <div style={{ justifyContent: "center",  display: "flex", flexDirection: "column", alignItems: "center", fontSize: "1.3rem", }} >
+    <div
+      style={{
+        justifyContent: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        fontSize: "1.3rem",
+      }}
+    >
       <h1>Goal Tracker</h1>
       <div>
-        <input type="text" value={newGoal} onChange={(e) => setNewGoal(e.target.value)} placeholder="Enter a new goal" />
+        <input
+          type="text"
+          value={newGoal}
+          onChange={(e) => setNewGoal(e.target.value)}
+          placeholder="Enter a new goal"
+        />
         <button onClick={handleAddGoal}>Add Goal</button>
       </div>
       <div>
@@ -109,12 +127,16 @@ const GoalSetting = () => {
                     value={goal.title}
                     onChange={(e) => {
                       const updatedGoals = [...goals];
-                      const index = updatedGoals.findIndex((g) => g.id === goal.id);
+                      const index = updatedGoals.findIndex(
+                        (g) => g.id === goal.id
+                      );
                       updatedGoals[index].title = e.target.value;
                       setGoals(updatedGoals);
                     }}
                   />
-                  <button onClick={() => handleUpdateGoal(goal.id, goal.title)}>Update</button>
+                  <button onClick={() => handleUpdateGoal(goal.id, goal.title)}>
+                    Update
+                  </button>
                   <button
                     onClick={() => {
                       const updatedGoals = [...goals];
@@ -126,7 +148,14 @@ const GoalSetting = () => {
                   </button>
                 </>
               ) : (
-                <div style={{ display: "flex", justifyContent: "space-between", paddingTop:"2rem",paddingBottom:"0.5rem" }} >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingTop: "2rem",
+                    paddingBottom: "0.5rem",
+                  }}
+                >
                   <b>{goal.title}</b>
                   <button
                     onClick={() => {
@@ -141,32 +170,49 @@ const GoalSetting = () => {
               )}
             </div>
             <div>
-              <input type="text" value={newReminder} onChange={(e) => setNewReminder(e.target.value)} placeholder="Enter a reminder" />
-              <button onClick={() => handleAddReminder(goal.id)}>Add Reminder</button>
+              <input
+                type="text"
+                value={newReminder}
+                onChange={(e) => setNewReminder(e.target.value)}
+                placeholder="Enter a reminder"
+              />
+              <button onClick={() => handleAddReminder(goal.id)}>
+                Add Reminder
+              </button>
             </div>
             <br />
             <b>Total Reminders: {goal.reminders ? goal.reminders.length : 0}</b>
             <div>
               {goal.reminders &&
                 goal.reminders.map((reminder, reminderIndex) => (
-                  <div key={reminderIndex} style={{ display: "flex", justifyContent: "space-between" }}>
-        
-                      <input
+                  <div
+                    key={reminderIndex}
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <input
                       type="checkbox"
                       aria-label="Checkbox for following text input"
-                        checked={reminder.isChecked}
-                        onChange={() => {
-                          const updatedReminders = [...goal.reminders];
-                          updatedReminders[reminderIndex].isChecked = !reminder.isChecked;
-                          handleUpdateReminders(goal.id, updatedReminders);
-                        }}
-                      />
-                      {reminder.text}
+                      checked={reminder.isChecked}
+                      onChange={() => {
+                        const updatedReminders = [...goal.reminders];
+                        updatedReminders[reminderIndex].isChecked =
+                          !reminder.isChecked;
+                        handleUpdateReminders(goal.id, updatedReminders);
+                      }}
+                    />
+                    {reminder.text}
                     <button
                       onClick={() => {
-                        const newReminderText = window.prompt("Enter the new reminder text", reminder.text);
+                        const newReminderText = window.prompt(
+                          "Enter the new reminder text",
+                          reminder.text
+                        );
                         if (newReminderText) {
-                          handleEditReminder(goal.id, reminderIndex, newReminderText);
+                          handleEditReminder(
+                            goal.id,
+                            reminderIndex,
+                            newReminderText
+                          );
                         }
                       }}
                     >
@@ -175,8 +221,7 @@ const GoalSetting = () => {
                   </div>
                 ))}
             </div>
-            <hr/>
-
+            <hr />
           </div>
         ))}
       </div>

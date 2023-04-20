@@ -4,9 +4,6 @@ import moodReducer from "./features/mood/moodSlice";
 import supportGroupsReducer from "./features/supportGroups/supportGroupsSlice";
 import habitReducer from "./features/habits/habitsSlice";
 
-
-
-
 const rootReducer = combineReducers({
   auth: authReducer,
   mood: moodReducer,

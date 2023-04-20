@@ -1,17 +1,16 @@
 /* /components/MoodTracker/logging.css */
 
 @media screen and (max-width: 600px) {
-    .mood-logging-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .mood-select {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-    .log-mood-button {
-      width: 100%;
-    }
+  .mood-logging-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  
+  .mood-select {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .log-mood-button {
+    width: 100%;
+  }
+}

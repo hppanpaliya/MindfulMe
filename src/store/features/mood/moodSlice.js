@@ -23,7 +23,11 @@ export const createMood = (moodData) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true));
-      const moodsCollection = app.firestore().collection("users").doc(moodData.userId).collection("moods");
+      const moodsCollection = app
+        .firestore()
+        .collection("users")
+        .doc(moodData.userId)
+        .collection("moods");
       await moodsCollection.add(moodData);
       dispatch(setLoading(false));
     } catch (error) {
@@ -37,7 +41,11 @@ export const getMoods = (userId) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true));
-      const moodsCollection = app.firestore().collection("users").doc(userId).collection("moods");
+      const moodsCollection = app
+        .firestore()
+        .collection("users")
+        .doc(userId)
+        .collection("moods");
       const querySnapshot = await moodsCollection
         .where("userId", "==", userId)
         .orderBy("date", "asc")

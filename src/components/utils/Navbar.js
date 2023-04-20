@@ -1,7 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { AppBar, Toolbar, IconButton, Drawer, List, Box, Typography, Menu, MenuItem, Collapse } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Drawer,
+  List,
+  Box,
+  Typography,
+  Menu,
+  MenuItem,
+  Collapse,
+} from "@mui/material";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 // dropdown menu icon
@@ -57,9 +68,19 @@ const DesktopDropdown = ({ title, items }) => {
         >
           {title} <ExpandMoreIcon />
         </Typography>
-        <Menu open={openDesktop} anchorEl={anchorEl} onClose={handleMouseLeave} MenuListProps={{ onMouseLeave: handleMouseLeave }}>
+        <Menu
+          open={openDesktop}
+          anchorEl={anchorEl}
+          onClose={handleMouseLeave}
+          MenuListProps={{ onMouseLeave: handleMouseLeave }}
+        >
           {items.map((item) => (
-            <MenuItem key={item.path} component={Link} to={item.path} onClick={handleMouseLeave}>
+            <MenuItem
+              key={item.path}
+              component={Link}
+              to={item.path}
+              onClick={handleMouseLeave}
+            >
               {item.text}
             </MenuItem>
           ))}
@@ -98,7 +119,12 @@ const MobileDropdown = ({ title, items, closeDrawer }) => {
       <Collapse in={isOpenMenu}>
         <List component="nav" aria-labelledby={`${title}-menu`}>
           {items.map((item) => (
-            <MenuItem key={item.path} component={Link} to={item.path} onClick={handleLinkClick}>
+            <MenuItem
+              key={item.path}
+              component={Link}
+              to={item.path}
+              onClick={handleLinkClick}
+            >
               {item.text}
             </MenuItem>
           ))}
@@ -121,7 +147,12 @@ const Dropdown = ({ title, items, closeDrawer }) => {
   }, []);
 
   return isMobile ? (
-    <MobileDropdown title={title} items={items} closeDrawer={closeDrawer} onClick={(e) => e.stopPropagation()} />
+    <MobileDropdown
+      title={title}
+      items={items}
+      closeDrawer={closeDrawer}
+      onClick={(e) => e.stopPropagation()}
+    />
   ) : (
     <DesktopDropdown title={title} items={items} />
   );
@@ -132,8 +163,6 @@ const Dropdown = ({ title, items, closeDrawer }) => {
 const NavBar = () => {
   const { user } = useSelector((state) => state.auth);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-
-
 
   const openDrawer = () => {
     setIsOpenMenu(true);
@@ -152,12 +181,22 @@ const NavBar = () => {
       <>
         {dropdowns.map((dropdown) => {
           if (dropdown.items) {
-            return <Dropdown key={dropdown.category} title={dropdown.category} items={dropdown.items} closeDrawer={closeDrawer} />;
+            return (
+              <Dropdown
+                key={dropdown.category}
+                title={dropdown.category}
+                items={dropdown.items}
+                closeDrawer={closeDrawer}
+              />
+            );
           } else {
             return (
-              <NavLink key={dropdown.path} to={dropdown.path} sx={{
-                paddingTop: "0.5rem"
-              }}
+              <NavLink
+                key={dropdown.path}
+                to={dropdown.path}
+                sx={{
+                  paddingTop: "0.5rem",
+                }}
                 onClick={closeDrawer}
               >
                 {dropdown.text}
@@ -168,23 +207,43 @@ const NavBar = () => {
       </>
     );
   };
-  
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#87CEFA" }} onMouseLeave={handleMouseLeave}>
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: "#87CEFA" }}
+      onMouseLeave={handleMouseLeave}
+    >
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" onClick={openDrawer} sx={{ display: { xs: "block", sm: "none" } }}>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={openDrawer}
+          sx={{ display: { xs: "block", sm: "none" } }}
+        >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6">
           <NavLink to="/">Mental Health App</NavLink>
         </Typography>
         {/* Wrap the links in a flex container */}
-        <Box sx={{ display: { xs: "none", sm: "flex" }, flexGrow: 1, justifyContent: "flex-end" }}>
+        <Box
+          sx={{
+            display: { xs: "none", sm: "flex" },
+            flexGrow: 1,
+            justifyContent: "flex-end",
+          }}
+        >
           {user ? renderLinks(links.user) : renderLinks(links.guest)}
         </Box>
       </Toolbar>
-      <Drawer anchor="left" open={isOpenMenu} onClose={closeDrawer} sx={{ background: "lightgrey" }}>
+      <Drawer
+        anchor="left"
+        open={isOpenMenu}
+        onClose={closeDrawer}
+        sx={{ background: "lightgrey" }}
+      >
         <div>
           <List
             component={Box}
@@ -196,7 +255,9 @@ const NavBar = () => {
               width: "250px",
             }}
           >
-          {user ? renderLinks(links.user, closeDrawer) : renderLinks(links.guest, closeDrawer)}
+            {user
+              ? renderLinks(links.user, closeDrawer)
+              : renderLinks(links.guest, closeDrawer)}
           </List>
         </div>
       </Drawer>

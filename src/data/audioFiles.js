@@ -13,7 +13,6 @@ import background5 from "../assets/images/backgrounds/background5.jpg";
 import background6 from "../assets/images/backgrounds/background6.jpg";
 import background7 from "../assets/images/backgrounds/background7.jpg";
 
-
 const audioFiles = [
   {
     url: calmMeditationMusic,
@@ -25,7 +24,7 @@ const audioFiles = [
     backgroundImage: background2,
     duration: 30000,
   },
-  { 
+  {
     url: muladharaRootChakra,
     backgroundImage: background1,
     duration: 30000,
@@ -50,7 +49,6 @@ const audioFiles = [
     backgroundImage: background7,
     duration: 30000,
   },
-
 ];
 
 // const audioFiles = [
@@ -64,7 +62,7 @@ const audioFiles = [
 //     backgroundImage: "linear-gradient(135deg, rgba(245, 182, 183, 0.8), rgba(218, 150, 151, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
 //     duration: 30000,
 //   },
-//   { 
+//   {
 //     url: muladharaRootChakra,
 //     backgroundImage: "linear-gradient(135deg, rgba(240, 142, 100, 0.8), rgba(118, 219, 159, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent)",
 //     duration: 30000,

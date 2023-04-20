@@ -14,7 +14,10 @@ const useFetchUsers = (currentUserUid) => {
       setUsers(usersData);
 
       // Create an array of conversations based on current user's UID and other users' UID
-      const newConversations = createConversationsArray(usersData, currentUserUid);
+      const newConversations = createConversationsArray(
+        usersData,
+        currentUserUid
+      );
       setConversations(newConversations);
 
       // Fetch chats/messages for each conversation and filter out empty ones
@@ -55,7 +58,10 @@ const getFilteredChats = async (conversations) => {
 
   for (const conversation of conversations) {
     // Fetch messages for each conversation
-    const chatSnapshot = await chatsRef.doc(conversation).collection("messages").get();
+    const chatSnapshot = await chatsRef
+      .doc(conversation)
+      .collection("messages")
+      .get();
     // If there are messages, add conversation to filtered chats array
     if (!chatSnapshot.empty) {
       const chatMessages = chatSnapshot.docs.map((doc) => ({
@@ -70,4 +76,3 @@ const getFilteredChats = async (conversations) => {
 };
 
 export default useFetchUsers;
-

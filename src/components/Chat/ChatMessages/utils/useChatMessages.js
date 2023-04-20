@@ -69,7 +69,10 @@ const useChatMessages = (currentUserUid, receiverUid) => {
 
   // Function for getting current user's display name from Firestore
   const getCurrentUser = async (currentUserUid) => {
-    const userRef = firebase.firestore().collection("users").doc(currentUserUid);
+    const userRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(currentUserUid);
     const userDoc = await userRef.get();
     return userDoc.data();
   };

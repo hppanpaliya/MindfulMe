@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import firebase from '../../utils/firebase';
+import firebase from "../../utils/firebase";
 import { logout } from "../../store/features/auth/authSlice.js";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 const Logout = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Logout = () => {
     try {
       await firebase.auth().signOut();
       dispatch(logout());
-      navigate('/');
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

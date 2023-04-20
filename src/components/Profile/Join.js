@@ -9,7 +9,6 @@ import logo from "../../assets/images/logo.svg";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/features/auth/authSlice.js";
 
-
 const Container = styled(Box)({
   display: "flex",
   flexDirection: "column",
@@ -68,12 +67,18 @@ const Join = () => {
         throw new Error("Passwords do not match");
       }
       // Check if username already exists
-      const userSnapshot = await firebase.firestore().collection("users").where("username", "==", username).get();
+      const userSnapshot = await firebase
+        .firestore()
+        .collection("users")
+        .where("username", "==", username)
+        .get();
       if (!userSnapshot.empty) {
         throw new Error("Username already exists");
       }
       // Create user in Firebase auth
-      const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const { user } = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
       // Add user info to Firestore
       await user.updateProfile({
         displayName: username,
@@ -83,14 +88,11 @@ const Join = () => {
         email,
         username,
       });
-      navigate('/');
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
   };
-
-
-
 
   return (
     <Container>
@@ -100,8 +102,22 @@ const Join = () => {
           Join
         </Typography>
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <StyledTextField id="email" label="Email" variant="outlined" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
-        <StyledTextField id="username" label="Username" variant="outlined" fullWidth value={username} onChange={(e) => setUsername(e.target.value)} />
+        <StyledTextField
+          id="email"
+          label="Email"
+          variant="outlined"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <StyledTextField
+          id="username"
+          label="Username"
+          variant="outlined"
+          fullWidth
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <StyledTextField
           id="password"
           label="Password"

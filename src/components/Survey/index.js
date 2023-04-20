@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import firebase from "../../utils/firebase";
 import surveyQuestions from "./Questions.json";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Radio,
   FormControlLabel,
@@ -11,7 +11,6 @@ import {
   Box,
   Stack,
 } from "@mui/material";
-
 
 const HciSurvey = styled("div")(({ theme }) => ({
   margin: "2rem auto",
@@ -43,7 +42,9 @@ const Survey = () => {
 
   const handleImageUpload = async (questionId, file) => {
     const storageRef = firebase.storage().ref();
-    const fileRef = storageRef.child(`survey-images/${questionId}/${file.name}`);
+    const fileRef = storageRef.child(
+      `survey-images/${questionId}/${file.name}`
+    );
     await fileRef.put(file);
     const url = await fileRef.getDownloadURL();
     return url;
@@ -74,7 +75,6 @@ const Survey = () => {
       }, {});
     });
 
-
     const surveyData = {
       answers,
       imageUrls,
@@ -83,7 +83,12 @@ const Survey = () => {
 
     try {
       const user = firebase.auth().currentUser;
-      await firebase.firestore().collection("users").doc(user.uid).collection("surveys").add(surveyData);
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(user.uid)
+        .collection("surveys")
+        .add(surveyData);
       console.log("Survey data saved to Firestore.");
     } catch (error) {
       console.error("Error saving survey data to Firestore:", error);
@@ -91,54 +96,92 @@ const Survey = () => {
   };
   return (
     <HciSurvey>
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-      <Typography variant="h3">HCI Survey</Typography>
-  
-      <Box sx={{ width: '100%', maxWidth: '800px' }}>
-        <form onSubmit={handleSubmit}>
-          {surveyQuestions.map((page) => (
-            <Box key={page.page} sx={{ mt: '40px' }}>
-              <Typography variant="h4" sx={{ mb: '20px' }}>{page.page}</Typography>
-              {page.questions.map((question) => (
-                <Box key={question.id} sx={{ mb: '20px' }}>
-                  <Typography variant="h6">{question.question}</Typography>
-  
-                  {question.type === 'options' ? (
-                    <Stack direction="column" sx={{ mt: '10px' }}>
-                      {question.options.map((option, index) => (
-                        <FormControlLabel
-                          key={index}
-                          value={option}
-                          control={<Radio name={question.id} onChange={(e) => handleChange(e, question.id)} checked={answers[question.id] === option} />}
-                          label={option}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "20px",
+        }}
+      >
+        <Typography variant="h3">HCI Survey</Typography>
+
+        <Box sx={{ width: "100%", maxWidth: "800px" }}>
+          <form onSubmit={handleSubmit}>
+            {surveyQuestions.map((page) => (
+              <Box key={page.page} sx={{ mt: "40px" }}>
+                <Typography variant="h4" sx={{ mb: "20px" }}>
+                  {page.page}
+                </Typography>
+                {page.questions.map((question) => (
+                  <Box key={question.id} sx={{ mb: "20px" }}>
+                    <Typography variant="h6">{question.question}</Typography>
+
+                    {question.type === "options" ? (
+                      <Stack direction="column" sx={{ mt: "10px" }}>
+                        {question.options.map((option, index) => (
+                          <FormControlLabel
+                            key={index}
+                            value={option}
+                            control={
+                              <Radio
+                                name={question.id}
+                                onChange={(e) => handleChange(e, question.id)}
+                                checked={answers[question.id] === option}
+                              />
+                            }
+                            label={option}
+                          />
+                        ))}
+                      </Stack>
+                    ) : (
+                      <TextField
+                        onChange={(e) => handleChange(e, question.id)}
+                        sx={{ mt: "10px", width: "100%" }}
+                      />
+                    )}
+
+                    {question.image && (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          mt: "10px",
+                        }}
+                      >
+                        <label htmlFor={`image-upload-${question.id}`}>
+                          <Button
+                            variant="contained"
+                            component="span"
+                            sx={{ mr: "10px" }}
+                          >
+                            Upload an image
+                          </Button>
+                        </label>
+                        <Typography>
+                          {imageFiles[question.id]?.name ?? ""}
+                        </Typography>
+                        <input
+                          type="file"
+                          id={`image-upload-${question.id}`}
+                          style={{ display: "none" }}
+                          onChange={(e) => handleImageChange(e, question.id)}
                         />
-                      ))}
-                    </Stack>
-                  ) : (
-                    <TextField onChange={(e) => handleChange(e, question.id)} sx={{ mt: '10px',  width: '100%' }} />
-                  )}
-  
-                  {question.image && (
-                    <Box sx={{ display: 'flex', alignItems: 'center', mt: '10px' }}>
-                      <label htmlFor={`image-upload-${question.id}`}>
-                        <Button variant="contained" component="span" sx={{ mr: '10px' }}>Upload an image</Button>
-                      </label>
-                      <Typography>{imageFiles[question.id]?.name ?? ''}</Typography>
-                      <input type="file" id={`image-upload-${question.id}`} style={{ display: 'none' }} onChange={(e) => handleImageChange(e, question.id)} />
-                    </Box>
-                  )}
-                </Box>
-              ))}
-            </Box>
-          ))}
-  
-          <Button type="submit" variant="contained" sx={{ mt: '40px' }}>Submit</Button>
-        </form>
-      </Box>
+                      </Box>
+                    )}
+                  </Box>
+                ))}
+              </Box>
+            ))}
+
+            <Button type="submit" variant="contained" sx={{ mt: "40px" }}>
+              Submit
+            </Button>
+          </form>
+        </Box>
       </Box>
     </HciSurvey>
   );
-
 };
 
 export default Survey;

@@ -2,7 +2,12 @@ import { useState } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import { useSelector } from "react-redux";
 
-import { NavigationBarMenu, NavigationBarTitle, NavigationLinks, NavigationDrawer } from "./StyledComponent";
+import {
+  NavigationBarMenu,
+  NavigationBarTitle,
+  NavigationLinks,
+  NavigationDrawer,
+} from "./StyledComponent";
 // Main navigation bar component
 const NavigationBar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -30,7 +35,11 @@ const NavigationBar = () => {
         <NavigationBarTitle />
         <NavigationLinks user={user} />
       </Toolbar>
-      <NavigationDrawer user={user} isOpenMenu={isOpenMenu} closeDrawer={closeDrawer} />
+      <NavigationDrawer
+        user={user}
+        isOpenMenu={isOpenMenu}
+        closeDrawer={closeDrawer}
+      />
     </AppBar>
   );
 };

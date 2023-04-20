@@ -61,7 +61,9 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { user } = await firebase.auth().signInWithEmailAndPassword(email, password);
+      const { user } = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
       dispatch(
         login({
           uid: user.uid,
@@ -84,8 +86,6 @@ const Login = () => {
       }
     });
   }, [navigate]);
-  
-
 
   return (
     <Container>
@@ -95,7 +95,14 @@ const Login = () => {
           Login
         </Typography>
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <StyledTextField id="email" label="Email" variant="outlined" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
+        <StyledTextField
+          id="email"
+          label="Email"
+          variant="outlined"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <StyledTextField
           id="password"
           label="Password"

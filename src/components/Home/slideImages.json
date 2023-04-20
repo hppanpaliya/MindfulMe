@@ -20,8 +20,18 @@
   {
     "title": "Tracking Tools",
     "description": "Tools to track your mood, goals, self-assessment, and habits.",
-    "items": ["Mood Tracker", "Goal Setting", "Self Assessment", "Habit Tracker"],
-    "links": ["/mood-tracker", "/goal-setting", "/self-assessment", "/habit-tracker"]
+    "items": [
+      "Mood Tracker",
+      "Goal Setting",
+      "Self Assessment",
+      "Habit Tracker"
+    ],
+    "links": [
+      "/mood-tracker",
+      "/goal-setting",
+      "/self-assessment",
+      "/habit-tracker"
+    ]
   },
   {
     "title": "Meditation",

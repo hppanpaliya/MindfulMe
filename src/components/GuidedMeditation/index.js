@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./GuidedMeditation.css";
 import audioFiles from "../../data/audioFiles";
-import { CircularProgressbar, CircularProgressbarWithChildren } from "react-circular-progressbar";
+import {
+  CircularProgressbar,
+  CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
 import Sound from "react-sound";
 import { Button } from "@mui/material";
 //play Icon and pause icon
@@ -33,7 +36,11 @@ const GuidedMeditation = () => {
   };
 
   const handlePlayPause = () => {
-    setIsPlaying(isPlaying === Sound.status.PLAYING ? Sound.status.PAUSED : Sound.status.PLAYING);
+    setIsPlaying(
+      isPlaying === Sound.status.PLAYING
+        ? Sound.status.PAUSED
+        : Sound.status.PLAYING
+    );
   };
 
   const handleAudioEnd = () => {
@@ -64,7 +71,21 @@ const GuidedMeditation = () => {
           className="guidedMeditation"
           style={{ backgroundImage: `url(${currentAudio.backgroundImage})` }}
           key={key}
-          animate={{ backgroundPosition: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"] }}
+          animate={{
+            backgroundPosition: [
+              "0%",
+              "10%",
+              "20%",
+              "30%",
+              "40%",
+              "50%",
+              "60%",
+              "70%",
+              "80%",
+              "90%",
+              "100%",
+            ],
+          }}
           transition={{ duration: 1000, loop: Infinity, ease: "ease-in-out" }}
         >
           <div className="guidedMeditation__header">
@@ -85,7 +106,11 @@ const GuidedMeditation = () => {
               sx={{ width: 300 }}
             >
               {audioFiles.map((audio, index) => (
-                <MenuItem key={audio.url} value={index} sx={{ background: `#eee` }}>
+                <MenuItem
+                  key={audio.url}
+                  value={index}
+                  sx={{ background: `#eee` }}
+                >
                   {formatDisplayName(audio.url)}
                 </MenuItem>
               ))}

@@ -3,7 +3,11 @@ import firebase from "../../../utils/firebase";
 export const addHabit = async (uid, habit) => {
   console.log("Habit added");
   try {
-    const habitsRef = firebase.firestore().collection("users").doc(uid).collection("habits");
+    const habitsRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .collection("habits");
     const newHabit = {
       ...habit,
       createdAt: Date.now(),
@@ -17,7 +21,11 @@ export const addHabit = async (uid, habit) => {
 
 export const getHabits = async (uid) => {
   try {
-    const habitsRef = firebase.firestore().collection("users").doc(uid).collection("habits");
+    const habitsRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .collection("habits");
     const habitsSnapshot = await habitsRef.get();
     const habits = habitsSnapshot.docs.map((doc) => ({
       ...doc.data(),
@@ -33,7 +41,11 @@ export const getHabits = async (uid) => {
 export const updateHabit = async (uid, habitId, updatedData) => {
   try {
     let updatedHabit = { name: updatedData };
-    const habitsRef = firebase.firestore().collection("users").doc(uid).collection("habits");
+    const habitsRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .collection("habits");
     const habitRef = habitsRef.doc(habitId);
     const habitSnapshot = await habitRef.get();
     if (habitSnapshot.exists) {
@@ -54,7 +66,12 @@ export const updateHabit = async (uid, habitId, updatedData) => {
 export const deleteHabit = async (uid, habitId) => {
   try {
     console.log("Habit deleted", uid, habitId);
-    const habitRef = firebase.firestore().collection("users").doc(uid).collection("habits").doc(habitId);
+    const habitRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .collection("habits")
+      .doc(habitId);
     console.log("Habit ref", habitRef);
     await habitRef.delete();
     console.log("Habit deleted");
@@ -63,10 +80,14 @@ export const deleteHabit = async (uid, habitId) => {
   }
 };
 
-
 export const toggleCompletion = async (uid, habitId) => {
   try {
-    const habitRef = firebase.firestore().collection("users").doc(uid).collection("habits").doc(habitId);
+    const habitRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .collection("habits")
+      .doc(habitId);
 
     const habitSnapshot = await habitRef.get();
     const isCompleted = habitSnapshot.data().isCompleted;
@@ -76,7 +97,6 @@ export const toggleCompletion = async (uid, habitId) => {
     console.error(error);
   }
 };
-
 
 export const maintainHabit = async (uid, habitId) => {
   try {
@@ -127,9 +147,7 @@ export const resetStreak = async (uid, habitId) => {
     const habitData = habitSnapshot.data();
     const currentDate = new Date().setHours(0, 0, 0, 0);
 
-    if (
-      currentDate - habitData.lastMaintained > 2 * 24 * 60 * 60 * 1000
-    ) {
+    if (currentDate - habitData.lastMaintained > 2 * 24 * 60 * 60 * 1000) {
       await habitRef.update({
         streak: 0,
       });

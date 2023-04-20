@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addHabitAsync, fetchHabitsAsync } from "../../../store/features/habits/habitsSlice";
+import {
+  addHabitAsync,
+  fetchHabitsAsync,
+} from "../../../store/features/habits/habitsSlice";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { FormControl } from "@mui/material";
@@ -41,7 +44,11 @@ const AddHabitForm = (props) => {
 
   return (
     <FormControl
-      sx={{ m: 1, flexDirection: { xs: "column", sm: "row" }, justifyContent: "center" }}
+      sx={{
+        m: 1,
+        flexDirection: { xs: "column", sm: "row" },
+        justifyContent: "center",
+      }}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           handleSubmit(e);
@@ -55,7 +62,11 @@ const AddHabitForm = (props) => {
         onChange={handleChange}
         sx={{ margin: "1rem", backgroundColor: "#dde2e4", width: "18rem" }}
       />
-      <Button variant="contained" onClick={handleSubmit} sx={{ margin: "1rem", width: "18rem" }}>
+      <Button
+        variant="contained"
+        onClick={handleSubmit}
+        sx={{ margin: "1rem", width: "18rem" }}
+      >
         Add Habit
       </Button>
     </FormControl>

@@ -30,7 +30,6 @@ const useDrawing = (color, brushSize) => {
         save();
       }
     };
-    
 
     document.addEventListener("keydown", handleKeyDown);
 
@@ -76,9 +75,15 @@ const useDrawing = (color, brushSize) => {
     if (drawingHistoryRef.current.length > 1) {
       const context = canvasRef.current.getContext("2d");
       redoHistoryRef.current.push(drawingHistoryRef.current.pop());
-      context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      context.clearRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
       const image = new Image();
-      image.src = drawingHistoryRef.current[drawingHistoryRef.current.length - 1];
+      image.src =
+        drawingHistoryRef.current[drawingHistoryRef.current.length - 1];
       image.onload = () => {
         context.drawImage(image, 0, 0);
       };
@@ -90,7 +95,12 @@ const useDrawing = (color, brushSize) => {
       const context = canvasRef.current.getContext("2d");
       const lastRedo = redoHistoryRef.current.pop();
       drawingHistoryRef.current.push(lastRedo);
-      context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      context.clearRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
       const image = new Image();
       image.src = lastRedo;
       image.onload = () => {
@@ -157,8 +167,7 @@ const useDrawing = (color, brushSize) => {
       draw(syntheticEvent);
     } else if (e.type === "mouseleave") {
       finishDrawing();
-    } 
-
+    }
   };
 
   const exportCanvasAsJPG = () => {

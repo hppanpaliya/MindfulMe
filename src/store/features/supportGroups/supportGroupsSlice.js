@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import app from "../../../utils/firebase";
 
-
 export const supportGroupsSlice = createSlice({
   name: "supportGroups",
   initialState: {
@@ -23,12 +22,7 @@ export const supportGroupsSlice = createSlice({
   },
 });
 
-export const {
-  setLoading,
-  setGroups,
-  setError,
-} = supportGroupsSlice.actions;
-
+export const { setLoading, setGroups, setError } = supportGroupsSlice.actions;
 
 export const fetchGroups = () => {
   return async (dispatch) => {
@@ -64,7 +58,6 @@ export const createGroup = (groupData) => {
     }
   };
 };
-
 
 export const selectGroups = (state) => state.supportGroups.groups;
 

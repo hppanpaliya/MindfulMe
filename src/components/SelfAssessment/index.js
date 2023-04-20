@@ -7,7 +7,9 @@ function SelfAssessment() {
     {}
   );
   const [score, setScore] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState(initialSelectedAnswers);
+  const [selectedAnswers, setSelectedAnswers] = useState(
+    initialSelectedAnswers
+  );
 
   function handleOptionSelect(questionId, optionValue) {
     setSelectedAnswers({ ...selectedAnswers, [questionId]: optionValue });
@@ -19,14 +21,15 @@ function SelfAssessment() {
       const question = questions[i];
       const selectedOption =
         selectedAnswers[question.id] &&
-        question.options.find((option) => option.value === selectedAnswers[question.id]);
+        question.options.find(
+          (option) => option.value === selectedAnswers[question.id]
+        );
       if (selectedOption) {
         newScore += selectedOption.value;
       }
     }
     setScore(newScore);
   }
-  
 
   return (
     <div>

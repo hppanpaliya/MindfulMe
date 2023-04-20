@@ -6,7 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
 import "./HabitItem.css";
 import DeleteModal from "./DeleteModal";
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip from "@mui/material/Tooltip";
 
 import {
   deleteHabitAsync,
@@ -37,7 +37,9 @@ const HabitItem = (props) => {
     return timestamps.map((timestamp) => new Date(timestamp));
   };
 
-  const previousDaysMaintainedDates = convertTimestampsToDates(previousDaysMaintained);
+  const previousDaysMaintainedDates = convertTimestampsToDates(
+    previousDaysMaintained
+  );
 
   const handleClose = () => {
     setOpen(false);
@@ -63,7 +65,13 @@ const HabitItem = (props) => {
 
   const handleUpdate = async () => {
     console.log("Update", props.id, editedTitle);
-    dispatch(updateHabitAsync({ uid: user.user.uid, habitId: props.id, updatedData: editedTitle }));
+    dispatch(
+      updateHabitAsync({
+        uid: user.user.uid,
+        habitId: props.id,
+        updatedData: editedTitle,
+      })
+    );
     setIsEditing(false);
     dispatch(fetchHabitsAsync(user.user.uid));
     props.setRefreshHabits(!props.refreshHabits);
@@ -99,63 +107,98 @@ const HabitItem = (props) => {
       }}
     >
       {isEditing ? (
-        <TextField value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} fullWidth size="small" />
+        <TextField
+          value={editedTitle}
+          onChange={(e) => setEditedTitle(e.target.value)}
+          fullWidth
+          size="small"
+        />
       ) : (
-          <>
-            <Tooltip title="Click to mark as completed" placement="top">
-          <Button onClick={handleToggleCompletion} size="small" sx={{ color: props.isCompleted ? "primary" : "black" }}>
-            {props.name}
-              </Button>
-            </Tooltip>
-            <Tooltip title="Click to see calendar" placement="top">
-          <Button sx={{ cursor: "pointer", marginLeft: "0.5rem" }} size="small" color="primary" onClick={handleStreakNumberClick}>
-            Streak: {props.streak}
-              </Button>
-            </Tooltip>
+        <>
+          <Tooltip title="Click to mark as completed" placement="top">
+            <Button
+              onClick={handleToggleCompletion}
+              size="small"
+              sx={{ color: props.isCompleted ? "primary" : "black" }}
+            >
+              {props.name}
+            </Button>
+          </Tooltip>
+          <Tooltip title="Click to see calendar" placement="top">
+            <Button
+              sx={{ cursor: "pointer", marginLeft: "0.5rem" }}
+              size="small"
+              color="primary"
+              onClick={handleStreakNumberClick}
+            >
+              Streak: {props.streak}
+            </Button>
+          </Tooltip>
 
           <Dialog onClose={handleClose} open={open}>
             <DialogContent>
               <Calendar
                 value={calendarDate}
                 tileClassName={({ date, view }) => {
-                  if (view === "month" && previousDaysMaintainedDates.some((attendedDate) => attendedDate.toDateString() === date.toDateString())) {
+                  if (
+                    view === "month" &&
+                    previousDaysMaintainedDates.some(
+                      (attendedDate) =>
+                        attendedDate.toDateString() === date.toDateString()
+                    )
+                  ) {
                     previousDaysMaintainedDates.some((attendedDate) =>
-                      console.log(attendedDate.toDateString(), date.toDateString(), attendedDate.toDateString() === date.toDateString())
+                      console.log(
+                        attendedDate.toDateString(),
+                        date.toDateString(),
+                        attendedDate.toDateString() === date.toDateString()
+                      )
                     );
                     return "attended";
                   }
                 }}
               />
-              <Typography variant="body1">Dates in green are days you maintained this habit.</Typography>
+              <Typography variant="body1">
+                Dates in green are days you maintained this habit.
+              </Typography>
             </DialogContent>
-            </Dialog>
-            <Tooltip title="Click to maintain habit and streak" placement="top">
-          <Button onClick={handleMaintainHabit} size="small" color="primary">
-            Maintain Habit
-              </Button>
-            </Tooltip>
+          </Dialog>
+          <Tooltip title="Click to maintain habit and streak" placement="top">
+            <Button onClick={handleMaintainHabit} size="small" color="primary">
+              Maintain Habit
+            </Button>
+          </Tooltip>
         </>
       )}
       <Box component="div">
         {isEditing ? (
           <Tooltip title="Click to save changes" placement="top">
-          <IconButton onClick={handleUpdate} size="small">
-            <SaveIcon />
+            <IconButton onClick={handleUpdate} size="small">
+              <SaveIcon />
             </IconButton>
-            </Tooltip>
+          </Tooltip>
         ) : (
-            <Tooltip title="Click to edit habit" placement="top">
-          <IconButton onClick={() => setIsEditing(true)} size="small" edge="end">
-            <EditIcon />
-              </IconButton>
-              </Tooltip>
+          <Tooltip title="Click to edit habit" placement="top">
+            <IconButton
+              onClick={() => setIsEditing(true)}
+              size="small"
+              edge="end"
+            >
+              <EditIcon />
+            </IconButton>
+          </Tooltip>
         )}
         <Tooltip title="Click to delete habit" placement="top">
-        <IconButton onClick={openDeleteModal} size="small" edge="end">
-          <DeleteIcon />
+          <IconButton onClick={openDeleteModal} size="small" edge="end">
+            <DeleteIcon />
           </IconButton>
-          </Tooltip>
-        <DeleteModal open={deleteModal} handleClose={closeDeleteModal} deleteHabit={handleDelete} habit={props} />
+        </Tooltip>
+        <DeleteModal
+          open={deleteModal}
+          handleClose={closeDeleteModal}
+          deleteHabit={handleDelete}
+          habit={props}
+        />
       </Box>
     </Box>
   );

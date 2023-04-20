@@ -16,7 +16,12 @@ const UsersList = () => {
   const handleSearch = (e) => setSearchValue(e.target.value);
 
   // Filter users based on search input value and current user's chats/messages
-  const filteredUsers = getFilteredUsers(users, filterChat, searchValue, currentUser.uid);
+  const filteredUsers = getFilteredUsers(
+    users,
+    filterChat,
+    searchValue,
+    currentUser.uid
+  );
 
   return (
     <div className="users-list-container">
@@ -39,7 +44,7 @@ const getFilteredUsers = (users, filterChat, searchValue, currentUserUid) => {
     return filterChat.map((chat) =>
       getUserByUid(chat.id.replace(currentUserUid, "").replace("-", ""))
     );
-  } 
+  }
   // If search input has value, filter users based on username
   else {
     return users.filter((user) =>
@@ -73,4 +78,3 @@ const UsersListItems = ({ users }) => (
 );
 
 export default UsersList;
-

@@ -13,10 +13,11 @@ const useNotificationPermission = () => {
         if (permission === "granted") {
           const messaging = firebase.messaging();
           const token = await messaging.getToken({
-            vapidKey: "BLJxHQPsdXGM_1xpsoA2xq6pgChoPBSGjIzzrwbGHlkV7R-R7k6dBAVDP6JdjgjhdXOETcQnJpHwY3cFx7-mW8o",
+            vapidKey:
+              "BLJxHQPsdXGM_1xpsoA2xq6pgChoPBSGjIzzrwbGHlkV7R-R7k6dBAVDP6JdjgjhdXOETcQnJpHwY3cFx7-mW8o",
           });
-            saveTokenToFirestore(token);
-            console.log(token);
+          saveTokenToFirestore(token);
+          console.log(token);
         } else {
           console.warn("Notification permission not granted.");
         }
@@ -26,21 +27,20 @@ const useNotificationPermission = () => {
     }
 
     async function saveTokenToFirestore(token) {
-        try {
-          const userId = user.uid;
-          const userRef = firebase.firestore().collection("users").doc(userId);
-          await userRef.update({ 
-            notificationToken: token,
-            data: {
-              title: "New Message",
-              body: "You have a new message!",
-            },
-          });
-        } catch (error) {
-          console.error("Error saving token to Firestore:", error);
-        }
+      try {
+        const userId = user.uid;
+        const userRef = firebase.firestore().collection("users").doc(userId);
+        await userRef.update({
+          notificationToken: token,
+          data: {
+            title: "New Message",
+            body: "You have a new message!",
+          },
+        });
+      } catch (error) {
+        console.error("Error saving token to Firestore:", error);
       }
-      
+    }
 
     if (user) {
       requestNotificationPermission();

@@ -15,21 +15,50 @@ const DrawingApp = () => {
   const topRef = useRef(null);
   const bottomRef = useRef(null);
 
-  const { canvasRef, contextRef, startDrawing, finishDrawing, draw, handleTouchEvent, exportCanvasAsJPG, clearCanvas, save, undo, redo } = useDrawing(
-    color,
-    brushSize
-  );
+  const {
+    canvasRef,
+    contextRef,
+    startDrawing,
+    finishDrawing,
+    draw,
+    handleTouchEvent,
+    exportCanvasAsJPG,
+    clearCanvas,
+    save,
+    undo,
+    redo,
+  } = useDrawing(color, brushSize);
 
   return (
     <div className="drawingApp" ref={containerRef}>
       <div ref={topRef}></div>
-      <Box sx={{ display: { xs: "block", sm: "none" }, position: "fixed", top: "10vh", right: 0 }}>
-        <IconButton onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}>
+      <Box
+        sx={{
+          display: { xs: "block", sm: "none" },
+          position: "fixed",
+          top: "10vh",
+          right: 0,
+        }}
+      >
+        <IconButton
+          onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}
+        >
           <ArrowUpwardIcon />
         </IconButton>
       </Box>
-      <Box sx={{ display: { xs: "block", sm: "none" }, position: "fixed", bottom: "10vh", right: 0 }}>
-        <IconButton onClick={() => bottomRef.current.scrollIntoView({ behavior: "smooth" })}>
+      <Box
+        sx={{
+          display: { xs: "block", sm: "none" },
+          position: "fixed",
+          bottom: "10vh",
+          right: 0,
+        }}
+      >
+        <IconButton
+          onClick={() =>
+            bottomRef.current.scrollIntoView({ behavior: "smooth" })
+          }
+        >
           <ArrowDownwardIcon />
         </IconButton>
       </Box>
@@ -45,7 +74,13 @@ const DrawingApp = () => {
         undo={undo}
         redo={redo}
       />
-      <Canvas canvasRef={canvasRef} startDrawing={startDrawing} finishDrawing={finishDrawing} draw={draw} handleTouchEvent={handleTouchEvent} />
+      <Canvas
+        canvasRef={canvasRef}
+        startDrawing={startDrawing}
+        finishDrawing={finishDrawing}
+        draw={draw}
+        handleTouchEvent={handleTouchEvent}
+      />
       <div ref={bottomRef}></div>
     </div>
   );

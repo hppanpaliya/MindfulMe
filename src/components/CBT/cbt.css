@@ -1,49 +1,48 @@
 .cbt {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  .cbt h1 {
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .cbt-section {
-    margin-bottom: 40px;
-  }
-  
-  .cbt-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .cbt-section p {
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
-  
-  .cbt-section ul {
-    list-style: disc;
-    margin-left: 40px;
-  }
-  
-  .cbt-section li {
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-  
-  .cbt-section a {
-    color: #333;
-    text-decoration: underline;
-  }
-  
-  .cbt-section a:hover {
-    color: #0066cc;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.cbt h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cbt-section {
+  margin-bottom: 40px;
+}
+
+.cbt-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.cbt-section p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.cbt-section ul {
+  list-style: disc;
+  margin-left: 40px;
+}
+
+.cbt-section li {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.cbt-section a {
+  color: #333;
+  text-decoration: underline;
+}
+
+.cbt-section a:hover {
+  color: #0066cc;
+}

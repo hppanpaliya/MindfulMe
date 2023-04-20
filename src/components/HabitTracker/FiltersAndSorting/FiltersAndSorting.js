@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Box, MenuItem, Select, TextField } from '@mui/material';
+import React from "react";
+import PropTypes from "prop-types";
+import { Box, MenuItem, Select, TextField } from "@mui/material";
 
 const FiltersAndSorting = ({ filter, setFilter, sortBy, setSortBy }) => {
   const handleFilterChange = (event) => {
@@ -12,13 +12,22 @@ const FiltersAndSorting = ({ filter, setFilter, sortBy, setSortBy }) => {
   };
 
   return (
-    <Box  sx={{ marginTop: '2rem', display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' , flexDirection: { xs: 'column', sm: "row" } }}>
+    <Box
+      sx={{
+        marginTop: "2rem",
+        display: "flex",
+        justifyContent: "center",
+        gap: "1rem",
+        marginBottom: "2rem",
+        flexDirection: { xs: "column", sm: "row" },
+      }}
+    >
       <TextField
         select
         label="Filter"
         value={filter}
         onChange={handleFilterChange}
-        sx={{ width: '18rem' }}
+        sx={{ width: "18rem" }}
       >
         <MenuItem value="all">All</MenuItem>
         <MenuItem value="completed">Completed</MenuItem>
@@ -29,7 +38,7 @@ const FiltersAndSorting = ({ filter, setFilter, sortBy, setSortBy }) => {
         label="Sort By"
         value={sortBy}
         onChange={handleSortChange}
-        sx={{ width: '18rem' }}
+        sx={{ width: "18rem" }}
       >
         <MenuItem value="nameAsc">Name (A-Z)</MenuItem>
         <MenuItem value="nameDesc">Name (Z-A)</MenuItem>

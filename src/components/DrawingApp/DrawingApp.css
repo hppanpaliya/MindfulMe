@@ -1,4 +1,3 @@
-
 .drawingAppCanvas {
   margin-top: 1rem;
   border: 2px solid black;
@@ -47,11 +46,9 @@
   }
 }
 
-
 .drawingAppCanvas {
   touch-action: none;
 }
 .canvas-container {
   position: relative;
 }
-

@@ -32,7 +32,12 @@ const MobileDropdown = ({ title, items, closeDrawer }) => {
       <Collapse in={isOpenMenu}>
         <List component="nav" aria-labelledby={`${title}-menu`}>
           {items.map((item) => (
-            <MenuItem key={item.path} component={Link} to={item.path} onClick={handleLinkClick}>
+            <MenuItem
+              key={item.path}
+              component={Link}
+              to={item.path}
+              onClick={handleLinkClick}
+            >
               {item.text}
             </MenuItem>
           ))}

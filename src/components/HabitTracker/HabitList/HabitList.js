@@ -7,14 +7,13 @@ import { fetchHabitsAsync } from "../../../store/features/habits/habitsSlice";
 
 const HabitList = (props) => {
   const { user, loading } = useSelector((state) => state.auth);
-  const {habits} = useSelector((state) => state.habits);
+  const { habits } = useSelector((state) => state.habits);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!loading) {
       console.log("useEffect get Habits");
       dispatch(fetchHabitsAsync(user.uid));
-      
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
@@ -48,7 +47,10 @@ const HabitList = (props) => {
   const sortedHabits = sortHabits(filteredHabits);
 
   return (
-    <Box component="div" sx={{ flexDirection: "column", gap: "1rem", display: "flex" }}>
+    <Box
+      component="div"
+      sx={{ flexDirection: "column", gap: "1rem", display: "flex" }}
+    >
       <Insights habits={habits} />
       {sortedHabits.map((habit) => (
         <HabitItem
@@ -61,7 +63,7 @@ const HabitList = (props) => {
           refreshHabits={props.refreshHabits}
           streakStartDate={habit.streakStartDate}
           streakEndDate={habit.streakEndDate}
-          streak={habit.streak} 
+          streak={habit.streak}
           lastUpdated={habit.lastUpdated}
           previousDaysMaintained={habit.previousDaysMaintained}
         />
