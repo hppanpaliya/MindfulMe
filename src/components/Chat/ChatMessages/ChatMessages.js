@@ -6,47 +6,55 @@ import useChatMessages from "./utils/useChatMessages";
 import useReceiverDisplayName from "./utils/useReceiverDisplayName";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
+import { Container, Typography } from "@mui/material";
 
 function ChatMessages() {
-  // Set up local state for message text
-  const [messageText, setMessageText] = useState("");
+    // Set up local state for message text
+    const [messageText, setMessageText] = useState("");
 
-  // Get current user from Redux store
-  const currentUser = useSelector((state) => state.auth.user);
+    // Get current user from Redux store
+    const currentUser = useSelector((state) => state.auth.user);
 
-  // Get chat ID from URL parameter
-  const { id } = useParams();
+    // Get chat ID from URL parameter
+    const { id } = useParams();
 
-  // Get messages and sendMessage function using custom hook
-  const { messages, sendMessage } = useChatMessages(currentUser.uid, id);
+    // Get messages and sendMessage function using custom hook
+    const { messages, sendMessage } = useChatMessages(currentUser.uid, id);
 
-  // Get display name of receiver using custom hook
-  const receiverDisplayName = useReceiverDisplayName(id);
+    // Get display name of receiver using custom hook
+    const receiverDisplayName = useReceiverDisplayName(id);
 
-  // Handle sending a message
-  const handleSendMessage = (e) => {
-    e.preventDefault();
-    sendMessage(messageText);
-    setMessageText("");
-  };
+    // Handle sending a message
+    const handleSendMessage = (e) => {
+        e.preventDefault();
+        sendMessage(messageText);
+        setMessageText("");
+    };
 
-  // Render chat interface
-  return (
-    <div className="chat-container">
-      {/* Display receiver display name in chat title */}
-      <h1 className="chat-title">Chat with {receiverDisplayName}</h1>
+    // Render chat interface
+    return (
+        <Container className="chat-container" maxWidth="600px">
+            {/* Display receiver display name in chat title */}
+            <Typography
+                variant="h4"
+                fontWeight="bold"
+                className="chat-title"
+                align="center"
+            >
+                Chat with {receiverDisplayName}
+            </Typography>
 
-      {/* Display list of messages */}
-      <MessageList messages={messages} currentUserUid={currentUser.uid} />
+            {/* Display list of messages */}
+            <MessageList messages={messages} currentUserUid={currentUser.uid} />
 
-      {/* Display form for sending messages */}
-      <MessageForm
-        messageText={messageText}
-        setMessageText={setMessageText}
-        handleSendMessage={handleSendMessage}
-      />
-    </div>
-  );
+            {/* Display form for sending messages */}
+            <MessageForm
+                messageText={messageText}
+                setMessageText={setMessageText}
+                handleSendMessage={handleSendMessage}
+            />
+        </Container>
+    );
 }
 
 // Export ChatMessages component as default

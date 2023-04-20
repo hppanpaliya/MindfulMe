@@ -57,7 +57,11 @@ const SupportGroups = () => {
                 </Box>
                 <CreateGroup style={{ position: "fixed" }} />
             </Box>
-            <Box sx={{ width: "70%" }}>
+            <Box
+                sx={{
+                    width: "70%",
+                }}
+            >
                 {selectedGroup && <Chats groupId={selectedGroup} />}
             </Box>
         </Container>

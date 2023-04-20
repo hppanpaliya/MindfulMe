@@ -57,20 +57,20 @@ const theme = createTheme({
     overrides: {
         MuiButton: {
             root: {
-                backgroundColor: teal[500],
+                backgroundColor: "#008579",
                 color: "#fff",
                 "&:hover": {
-                    backgroundColor: teal[700],
+                    backgroundColor: "#008579",
                 },
             },
             textPrimary: {
                 color: "#fff",
             },
             containedSecondary: {
-                backgroundColor: green[700],
+                backgroundColor: "#008579",
                 color: "#fff",
                 "&:hover": {
-                    backgroundColor: green[900],
+                    backgroundColor: "#008579",
                 },
             },
         },

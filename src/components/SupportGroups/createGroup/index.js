@@ -32,20 +32,6 @@ const CreateGroup = () => {
 
     // Render the form for creating a new group
     return (
-        // <div className="create-group-container">
-        //   <h3 className="create-group-title">Create New Group:</h3>
-        //   <input
-        //     type="text"
-        //     placeholder="Group Name"
-        //     value={groupName}
-        //     onChange={(e) => setGroupName(e.target.value)}
-        //     className="create-group-input"
-        //   />
-        //   <button onClick={handleCreateGroup} className="create-group-button">
-        //     Create
-        //   </button>
-        // </div>
-
         <Container sx={{ paddingTop: 5.5 }}>
             <FormControl fullWidth>
                 <TextField

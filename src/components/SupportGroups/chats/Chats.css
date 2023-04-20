@@ -8,6 +8,9 @@
   flex-grow: 1;
   padding: 10px;
   overflow-y: auto;
+  background-image: url("../../../assets/images/4689.jpg");
+  background-repeat: no-repeat;
+  background-size: cover
 }
 
 .chat-message {
@@ -17,12 +20,12 @@
 }
 
 .sent {
-  background-color: #e5f7ff;
+  background-color: #28b5a9;
   align-self: flex-end;
 }
 
 .received {
-  background-color: #f4f4f4;
+  background-color: #78efe3;
   align-self: flex-start;
 }
 
@@ -32,7 +35,7 @@
 
 .chat-meta {
   font-size: 12px;
-  color: #888;
+  color: #000;
   margin-top: 5px;
 }
 
