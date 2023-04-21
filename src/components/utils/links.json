@@ -48,7 +48,8 @@
       "category": "Resources",
       "items": [
         { "path": "/coping-strategies", "text": "Coping Strategies" },
-        { "path": "/cbt", "text": "CBT" }
+        { "path": "/cbt", "text": "CBT" },
+        { "path": "/chatbot", "text": "ChatBot" }
       ]
     },
     { "path": "/survey", "text": "Survey" },

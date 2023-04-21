@@ -19,6 +19,7 @@ import GuidedMeditation from "../components/GuidedMeditation";
 import Survey from "../components/Survey";
 import AdminSurveyReplies from "../components/Survey/AdminSurveyReplies.js";
 import HabitTracker from "../components/HabitTracker";
+import Chatbot from "../components/Chatbot";
 
 const AppRoutes = () => {
   return (
@@ -43,6 +44,7 @@ const AppRoutes = () => {
         <Route path="/survey" Component={Survey} />
         <Route path="/survey-list" Component={AdminSurveyReplies} />
         <Route path="/habit-tracker" Component={HabitTracker} />
+        <Route path="/chatbot" Component={Chatbot} />
       </Route>
     </Routes>
   );

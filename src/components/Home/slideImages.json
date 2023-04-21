@@ -14,8 +14,8 @@
   {
     "title": "Resources",
     "description": "Informative resources for coping strategies and cognitive-behavioral therapy.",
-    "items": ["Coping Strategies", "CBT"],
-    "links": ["/coping-strategies", "/cbt"]
+    "items": ["Coping Strategies", "CBT", "ChatBot"],
+    "links": ["/coping-strategies", "/cbt", "/chatbot"]
   },
   {
     "title": "Tracking Tools",

@@ -1,0 +1,18 @@
+.message-bubble {
+    max-width: 60%;
+    word-wrap: break-word;
+  }
+  
+  .message-user {
+    background-color: lightblue;
+  }
+  
+  .message-assistant {
+    background-color: lightgray;
+  }
+  
+  .message-error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
