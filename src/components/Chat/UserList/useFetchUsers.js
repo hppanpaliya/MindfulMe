@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import firebase from "../../../utils/firebase";
 
-const useFetchUsers = (currentUserUid) => {
+const useFetchUsers = (currentUserUid, setLoading) => {
   // State for list of users, conversations, and filtered chats
   const [users, setUsers] = useState([]);
   const [conversations, setConversations] = useState([]);
@@ -23,13 +23,17 @@ const useFetchUsers = (currentUserUid) => {
       // Fetch chats/messages for each conversation and filter out empty ones
       const filteredChats = await getFilteredChats(newConversations);
       setfilterChat(filteredChats);
+
+      // Update the loading state
+      setLoading(false);
     };
 
     fetchUsers();
-  }, [currentUserUid]);
+  }, [currentUserUid, setLoading]);
 
   return { users, conversations, filterChat };
 };
+
 
 // Function to fetch all users from Firebase, except for the current user
 const getUsersFromFirebase = async (currentUserUid) => {

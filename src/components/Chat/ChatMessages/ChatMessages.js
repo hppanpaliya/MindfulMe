@@ -7,6 +7,7 @@ import useReceiverDisplayName from "./utils/useReceiverDisplayName";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
 import { Container, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 function ChatMessages() {
     // Set up local state for message text
@@ -33,26 +34,26 @@ function ChatMessages() {
 
     // Render chat interface
     return (
-        <Container className="chat-container" maxWidth="600px">
+        <Container className="chat-container" maxWidth="600px" maxHeight="calc(100vh - 64px)">
             {/* Display receiver display name in chat title */}
-            <Typography
-                variant="h4"
-                fontWeight="bold"
-                className="chat-title"
-                align="center"
-            >
-                Chat with {receiverDisplayName}
-            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", maxHeight: "calc(100vh - 64px - 100px)", minHeight: "calc(100vh - 64px - 100px)"}}>
+                <div style={{ textAlign: "center", fontSize: "large", fontWeight: "bold", top: "70px",  position: "fixed", backgroundColor: "white" }}>
+                        {receiverDisplayName}
+                </div>
 
-            {/* Display list of messages */}
-            <MessageList messages={messages} currentUserUid={currentUser.uid} />
 
+                    <MessageList messages={messages} currentUserUid={currentUser.uid} />
+
+                </Box>
             {/* Display form for sending messages */}
+            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
             <MessageForm
                 messageText={messageText}
                 setMessageText={setMessageText}
                 handleSendMessage={handleSendMessage}
-            />
+                />
+            </Box>
+            
         </Container>
     );
 }

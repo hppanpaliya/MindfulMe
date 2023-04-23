@@ -1,31 +1,36 @@
-// This component renders a list of chat messages
-// The props are `messages` array which contains the messages to be displayed and `currentUserUid` which is the current user's uid
+import { Box, List, ListItem, Typography } from "@mui/material";
+
 const MessageList = ({ messages, currentUserUid }) => (
-  <ul className="messages-list">
-    {messages.map((message) => (
-      <li
-        key={message.messageId}
-        // the class name of the list item changes depending on whether the message sender is the current user or not
-        className={`message-item ${
-          message.sender === currentUserUid
-            ? "sender-bubble"
-            : "receiver-bubble"
-        }`}
-      >
-        {message.text}
-        <span
-          // the class name of the timestamp span changes depending on whether the message sender is the current user or not
-          className={`${
-            message.sender === currentUserUid
-              ? "sender-timestamp"
-              : "receiver-timestamp"
-          }`}
+  <Box sx={{ flexGrow: 1, overflowY: "auto",paddingTop:3  }}>
+    <List sx={{ padding: 0 }}>
+      {messages.map((message) => (
+        <ListItem
+          key={message.messageId}
+          sx={{
+            borderRadius: "16px",
+            p: 2,
+            mb: 2,
+            alignSelf: message.sender === currentUserUid ? "flex-end" : "flex-start",
+            bgcolor: message.sender === currentUserUid ? "#E0E0E0" : "#2196f3",
+            color: message.sender === currentUserUid ? "#47555c" : "#fff",
+          }}
         >
-          {new Date(message.timestamp).toLocaleTimeString()}
-        </span>
-      </li>
-    ))}
-  </ul>
+          <Typography variant="body1">{message.text}</Typography>
+          <Typography
+            variant="caption"
+            sx={{
+              fontSize: "0.8rem",
+              color: message.sender === currentUserUid ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.8)",
+              textAlign: "right",
+              marginTop: 1,
+            }}
+          >
+            {new Date(message.timestamp).toLocaleTimeString()}
+          </Typography>
+        </ListItem>
+      ))}
+    </List>
+  </Box>
 );
 
 export default MessageList;
