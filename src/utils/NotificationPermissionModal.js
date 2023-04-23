@@ -156,11 +156,6 @@ const NotificationPermissionModal = () => {
             Allow
           </Button>
         </Box>
-        <Typography variant="body1" gutterBottom>
-          We would like to send you notifications when you receive new messages
-          or updates. To enable notifications, please click the Allow button
-          below.
-        </Typography>
         <FormControlLabel
           control={
             <Checkbox
