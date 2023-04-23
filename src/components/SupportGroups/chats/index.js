@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import { useSelector } from "react-redux";
 import app from "../../../utils/firebase";
 import { Button, TextField, InputAdornment } from "@mui/material";
@@ -10,6 +10,8 @@ const Chats = ({ groupId }) => {
 
   const [chatText, setChatText] = useState("");
   const [chats, setChats] = useState([]);
+  const lastMessageRef = useRef(null);
+
 
   useEffect(() => {
     const chatsRef = app
@@ -27,6 +29,12 @@ const Chats = ({ groupId }) => {
     });
     return unsubscribe;
   }, [groupId]);
+
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chats]);
 
   const handleChatTextChange = (event) => {
     setChatText(event.target.value);
@@ -65,10 +73,11 @@ const Chats = ({ groupId }) => {
   return (
     <div className="chats-container" style={{ height: "calc(100vh - 64px)" }}>
       <div className="chats-list">
-        {chats.map((chat) => (
+        {chats.map((chat, index) => (
           <div
             key={chat.id}
             className={`chat-message ${getMessageClassName(chat)}`}
+            ref={index === chats.length - 1 ? lastMessageRef : null}
           >
             <p className="chat-text">
               {chat.isFlagged ? "Message flagged" : chat.text}
