@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createGroup } from "../../../store/features/supportGroups/supportGroupsSlice";
-import "./CreateGroup.css";
 import {
     Box,
     Button,
@@ -32,7 +31,7 @@ const CreateGroup = () => {
 
     // Render the form for creating a new group
     return (
-        <Container sx={{ paddingTop: 5.5 }}>
+        <Container sx={{ paddingTop: 2, paddingBottom: 2 }}>
             <FormControl fullWidth>
                 <TextField
                     placeholder="Group Name"
