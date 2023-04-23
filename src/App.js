@@ -8,9 +8,12 @@ import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import AppRoutes from "./utils/AppRoutes";
 import NotificationPermissionModal from "./utils/NotificationPermissionModal";
-
+import { useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import "./App.css";
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useFirebaseAnalytics(); // Hook for Firebase Analytics
 
@@ -33,8 +36,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationBar /> {/* Navbar component */}
-      <AppRoutes /> {/* Component with all the app's routes */}
-      <NotificationPermissionModal />{" "}
+      <TransitionGroup>
+    <CSSTransition
+      key={location.key}
+      classNames="fade"
+        timeout={1000}
+    >
+      <AppRoutes />
+    </CSSTransition>
+  </TransitionGroup>      <NotificationPermissionModal />{" "}
       {/* Notification permission modal component */}
     </ThemeProvider>
   );
