@@ -48,7 +48,7 @@ const Home = () => {
                 initial="hidden"
                 animate="visible"
                 variants={cardVariants}
-                transition={{ duration: 1, delay: index * 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
               >
                 <Card
                   sx={{
