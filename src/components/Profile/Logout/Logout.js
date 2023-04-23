@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import firebase from "../../utils/firebase";
-import { logout } from "../../store/features/auth/authSlice.js";
+import firebase from "../../../utils/firebase";
+import { logout } from "../../../store/features/auth/authSlice.js";
 import { useEffect } from "react";
 
 const Logout = () => {

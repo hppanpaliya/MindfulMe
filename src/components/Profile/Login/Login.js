@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import firebase from "../../utils/firebase";
-import { login } from "../../store/features/auth/authSlice.js";
+import firebase from "../../../utils/firebase";
+import { login } from "../../../store/features/auth/authSlice.js";
 import { styled } from "@mui/material/styles";
 import { Button, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../../assets/images/logo.svg";
 
 const Container = styled(Box)({
   display: "flex",
