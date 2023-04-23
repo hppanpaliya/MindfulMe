@@ -1,17 +1,29 @@
 import { useState } from "react";
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
-
+import { styled } from "@mui/material/styles";
 import {
   NavigationBarMenu,
   NavigationBarTitle,
   NavigationLinks,
   NavigationDrawer,
 } from "./StyledComponent";
+
+
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  height: theme.customAppBarHeight,
+}));
+
+
+
+
 // Main navigation bar component
 const NavigationBar = () => {
   const { user } = useSelector((state) => state.auth);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
 
   // Handler for opening the navigation drawer
   const openDrawer = () => {
@@ -28,8 +40,12 @@ const NavigationBar = () => {
     setIsOpenMenu(false);
   };
 
+
+  theme.customAppBarHeight = isMobile ? '50px' : '64px';
+
+
   return (
-    <AppBar position="sticky" onMouseLeave={handleMouseLeave}>
+    <StyledAppBar position="sticky" onMouseLeave={handleMouseLeave}>
       <Toolbar>
         <NavigationBarMenu isOpenMenu={isOpenMenu} openDrawer={openDrawer} />
         <NavigationBarTitle />
@@ -40,7 +56,7 @@ const NavigationBar = () => {
         isOpenMenu={isOpenMenu}
         closeDrawer={closeDrawer}
       />
-    </AppBar>
+    </StyledAppBar>
   );
 };
 

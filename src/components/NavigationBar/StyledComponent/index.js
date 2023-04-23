@@ -22,7 +22,7 @@ export const NavigationBarMenu = ({ isOpenMenu, openDrawer }) => (
     color="inherit"
     aria-label="menu"
     onClick={openDrawer}
-    sx={{ display: { xs: "block", sm: "none" } }}
+    sx={{ display: { xs: "block", sm: "block", md: "none" } }}
   >
     <MenuIcon />
   </IconButton>
@@ -39,7 +39,7 @@ export const NavigationBarTitle = () => (
 export const NavigationLinks = ({ user }) => (
   <Box
     sx={{
-      display: { xs: "none", sm: "flex" },
+      display: { xs: "none", sm: "none", md: "flex" },
       flexGrow: 1,
       justifyContent: "flex-end",
     }}
@@ -54,7 +54,6 @@ export const NavigationDrawer = ({ user, isOpenMenu, closeDrawer }) => (
     anchor="left"
     open={isOpenMenu}
     onClose={closeDrawer}
-    sx={{ background: "lightgrey" }}
   >
     <div>
       <List
@@ -64,7 +63,8 @@ export const NavigationDrawer = ({ user, isOpenMenu, closeDrawer }) => (
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          width: "250px",
+          minWidth: "150px",
+          width: "70vw",
         }}
       >
         {user
