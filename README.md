@@ -15,7 +15,7 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [X] Personalized self-assessment tools and diagnostic quizzes
 - [X] Guided meditations and mindfulness exercises
 - [X] Peer-to-peer communication
-- - [X] AI chatbot for 24/7 support and assistance with coping skills and self-care
+- [X] AI chatbot for 24/7 support and assistance with coping skills and self-care
 - [ ] Educational resources and articles on mental health topics with gamification elements
 - [ ] Multi-language support
 
