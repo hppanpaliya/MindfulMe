@@ -17,9 +17,18 @@
   list-style-type: none;
   padding: 0;
   width: 100%;
+  height: 100svh - 64px;
 }
+@media screen and (max-width: 600px) {
+  .users-list {
+    margin-right: 1rem;
+  }
+}
+  
 
 .user-item {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -52,4 +61,18 @@
   100% {
     transform: scale(1);
   }
+}
+
+.last-message {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-date-time {
+  font-size: 0.7rem;
+  color: #999;
+  margin-top: 2px;
 }

@@ -61,22 +61,26 @@ const getFilteredChats = async (conversations) => {
   const filteredChats = [];
 
   for (const conversation of conversations) {
-    // Fetch messages for each conversation
+    // Fetch the last message for each conversation
     const chatSnapshot = await chatsRef
       .doc(conversation)
       .collection("messages")
+      .orderBy("timestamp", "desc") // Order by 'timestamp' field
+      .limit(1) // Limit to the last message
       .get();
+
     // If there are messages, add conversation to filtered chats array
     if (!chatSnapshot.empty) {
-      const chatMessages = chatSnapshot.docs.map((doc) => ({
+      const lastMessage = chatSnapshot.docs.map((doc) => ({
         ...doc.data(),
         messageId: doc.id,
-      }));
-      filteredChats.push({ id: conversation, messages: chatMessages });
+      }))[0]; // Get the first (and only) item from the array
+      filteredChats.push({ id: conversation, lastMessage: lastMessage });
     }
   }
 
   return filteredChats;
 };
+
 
 export default useFetchUsers;
