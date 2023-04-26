@@ -1,48 +1,26 @@
 [
   {
-    "title": "Games",
-    "description": "Engaging games to support mental health.",
-    "items": ["Memory Match", "DrawingApp"],
+    "title": "Therapeutic Games",
+    "description": "Interactive games designed to promote mental well-being.",
+    "items": ["Memory Booster", "Creative Canvas"],
     "links": ["/memory-match", "/draw"]
   },
   {
-    "title": "Social",
-    "description": "Connect with others for support.",
-    "items": ["Support Groups", "Chat"],
+    "title": "Community",
+    "description": "Join our supportive network to connect with others on your mental health journey.",
+    "items": ["Support Circles", "Peer Chat"],
     "links": ["/support-groups", "/chat"]
   },
   {
-    "title": "Resources",
-    "description": "Informative resources for coping strategies and cognitive-behavioral therapy.",
-    "items": ["Coping Strategies", "CBT", "ChatBot"],
-    "links": ["/coping-strategies", "/cbt", "/chatbot"]
+    "title": "Learning Center",
+    "description": "Discover valuable information on coping mechanisms and cognitive-behavioral therapy techniques.",
+    "items": ["Coping Toolbox", "CBT Fundamentals"],
+    "links": ["/coping-strategies", "/cbt"]
   },
   {
-    "title": "Tracking Tools",
-    "description": "Tools to track your mood, goals, self-assessment, and habits.",
-    "items": [
-      "Mood Tracker",
-      "Goal Setting",
-      "Self Assessment",
-      "Habit Tracker"
-    ],
-    "links": [
-      "/mood-tracker",
-      "/goal-setting",
-      "/self-assessment",
-      "/habit-tracker"
-    ]
-  },
-  {
-    "title": "Meditation",
-    "description": "Relax with guided meditation sessions.",
-    "items": ["Guided Meditation"],
-    "links": ["/guided-meditation"]
-  },
-  {
-    "title": "Account",
-    "description": "Manage your account and provide feedback.",
-    "items": ["Login / Logout", "Survey"],
-    "links": ["/login", "/survey"]
+    "title": "Self-Care Tools",
+    "description": "Enhance your mental health journey with personalized tools and resources.",
+    "items": ["Mood Journal", "Goal Planner", "Wellness Quiz", "Habit Organizer", "Mindful Meditation", "AI Counselor"],
+    "links": ["/mood-tracker", "/goal-setting", "/self-assessment", "/habit-tracker", "/guided-meditation", "/chatbot"]
   }
 ]
