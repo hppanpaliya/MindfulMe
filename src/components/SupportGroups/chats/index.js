@@ -71,7 +71,7 @@ const Chats = ({ groupId }) => {
   };
 
   return (
-    <div className="chats-container" style={{ height: "calc(100vh - 64px)" }}>
+    <div className="chats-container" style={{ height: "calc(100svh - 64px)" }}>
       <div className="chats-list">
         {chats.map((chat, index) => (
           <div

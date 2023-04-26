@@ -49,7 +49,7 @@ const SupportGroups = () => {
         display: "flex",
         margin: 0,
         minWidth: "100%",
-        height: "calc(100vh - 64px)",
+        height: "calc(100svh - 64px)",
       }}
     >
       <Grid container spacing={2}>
@@ -67,7 +67,7 @@ const SupportGroups = () => {
                 <CreateGroup style={{ position: "fixed", top: 0, left: 0 }} />
                 <Box
                   sx={{
-                    maxHeight: "calc(100vh - 174px)",
+                    maxHeight: "calc(100svh - 174px)",
                     overflowY: "auto",
                   }}
                 >
