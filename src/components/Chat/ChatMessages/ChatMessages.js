@@ -8,54 +8,65 @@ import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
 import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { Grid } from "@mui/material";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 function ChatMessages() {
-    // Set up local state for message text
-    const [messageText, setMessageText] = useState("");
+  // Set up local state for message text
+  const [messageText, setMessageText] = useState("");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-    // Get current user from Redux store
-    const currentUser = useSelector((state) => state.auth.user);
+  var listHeight = window.innerHeight - 64;
+  var chatHeight = window.innerHeight - 64 - 64;
+  if (isMobile) {
+    listHeight = listHeight - 14;
+    chatHeight = chatHeight - 14;
+  } else {
+    listHeight = listHeight - 24;
+    chatHeight = chatHeight - 24;
+  }
 
-    // Get chat ID from URL parameter
-    const { id } = useParams();
+  // Get current user from Redux store
+  const currentUser = useSelector((state) => state.auth.user);
 
-    // Get messages and sendMessage function using custom hook
-    const { messages, sendMessage } = useChatMessages(currentUser.uid, id);
+  // Get chat ID from URL parameter
+  const { id } = useParams();
 
-    // Get display name of receiver using custom hook
-    const receiverDisplayName = useReceiverDisplayName(id);
+  // Get messages and sendMessage function using custom hook
+  const { messages, sendMessage } = useChatMessages(currentUser.uid, id);
 
-    // Handle sending a message
-    const handleSendMessage = (e) => {
-        e.preventDefault();
-        sendMessage(messageText);
-        setMessageText("");
-    };
+  // Get display name of receiver using custom hook
+  const receiverDisplayName = useReceiverDisplayName(id);
 
-    // Render chat interface
-    return (
-        <Container className="chat-container" maxWidth="600px" maxHeight="calc(100vh - 64px)">
-            {/* Display receiver display name in chat title */}
-            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", maxHeight: "calc(100vh - 64px - 100px)", minHeight: "calc(100vh - 64px - 100px)"}}>
-                <div style={{ textAlign: "center", fontSize: "large", fontWeight: "bold", top: "70px",  position: "fixed", backgroundColor: "white" }}>
-                        {receiverDisplayName}
-                </div>
+  // Handle sending a message
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    sendMessage(messageText);
+    setMessageText("");
+  };
 
-
-                    <MessageList messages={messages} currentUserUid={currentUser.uid} />
-
-                </Box>
-            {/* Display form for sending messages */}
-            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-            <MessageForm
-                messageText={messageText}
-                setMessageText={setMessageText}
-                handleSendMessage={handleSendMessage}
-                />
-            </Box>
-            
-        </Container>
-    );
+  // Render chat interface
+  return (
+    <Container className="chat-container" maxWidth="600px" maxHeight={listHeight} minHeight={listHeight}>
+      {/* Display receiver display name in chat title */}
+      <Typography fontWeight="bold" sx={{ textAlign: "center" }}>
+        {receiverDisplayName}
+      </Typography>
+      <Grid container direction="column" maxHeight={chatHeight} minHeight={chatHeight}>
+        <MessageList messages={messages} currentUserUid={currentUser.uid} />
+      </Grid>
+      {/* Display form for sending messages */}
+      <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
+        <MessageForm
+          messageText={messageText}
+          setMessageText={setMessageText}
+          handleSendMessage={handleSendMessage}
+          receiverDisplayName={receiverDisplayName}
+        />
+      </Box>
+    </Container>
+  );
 }
 
 // Export ChatMessages component as default

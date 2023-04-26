@@ -9,29 +9,24 @@
 import React from "react";
 import { Button, InputAdornment, TextField } from "@mui/material";
 
-const MessageForm = ({ messageText, setMessageText, handleSendMessage }) => (
-    <form onSubmit={handleSendMessage} className="form-container">
-        <TextField
-            value={messageText}
-            onChange={(e) => setMessageText(e.target.value)}
-            placeholder="Type your message..."
-            className="message-input"
-            InputProps={{
-                endAdornment: (
-                    <InputAdornment position="end">
-                        <Button
-                            type="submit"
-                            className="send-button"
-                            variant="contained"
-                            size="large"
-                        >
-                            Send
-                        </Button>
-                    </InputAdornment>
-                ),
-            }}
-        />
-    </form>
+const MessageForm = ({ messageText, setMessageText, handleSendMessage, receiverDisplayName }) => (
+  <form onSubmit={handleSendMessage} className="form-container">
+    <TextField
+      value={messageText}
+      onChange={(e) => setMessageText(e.target.value)}
+      placeholder={`Message ${receiverDisplayName}...`}
+      fullWidth
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <Button type="submit" variant="contained" size="large">
+              Send
+            </Button>
+          </InputAdornment>
+        ),
+      }}
+    />
+  </form>
 );
 
 export default MessageForm;
