@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMoods } from "../../store/features/mood/moodSlice";
+import { getMoods } from "../../../store/features/mood/moodSlice";
 import {
     BarChart,
     Bar,
@@ -27,18 +27,21 @@ import {
     useWindowSize,
     yAxisTickFormatter,
     prepareChartData,
-} from "./Visualization/useVisualization";
+} from "./useVisualization";
 import {
     Heading,
     Filters,
     Filter,
     Label,
-} from "./Visualization/useVisualization";
+} from "./useVisualization";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const MoodVisualize = () => {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.user.uid);
     const moods = useSelector((state) => state.mood.moods);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     // Initialize the current year and month
     const today = new Date();
@@ -49,8 +52,13 @@ const MoodVisualize = () => {
 
     // Get window size for responsive chart dimensions
     const [windowWidth, windowHeight] = useWindowSize();
-    const chartWidth = windowWidth * 0.8;
-    const chartHeight = windowHeight * 0.45;
+    if (isMobile) {
+        var chartWidth = windowWidth ;
+        var chartHeight = windowHeight * 0.45;
+    } else {
+        var chartWidth = windowWidth * 0.8;
+        var chartHeight = windowHeight * 0.50;
+    }
 
     // Fetch moods data from the store
     useEffect(() => {
@@ -86,9 +94,7 @@ const MoodVisualize = () => {
             initial="initial"
             animate="animate"
         >
-            <Typography variant="h2" sx={{ mb: 2 }}>
-                Mood Visualization
-            </Typography>
+
             <Filters>
                 {/* Render year and month selection dropdowns */}
                 <Filter variant="outlined">
@@ -137,7 +143,7 @@ const MoodVisualize = () => {
                 <ResponsiveContainer width={chartWidth} height={chartHeight}>
                     <BarChart
                         data={chartData}
-                        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                        margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="date" />

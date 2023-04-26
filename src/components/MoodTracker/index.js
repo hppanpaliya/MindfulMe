@@ -1,28 +1,29 @@
 import React from "react";
-import MoodLogging from "./logging";
-import MoodVisualize from "./visualization";
-import { Box } from "@mui/system";
+import MoodLogging from "./MoodLogging";
+import MoodVisualize from "./MoodVisualize";
+import { Grid } from "@mui/material";
 import { Typography } from "@mui/material";
 
 // MoodTracker component is responsible for rendering both the MoodLogging and MoodVisualize components
 const MoodTracker = () => {
     return (
-        // Use a Box component to wrap the MoodLogging and MoodVisualize components, and center them vertically
-        <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
+        // Use a Grid component to stack the MoodLogging and MoodVisualize components, and center them vertically and horizontally
+        <Grid
+            container
+            direction="row"
             justifyContent="center"
-            minHeight="100vh"
+            alignItems="center"
+            height="calc(100vh - 164px)"
         >
-            <Typography variant="h4" fontWeight="bold">
-                Mood Tracker
-            </Typography>
             {/* Render the MoodLogging component for users to log their mood */}
-            <MoodLogging />
+            <Grid item>
+                <MoodLogging />
+            </Grid>
             {/* Render the MoodVisualize component to display a visualization of the user's mood data */}
-            <MoodVisualize />
-        </Box>
+            <Grid item>
+                <MoodVisualize />
+            </Grid>
+        </Grid>
     );
 };
 
