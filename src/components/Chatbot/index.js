@@ -41,14 +41,11 @@ function Chatbot() {
 
   return (
     <>
-<Box
-  height={isSmallScreen ? "calc(100vh - 56px)" : "calc(100vh - 100px)"}
-  display="flex"
-  flexDirection="column"
-  overflow="hidden"
->        <Header />
+      <Box height={isSmallScreen ? "calc(100svh - 58px)" : "calc(100svh - 64px)"} display="flex" flexDirection="column" overflow="hidden">
+        {" "}
+        <Header />
         <ConversationArea conversation={conversation} />
-        <InputArea message={message} setMessage={setMessage} sendMessage={sendMessage}  />
+        <InputArea message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </Box>
     </>
   );

@@ -1,13 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import "./ConversationArea.css";
+import { useRef, useEffect, forwardRef } from "react";
 
-
-function Message({ msg }) {
+const Message = forwardRef(({ msg }, ref) => {
   const isUser = msg.role === "user";
   const isError = msg.role === "error";
-  
+
   return (
     <Box
+      ref={ref}
       className={`message-bubble ${
         isError ? "message-error" : isUser ? "message-user" : "message-assistant"
       }`}
@@ -19,13 +20,24 @@ function Message({ msg }) {
       <Typography>{msg.content}</Typography>
     </Box>
   );
-  
-  }
-  
+});
 
 function ConversationArea({ conversation }) {
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [conversation]);
+
   return (
-    <Box height="80%" display="flex" flexDirection="column" justifyContent="flex-end" alignItems="center" bgcolor="background.paper">
+    <Box
+      height="80%"
+      display="flex"
+      flexDirection="column"
+      justifyContent="flex-end"
+      alignItems="center"
+      bgcolor="background.paper"
+    >
       <Box
         display="flex"
         flexDirection="column"
@@ -38,7 +50,11 @@ function ConversationArea({ conversation }) {
         overflow="auto"
       >
         {conversation.map((msg, index) => (
-          <Message key={index} msg={msg} />
+          <Message
+            key={index}
+            msg={msg}
+            ref={index === conversation.length - 1 ? messagesEndRef : null}
+          />
         ))}
       </Box>
     </Box>

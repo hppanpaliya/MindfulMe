@@ -1,8 +1,8 @@
-import { Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button, InputAdornment } from "@mui/material";
 
 function InputArea({ message, setMessage, sendMessage }) {
   return (
-    <Box height="10%" display="flex" alignItems="center" p={1} justifyContent="center"  bgcolor="background.default">
+    <Box height="10%" display="flex" alignItems="center" p={1} justifyContent="center" bgcolor="background.default" padding="2px">
       <Box display="flex" flexDirection="row" alignItems="center" width="100%" maxWidth="600px">
         <TextField
           fullWidth
@@ -15,10 +15,16 @@ function InputArea({ message, setMessage, sendMessage }) {
               sendMessage();
             }
           }}
-        />
-        <Button variant="contained" onClick={sendMessage}>
-          Send
-        </Button>
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Button type="submit" variant="contained" onClick={sendMessage} size="large">
+                  Send
+                </Button>
+              </InputAdornment>
+            ),
+          }}
+        ></TextField>
       </Box>
     </Box>
   );
