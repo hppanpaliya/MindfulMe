@@ -2,17 +2,17 @@
   "guest": [
     { "path": "/", "text": "Home" },
     {
-      "category": "Games",
+      "category": "Therapeutic Games",
       "items": [
-        { "path": "/memory-match", "text": "Memory Match" },
-        { "path": "/draw", "text": "DrawingApp" }
+        { "path": "/memory-match", "text": "Memory Booster" },
+        { "path": "/draw", "text": "Creative Canvas" }
       ]
     },
     {
-      "category": "Resources",
+      "category": "Learning Center",
       "items": [
-        { "path": "/coping-strategies", "text": "Coping Strategies" },
-        { "path": "/cbt", "text": "CBT" }
+        { "path": "/coping-strategies", "text": "Coping Toolbox" },
+        { "path": "/cbt", "text": "CBT Fundamentals" }
       ]
     },
     { "path": "/login", "text": "Login" },
@@ -21,35 +21,36 @@
   "user": [
     { "path": "/", "text": "Home" },
     {
-      "category": "Social",
+      "category": "Community",
       "items": [
-        { "path": "/support-groups", "text": "Support Groups" },
-        { "path": "/chat", "text": "Chat" }
+        { "path": "/support-groups", "text": "Support Circles" },
+        { "path": "/chat", "text": "Peer Chat" }
       ]
     },
     {
-      "category": "Tracking Tools",
+      "category": "Self-Care Tools",
       "items": [
-        { "path": "/mood-tracker", "text": "Mood Tracker" },
-        { "path": "/goal-setting", "text": "Goal Setting" },
-        { "path": "/self-assessment", "text": "Self Assessment" },
-        { "path": "/habit-tracker", "text": "Habit Tracker" }
+        { "path": "/mood-tracker", "text": "Mood Journal" },
+        { "path": "/goal-setting", "text": "Goal Planner" },
+        { "path": "/self-assessment", "text": "Wellness Quiz" },
+        { "path": "/habit-tracker", "text": "Habit Organizer" },
+        { "path": "/guided-meditation", "text": "Mindful Meditation" },
+        { "path": "/chatbot", "text": "AI Counselor" }
       ]
     },
     {
-      "category": "Games",
+      "category": "Therapeutic Games",
       "items": [
-        { "path": "/memory-match", "text": "Memory Match" },
-        { "path": "/draw", "text": "Drawing" },
-        { "path": "/guided-meditation", "text": "Meditation" }
+        { "path": "/memory-match", "text": "Memory Booster" },
+        { "path": "/draw", "text": "Creative Canvas" }
       ]
     },
     {
-      "category": "Resources",
+      "category": "Learning Center",
       "items": [
-        { "path": "/coping-strategies", "text": "Coping Strategies" },
-        { "path": "/cbt", "text": "CBT" },
-        { "path": "/chatbot", "text": "ChatBot" }
+        { "path": "/coping-strategies", "text": "Coping Toolbox" },
+        { "path": "/cbt", "text": "CBT Fundamentals" },
+        { "path": "/chatbot", "text": "AI Counselor" }
       ]
     },
     { "path": "/survey", "text": "Survey" },
