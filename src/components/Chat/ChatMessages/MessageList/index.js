@@ -36,10 +36,19 @@ const DateSeparator = styled(Typography)(({ theme }) => ({
 
 const MessageList = ({ messages, currentUserUid }) => {
   const lastMessageRef = useRef(null);
+  const isMountedRef = useRef(false);
 
   useEffect(() => {
-    if (lastMessageRef.current) {
+    if (isMountedRef.current && lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    } else {
+      if (lastMessageRef.current) {
+        lastMessageRef.current.scrollIntoView();
+      }
+
+      setTimeout(() => {
+        isMountedRef.current = true;
+      }, 1000);
     }
   }, [messages]);
 

@@ -76,3 +76,10 @@
   color: #999;
   margin-top: 2px;
 }
+
+.search-box {
+  width: 100%;
+  display: flex;
+  justify-self: start;
+  justify-content: center;
+}
