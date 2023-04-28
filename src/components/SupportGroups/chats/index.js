@@ -11,15 +11,10 @@ const Chats = ({ groupId }) => {
   const [chatText, setChatText] = useState("");
   const [chats, setChats] = useState([]);
   const lastMessageRef = useRef(null);
-
+  const isMountedRef = useRef(false);
 
   useEffect(() => {
-    const chatsRef = app
-      .firestore()
-      .collection("groups")
-      .doc(groupId)
-      .collection("chats")
-      .orderBy("timestamp", "asc");
+    const chatsRef = app.firestore().collection("groups").doc(groupId).collection("chats").orderBy("timestamp", "asc");
     const unsubscribe = chatsRef.onSnapshot((snapshot) => {
       const chats = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -31,10 +26,20 @@ const Chats = ({ groupId }) => {
   }, [groupId]);
 
   useEffect(() => {
-    if (lastMessageRef.current) {
+    if (isMountedRef.current && lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    } else {
+      if (lastMessageRef.current) {
+        lastMessageRef.current.scrollIntoView();
+      }
+      setTimeout(() => {
+        isMountedRef.current = true;
+      }, 1000);
     }
   }, [chats]);
+
+
+
 
   const handleChatTextChange = (event) => {
     setChatText(event.target.value);

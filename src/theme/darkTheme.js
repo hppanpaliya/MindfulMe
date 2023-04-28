@@ -1,75 +1,73 @@
 import { createTheme } from "@mui/material/styles";
 import { teal, green } from "@mui/material/colors";
 
-const theme = createTheme({
+const darkTheme = createTheme({
   typography: {
     fontFamily: "Roboto, sans-serif",
     h1: {
       fontSize: "3.5rem",
       fontWeight: 700,
       letterSpacing: "-0.01562em",
-      color: teal[500],
+      color: teal[300],
     },
     h2: {
       fontSize: "2.5rem",
       fontWeight: 700,
       letterSpacing: "-0.00833em",
-      color: teal[700],
+      color: teal[200],
     },
-
     h3: {
       fontSize: "2rem",
       fontWeight: 700,
       letterSpacing: "0em",
-      color: green[700],
+      color: green[200],
     },
-
     h4: {
       fontSize: "1.5rem",
       fontWeight: 700,
       letterSpacing: "0.00735em",
-      color: "#333",
+      color: "#fff",
     },
     h5: {
       fontSize: "1.25rem",
       fontWeight: 700,
       letterSpacing: "0em",
-      color: "#333",
+      color: "#fff",
     },
     h6: {
       fontSize: "1rem",
       fontWeight: 700,
       letterSpacing: "0.00938em",
-      color: "#333",
+      color: "#fff",
     },
+
     body1: {
       fontSize: "1rem",
       fontWeight: 400,
       letterSpacing: "0.00938em",
-      color: "#333",
+      color: "#fff",
     },
     body2: {
       fontSize: "0.675rem",
       fontWeight: 400,
       letterSpacing: "0.01071em",
-      color: "#333",
+      color: "#fff",
     },
   },
   palette: {
     primary: {
-      main: teal[100],
+      main: teal[300],
     },
     secondary: {
-      main: green[700],
+      main: green[200],
     },
     text: {
-      primary: "#333",
+      primary: "#fff",
     },
-    mode: "light",
-
+    mode: "dark",
     background: {
-      default: "#f0f2f5",
-      paper: teal[100],
+      default: "#121212",
+      paper: "#1e1e1e",
     },
   },
   components: {
@@ -86,7 +84,7 @@ const theme = createTheme({
           },
         },
         textPrimary: {
-          color: teal[500],
+          color: teal[300],
         },
         containedSecondary: {
           backgroundColor: "#008579",
@@ -94,6 +92,20 @@ const theme = createTheme({
           "&:hover": {
             backgroundColor: "#008579",
           },
+        },
+      },
+    },
+    MuiBox: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#1e1e1e",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#1e1e1e",
         },
       },
     },
@@ -120,4 +132,4 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default darkTheme;

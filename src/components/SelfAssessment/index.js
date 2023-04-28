@@ -1,71 +1,64 @@
 import React, { useState } from "react";
 import questions from "./questions.json";
-import { Typography } from "@mui/material";
+import { Typography, Button, Box, FormControl, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const StyledLabel = styled("label")({
+  display: "block",
+  marginTop: "10px",
+});
 
 function SelfAssessment() {
-    const initialSelectedAnswers = questions.reduce(
-        (acc, question) => ({ ...acc, [question.id]: null }),
-        {}
-    );
-    const [score, setScore] = useState(0);
-    const [selectedAnswers, setSelectedAnswers] = useState(
-        initialSelectedAnswers
-    );
+  const initialSelectedAnswers = questions.reduce((acc, question) => ({ ...acc, [question.id]: null }), {});
+  const [score, setScore] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState(initialSelectedAnswers);
 
-    function handleOptionSelect(questionId, optionValue) {
-        setSelectedAnswers({ ...selectedAnswers, [questionId]: optionValue });
+  function handleOptionSelect(questionId, optionValue) {
+    setSelectedAnswers({ ...selectedAnswers, [questionId]: optionValue });
+  }
+
+  function calculateScore() {
+    let newScore = 0;
+    for (let i = 0; i < questions.length; i++) {
+      const question = questions[i];
+      const selectedOption = selectedAnswers[question.id] && question.options.find((option) => option.value === selectedAnswers[question.id]);
+      if (selectedOption) {
+        newScore += selectedOption.value;
+      }
     }
+    setScore(newScore);
+  }
 
-    function calculateScore() {
-        let newScore = 0;
-        for (let i = 0; i < questions.length; i++) {
-            const question = questions[i];
-            const selectedOption =
-                selectedAnswers[question.id] &&
-                question.options.find(
-                    (option) => option.value === selectedAnswers[question.id]
-                );
-            if (selectedOption) {
-                newScore += selectedOption.value;
-            }
-        }
-        setScore(newScore);
-    }
-
-    return (
-        <div>
-            {questions.map((question) => (
-                <div key={question.id}>
-                    <h3>{question.text}</h3>
-                    {question.options.map((option) => (
-                        <div key={option.value}>
-                            <input
-                                type="radio"
-                                id={`${question.id}_${option.value}`}
-                                name={`${question.id}`}
-                                value={option.value}
-                                checked={
-                                    selectedAnswers[question.id] ===
-                                    option.value
-                                }
-                                onChange={() =>
-                                    handleOptionSelect(
-                                        question.id,
-                                        option.value
-                                    )
-                                }
-                            />
-                            <label htmlFor={`${question.id}_${option.value}`}>
-                                {option.text}
-                            </label>
-                        </div>
-                    ))}
-                </div>
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column", maxWidth: "600px", margin: "0 auto" }}>
+      {questions.map((question) => (
+        <FormControl key={question.id} component="fieldset" sx={{ mt: 2 }}>
+          <Typography variant="body1">{question.text}</Typography>
+          <RadioGroup
+            aria-label={question.text}
+            name={question.id}
+            value={selectedAnswers[question.id]}
+            onChange={(event) => handleOptionSelect(question.id, event.target.value)}
+          >
+            {question.options.map((option) => (
+              <FormControlLabel
+                key={option.value}
+                value={option.value}
+                control={<Radio />}
+                label={<StyledLabel htmlFor={`${question.id}_${option.value}`}>{option.text}</StyledLabel>}
+              />
             ))}
-            <button onClick={calculateScore}>Calculate Score</button>
-            <Typography variant="body1">Your score: {score}</Typography>
-        </div>
-    );
+          </RadioGroup>
+        </FormControl>
+      ))}
+      <Button variant="contained" onClick={calculateScore} sx={{ mt: 2, maxWidth: "200px", alignSelf: "center" }}>
+        Calculate Score
+      </Button>
+      <Typography variant="body1" sx={{ mt: 2, alignSelf: "center" }}>
+        Your score: {score}
+      </Typography>
+    </Box>
+  );
 }
 
 export default SelfAssessment;

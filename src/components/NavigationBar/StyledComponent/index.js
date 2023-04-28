@@ -7,7 +7,6 @@ import { styled } from "@mui/material/styles";
 
 // Styled component for NavLink
 const NavLink = styled(Link)({
-  color: "black",
   textDecoration: "none",
   margin: "0 16px",
   "@media(max-width: 600px)": {
@@ -17,22 +16,16 @@ const NavLink = styled(Link)({
 
 // Component for menu icon
 export const NavigationBarMenu = ({ isOpenMenu, openDrawer }) => (
-  <IconButton
-    edge="start"
-    color="inherit"
-    aria-label="menu"
-    onClick={openDrawer}
-    sx={{ display: { xs: "block", sm: "block", md: "none" } }}
-  >
+  <IconButton edge="start" color="inherit" aria-label="menu" onClick={openDrawer} sx={{ display: { xs: "block", sm: "block", md: "none" } }}>
     <MenuIcon />
   </IconButton>
 );
 
 // Component for navigation bar title
 export const NavigationBarTitle = () => (
-  <Typography variant="h6">
-    <NavLink to="/">Mental Health App</NavLink>
-  </Typography>
+  <NavLink to="/">
+    <Typography variant="h5">Mental Health App </Typography>
+  </NavLink>
 );
 
 // Component for navigation links

@@ -8,22 +8,23 @@ import {
   NavigationLinks,
   NavigationDrawer,
 } from "./StyledComponent";
-
+import darkTheme from "../../theme/darkTheme";
+import lightTheme from "../../theme";
+import DarkModeSwitch from "../Profile/settings/DarkModeSwitch";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   height: theme.customAppBarHeight,
 }));
-
-
-
 
 // Main navigation bar component
 const NavigationBar = () => {
   const { user } = useSelector((state) => state.auth);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
 
+  const myTheme = darkMode ? darkTheme : lightTheme;
 
   // Handler for opening the navigation drawer
   const openDrawer = () => {
@@ -40,22 +41,18 @@ const NavigationBar = () => {
     setIsOpenMenu(false);
   };
 
-
-  theme.customAppBarHeight = isMobile ? '50px' : '64px';
-
+  theme.customAppBarHeight = isMobile ? "50px" : "64px";
 
   return (
     <StyledAppBar position="sticky" onMouseLeave={handleMouseLeave}>
       <Toolbar>
-        <NavigationBarMenu isOpenMenu={isOpenMenu} openDrawer={openDrawer} />
+        <NavigationBarMenu isOpenMenu={isOpenMenu} openDrawer={openDrawer} myTheme={myTheme} />
         <NavigationBarTitle />
-        <NavigationLinks user={user} />
+        <DarkModeSwitch />
+
+        <NavigationLinks user={user} myTheme={myTheme} />
       </Toolbar>
-      <NavigationDrawer
-        user={user}
-        isOpenMenu={isOpenMenu}
-        closeDrawer={closeDrawer}
-      />
+      <NavigationDrawer user={user} isOpenMenu={isOpenMenu} closeDrawer={closeDrawer} myTheme={myTheme} />
     </StyledAppBar>
   );
 };

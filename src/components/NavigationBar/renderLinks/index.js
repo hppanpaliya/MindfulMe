@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import MobileDropdown from "../MobileDropdown";
 import DesktopDropdown from "../DesktopDropdown";
+import { Typography } from "@mui/material";
 
 const NavLink = styled(Link)({
-  color: "black",
   textDecoration: "none",
   margin: "0 16px",
   "@media(max-width: 900px)": {
@@ -28,12 +28,7 @@ const Dropdown = ({ title, items, closeDrawer }) => {
   }, []);
 
   return isMobile ? (
-    <MobileDropdown
-      title={title}
-      items={items}
-      closeDrawer={closeDrawer}
-      onClick={(e) => e.stopPropagation()}
-    />
+    <MobileDropdown title={title} items={items} closeDrawer={closeDrawer} onClick={(e) => e.stopPropagation()} />
   ) : (
     <DesktopDropdown title={title} items={items} />
   );
@@ -44,14 +39,7 @@ const renderLinks = (dropdowns, closeDrawer) => {
     <>
       {dropdowns.map((dropdown) => {
         if (dropdown.items) {
-          return (
-            <Dropdown
-              key={dropdown.category}
-              title={dropdown.category}
-              items={dropdown.items}
-              closeDrawer={closeDrawer}
-            />
-          );
+          return <Dropdown key={dropdown.category} title={dropdown.category} items={dropdown.items} closeDrawer={closeDrawer} />;
         } else {
           return (
             <NavLink
@@ -62,7 +50,9 @@ const renderLinks = (dropdowns, closeDrawer) => {
               }}
               onClick={closeDrawer}
             >
-              {dropdown.text}
+              <Typography sx={{ color: "body1" }} key={dropdown.path}>
+                {dropdown.text}
+              </Typography>
             </NavLink>
           );
         }

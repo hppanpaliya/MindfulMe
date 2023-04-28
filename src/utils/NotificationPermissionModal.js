@@ -3,10 +3,13 @@ import { useSelector } from "react-redux";
 import firebase from "../utils/firebase";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import lightTheme from "../theme";
+import darkTheme from "../theme/darkTheme";
 
 const NotificationPermissionModal = () => {
   const user = useSelector((state) => state.auth.user);
   const [open, setOpen] = useState(false);
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
 
   //const [token, setToken] = useState(null);
   const [remindLater, setRemindLater] = useState(false);
@@ -49,9 +52,7 @@ const NotificationPermissionModal = () => {
           console.error("Error revoking notification permissions:", error);
         });
     } else {
-      console.warn(
-        "Notification permissions cannot be revoked programmatically."
-      );
+      console.warn("Notification permissions cannot be revoked programmatically.");
     }
   }
 
@@ -59,9 +60,7 @@ const NotificationPermissionModal = () => {
   async function getReminderTimestamp() {
     const userRef = firebase.firestore().collection("users").doc(user.uid);
     const doc = await userRef.get();
-    return doc.exists && doc.data().hasOwnProperty("remindNotification")
-      ? doc.data().remindNotification.toDate()
-      : null;
+    return doc.exists && doc.data().hasOwnProperty("remindNotification") ? doc.data().remindNotification.toDate() : null;
   }
 
   // Check notification permissions and reminder timestamp
@@ -94,8 +93,7 @@ const NotificationPermissionModal = () => {
     if (permission === "granted") {
       const messaging = firebase.messaging();
       const token = await messaging.getToken({
-        vapidKey:
-          "BLJxHQPsdXGM_1xpsoA2xq6pgChoPBSGjIzzrwbGHlkV7R-R7k6dBAVDP6JdjgjhdXOETcQnJpHwY3cFx7-mW8o",
+        vapidKey: "BLJxHQPsdXGM_1xpsoA2xq6pgChoPBSGjIzzrwbGHlkV7R-R7k6dBAVDP6JdjgjhdXOETcQnJpHwY3cFx7-mW8o",
       });
       saveTokenToFirestore(token);
       console.log(token);
@@ -129,30 +127,26 @@ const NotificationPermissionModal = () => {
   return (
     <Modal open={open}>
       <Box
-        sx={{ p: 2, backgroundColor: "white", borderRadius: 4, maxWidth: 400 }}
+        sx={{
+          p: 2,
+          borderRadius: 4,
+          maxWidth: 400,
+          backgroundColor: darkMode ? darkTheme.palette.background.paper : lightTheme.palette.background.paper,
+          color: darkMode ? darkTheme.palette.text.primary : lightTheme.palette.text.primary,
+        }}
       >
         <Typography variant="h5" gutterBottom>
           Enable Notifications
         </Typography>
         <Typography variant="body1" gutterBottom>
-          We would like to send you notifications when you receive new messages
-          or updates. To enable notifications, please click the Allow button
+          We would like to send you notifications when you receive new messages or updates. To enable notifications, please click the Allow button
           below.
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-          <Button
-            variant="outlined"
-            color="error"
-            sx={{ mr: 2 }}
-            onClick={handleDeclineClick}
-          >
+          <Button variant="outlined" color="error" sx={{ mr: 2 }} onClick={handleDeclineClick}>
             Decline
           </Button>
-          <Button
-            variant="contained"
-            color="success"
-            onClick={handleAllowClick}
-          >
+          <Button variant="contained" color="success" onClick={handleAllowClick}>
             Allow
           </Button>
         </Box>
@@ -162,7 +156,11 @@ const NotificationPermissionModal = () => {
               checked={remindLater}
               onChange={(e) => setRemindLater(e.target.checked)}
               name="remindLater"
-              color="primary"
+              sx={{
+                "&.Mui-checked": {
+                  color: "green",
+                },
+              }}
             />
           }
           label="Remind me after 15 days"

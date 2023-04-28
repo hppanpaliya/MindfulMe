@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import slideImages from "./slideImages.json";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const cardVariants = {
@@ -17,11 +18,12 @@ const Home = () => {
     visible: { opacity: 1 },
   };
 
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
+
   return (
     <Box
       sx={{
         minHeight: "calc(100vh - 128px)",
-        background: "linear-gradient(to bottom, #009688, #55c2c2 10%, #BBBBBB 100%)",
         color: "#ffffff",
         padding: 4,
       }}

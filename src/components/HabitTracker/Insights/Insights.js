@@ -15,7 +15,6 @@ const Insight = styled(Paper)(({ theme }) => ({
   gap: "0.5rem",
   padding: "0.5rem 1rem",
   borderRadius: "0.5rem",
-  backgroundColor: "#f5f5f5",
   boxShadow: theme.shadows[1],
 }));
 

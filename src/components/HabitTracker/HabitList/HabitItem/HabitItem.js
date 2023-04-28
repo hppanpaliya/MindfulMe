@@ -19,6 +19,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import lightTheme from "../../../../theme";
+import dartTheme from "../../../../theme/darkTheme";
 
 const HabitItem = (props) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -28,7 +30,10 @@ const HabitItem = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [calendarDate, setCalendarDate] = useState(new Date());
   const previousDaysMaintained = props.previousDaysMaintained;
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
 
+  let backgroundColor = darkMode ? dartTheme.palette.background.paper : lightTheme.palette.background.default;
+  let backgroundColorSecondary = darkMode ? dartTheme.palette.background.default : lightTheme.palette.background.paper;
   const handleStreakNumberClick = () => {
     setOpen(true);
   };
@@ -37,9 +42,7 @@ const HabitItem = (props) => {
     return timestamps.map((timestamp) => new Date(timestamp));
   };
 
-  const previousDaysMaintainedDates = convertTimestampsToDates(
-    previousDaysMaintained
-  );
+  const previousDaysMaintainedDates = convertTimestampsToDates(previousDaysMaintained);
 
   const handleClose = () => {
     setOpen(false);
@@ -102,35 +105,21 @@ const HabitItem = (props) => {
         alignItems: "center",
         padding: "0.5rem 1rem",
         marginBottom: "0.5rem",
-        backgroundColor: "#f5f5f5",
         borderRadius: "4px",
+        backgroundColor: !props.isCompleted ? backgroundColor : backgroundColorSecondary,
       }}
     >
       {isEditing ? (
-        <TextField
-          value={editedTitle}
-          onChange={(e) => setEditedTitle(e.target.value)}
-          fullWidth
-          size="small"
-        />
+        <TextField value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} fullWidth size="small" />
       ) : (
         <>
           <Tooltip title="Click to mark as completed" placement="top">
-            <Button
-              onClick={handleToggleCompletion}
-              size="small"
-              sx={{ color: props.isCompleted ? "primary" : "black" }}
-            >
+            <Button onClick={handleToggleCompletion} size="small" color="primary">
               {props.name}
             </Button>
           </Tooltip>
           <Tooltip title="Click to see calendar" placement="top">
-            <Button
-              sx={{ cursor: "pointer", marginLeft: "0.5rem" }}
-              size="small"
-              color="primary"
-              onClick={handleStreakNumberClick}
-            >
+            <Button sx={{ cursor: "pointer", marginLeft: "0.5rem" }} size="small" color="primary" onClick={handleStreakNumberClick}>
               Streak: {props.streak}
             </Button>
           </Tooltip>
@@ -140,31 +129,19 @@ const HabitItem = (props) => {
               <Calendar
                 value={calendarDate}
                 tileClassName={({ date, view }) => {
-                  if (
-                    view === "month" &&
-                    previousDaysMaintainedDates.some(
-                      (attendedDate) =>
-                        attendedDate.toDateString() === date.toDateString()
-                    )
-                  ) {
+                  if (view === "month" && previousDaysMaintainedDates.some((attendedDate) => attendedDate.toDateString() === date.toDateString())) {
                     previousDaysMaintainedDates.some((attendedDate) =>
-                      console.log(
-                        attendedDate.toDateString(),
-                        date.toDateString(),
-                        attendedDate.toDateString() === date.toDateString()
-                      )
+                      console.log(attendedDate.toDateString(), date.toDateString(), attendedDate.toDateString() === date.toDateString())
                     );
                     return "attended";
                   }
                 }}
               />
-              <Typography variant="body1">
-                Dates in green are days you maintained this habit.
-              </Typography>
+              <Typography variant="body1">Dates in green are days you maintained this habit.</Typography>
             </DialogContent>
           </Dialog>
           <Tooltip title="Click to maintain habit and streak" placement="top">
-            <Button onClick={handleMaintainHabit} size="small" color="primary">
+            <Button onClick={handleMaintainHabit} size="small" color="primary" disabled={props.isCompleted}>
               Maintain Habit
             </Button>
           </Tooltip>
@@ -179,11 +156,7 @@ const HabitItem = (props) => {
           </Tooltip>
         ) : (
           <Tooltip title="Click to edit habit" placement="top">
-            <IconButton
-              onClick={() => setIsEditing(true)}
-              size="small"
-              edge="end"
-            >
+            <IconButton onClick={() => setIsEditing(true)} size="small" edge="end">
               <EditIcon />
             </IconButton>
           </Tooltip>
@@ -193,12 +166,7 @@ const HabitItem = (props) => {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-        <DeleteModal
-          open={deleteModal}
-          handleClose={closeDeleteModal}
-          deleteHabit={handleDelete}
-          habit={props}
-        />
+        <DeleteModal open={deleteModal} handleClose={closeDeleteModal} deleteHabit={handleDelete} habit={props} />
       </Box>
     </Box>
   );
