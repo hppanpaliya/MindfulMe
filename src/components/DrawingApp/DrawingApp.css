@@ -8,12 +8,11 @@
 
 .drawingApp {
   font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh);
+  height: calc(100vh - 50px - 1rem);
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -48,6 +47,7 @@
 
 .drawingAppCanvas {
   touch-action: none;
+  margin-bottom: 1rem;
 }
 .canvas-container {
   position: relative;

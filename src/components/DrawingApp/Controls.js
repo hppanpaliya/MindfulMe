@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import {
-  Button,
-  Grid,
-  Slider,
-  Stack,
-  Tooltip,
-  MenuItem,
-  Select,
-} from "@mui/material";
+import { Button, Grid, Slider, Stack, Tooltip, MenuItem, Select, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UndoIcon from "@mui/icons-material/Undo";
 import RedoIcon from "@mui/icons-material/Redo";
@@ -33,7 +25,6 @@ const ControlWrapper = styled("div")({
 });
 
 const InvertedEraser = styled("img")({
-  filter: "invert(1)",
   width: "1.5rem",
   height: "1.5rem",
 });
@@ -63,18 +54,7 @@ const CustomButton = ({ title, children, onClick, sx, color }) => (
   </Tooltip>
 );
 
-const Controls = ({
-  color,
-  setColor,
-  brushSize,
-  setBrushSize,
-  contextRef,
-  exportCanvasAsJPG,
-  clearCanvas,
-  undo,
-  redo,
-  save,
-}) => {
+const Controls = ({ color, setColor, brushSize, setBrushSize, contextRef, exportCanvasAsJPG, clearCanvas, undo, redo, save }) => {
   const buttonSx = {
     fontSize: "0.75rem",
     marginBottom: { xs: "0.5rem", sm: "0" },
@@ -153,31 +133,18 @@ const Controls = ({
   };
 
   return (
-    <Stack
-      direction={{ xs: "column", sm: "row" }}
-      justifyContent="space-between"
-      alignItems="center"
-      sx={{ mt: 2 }}
-    >
-      <Stack
-        direction={{ xs: "coloumn", sm: "row" }}
-        alignItems="center"
-        sx={{ marginTop: "1rem" }}
-      >
+    <Stack direction={{ xs: "column", sm: "row" }} justifyContent="space-between" alignItems="center" sx={{ mt: 2 }}>
+      <Stack direction={{ xs: "coloumn", sm: "row" }} alignItems="center" sx={{ marginTop: "1rem" }}>
         <ControlWrapper sx={{ marginBottom: "1rem" }}>
           <Tooltip title="Color Picker Type">
-            <Select
-              value={pickerType}
-              onChange={handlePickerTypeChange}
-              sx={{ minWidth: "120px" }}
-            >
+            <Select value={pickerType} onChange={handlePickerTypeChange} sx={{ minWidth: "120px" }}>
               <MenuItem value="built-in">Built-in Color Picker</MenuItem>
               <MenuItem value="sketch">Advanced Color Picker</MenuItem>
             </Select>
           </Tooltip>
           &nbsp;&nbsp;&nbsp;
           <Tooltip title="Color Picker">
-            <div style={{ position: "relative" }}>
+            <div style={{ position: "relative", border: "2px solid #777" }}>
               {pickerType !== "built-in" ? (
                 <div
                   onClick={openBuiltInPicker}
@@ -217,34 +184,18 @@ const Controls = ({
               )}
               {showPicker && pickerType === "sketch" && (
                 <Modal onClose={handleClickOutsideModal}>
-                  <SketchPicker
-                    color={tempColor}
-                    onChange={handleColorChangeTemp}
-                  />
-                  <Grid
-                    container
-                    justifyContent="space-between"
-                    alignItems="center"
-                    sx={{ marginBottom: "1rem" }}
-                  >
+                  <SketchPicker color={tempColor} onChange={handleColorChangeTemp} />
+                  <Grid container justifyContent="space-between" alignItems="center" sx={{ marginBottom: "1rem" }}>
                     <Grid item xs>
                       <Tooltip title="Cancel">
-                        <Button
-                          onClick={handleColorCancel}
-                          variant="contained"
-                          fullWidth
-                        >
+                        <Button onClick={handleColorCancel} variant="contained" fullWidth>
                           <CancelIcon />
                         </Button>
                       </Tooltip>
                     </Grid>
                     <Grid item xs>
                       <Tooltip title="Accept">
-                        <Button
-                          onClick={handleColorAccept}
-                          variant="contained"
-                          fullWidth
-                        >
+                        <Button onClick={handleColorAccept} variant="contained" fullWidth>
                           <CheckIcon />
                         </Button>
                       </Tooltip>
@@ -256,9 +207,10 @@ const Controls = ({
           </Tooltip>
         </ControlWrapper>
         <ControlWrapper sx={{ marginBottom: "1rem" }}>
-          <label htmlFor="brushSizeInput" style={{ marginRight: "0.5rem" }}>
+          <Typography htmlFor="brushSizeInput" sx={{ marginRight: "0.5rem" }}>
             Brush size:
-          </label>
+          </Typography>
+
           <Slider
             id="brushSizeInput"
             value={brushSize}
@@ -273,20 +225,8 @@ const Controls = ({
           <BrushSizeLabel>{brushSize}</BrushSizeLabel>
         </ControlWrapper>
       </Stack>
-      <Grid
-        container
-        direction={{ xs: "column", sm: "row" }}
-        justifyContent="center"
-        alignItems="center"
-        sx={{ mt: 2 }}
-      >
-        <Grid
-          container
-          spacing={1}
-          justifyContent="center"
-          alignItems="center"
-          sx={{ marginLeft: "2rem", marginRight: "2rem" }}
-        >
+      <Grid container direction={{ xs: "column", sm: "row" }} justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
+        <Grid container spacing={1} justifyContent="center" alignItems="center" sx={{ marginLeft: "2rem", marginRight: "2rem" }}>
           <Grid item xs={4} sm={2}>
             <CustomButton title="Eraser" onClick={handleEraser} sx={buttonSx}>
               <InvertedEraser src={Eraser} alt="Eraser" />
@@ -303,39 +243,22 @@ const Controls = ({
             </CustomButton>
           </Grid>
           <Grid item xs={4} sm={2}>
-            <CustomButton
-              title="Redo (Ctrl + Shift + Z)"
-              onClick={redo}
-              sx={buttonSx}
-            >
+            <CustomButton title="Redo (Ctrl + Shift + Z)" onClick={redo} sx={buttonSx}>
               <RedoIcon />
             </CustomButton>
           </Grid>
           <Grid item xs={4} sm={2}>
-            <CustomButton
-              title="Save as PNG (Ctrl + S)"
-              onClick={save}
-              sx={buttonSx}
-            >
+            <CustomButton title="Save as PNG (Ctrl + S)" onClick={save} sx={buttonSx}>
               <SaveIcon /> PNG
             </CustomButton>
           </Grid>
           <Grid item xs={4} sm={2}>
-            <CustomButton
-              title="Save as JPG"
-              onClick={exportCanvasAsJPG}
-              sx={buttonSx}
-            >
+            <CustomButton title="Save as JPG" onClick={exportCanvasAsJPG} sx={buttonSx}>
               <ImageIcon /> JPG
             </CustomButton>
           </Grid>
           <Grid item xs={4} sm={2}>
-            <CustomButton
-              title="Clear Canvas"
-              onClick={clearCanvas}
-              sx={buttonSx}
-              color="error"
-            >
+            <CustomButton title="Clear Canvas" onClick={clearCanvas} sx={buttonSx} color="error">
               <DeleteIcon />
             </CustomButton>
           </Grid>
