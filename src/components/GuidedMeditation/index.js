@@ -65,132 +65,112 @@ const GuidedMeditation = () => {
     };
 
     return (
-        <AnimatePresence mode="wait">
-            <div className="guided-meditation-page">
-                <motion.div
-                    className="guidedMeditation"
-                    style={{
-                        backgroundImage: `url(${currentAudio.backgroundImage})`,
-                    }}
-                    key={key}
-                    animate={{
-                        backgroundPosition: [
-                            "0%",
-                            "10%",
-                            "20%",
-                            "30%",
-                            "40%",
-                            "50%",
-                            "60%",
-                            "70%",
-                            "80%",
-                            "90%",
-                            "100%",
-                        ],
-                    }}
-                    transition={{
-                        duration: 1000,
-                        loop: Infinity,
-                        ease: "ease-in-out",
-                    }}
-                >
-                    <div className="guidedMeditation__header">
-                        <Typography
-                            variant="h4"
-                            fontWeight="bold"
-                            align="center"
-                        >
-                            Guided Meditation
-                        </Typography>
+      <AnimatePresence mode="wait">
+        <div className="guided-meditation-page">
+          <motion.div
+            className="guidedMeditation"
+            style={{
+              backgroundImage: `url(${currentAudio.backgroundImage})`,
+            }}
+            key={key}
+            animate={{
+              backgroundPosition: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
+            }}
+            transition={{
+              duration: 1000,
+              loop: Infinity,
+              ease: "ease-in-out",
+            }}
+          >
+            <div className="guidedMeditation__header">
+              <Typography variant="h4" fontWeight="bold" align="center" color="black">
+                Guided Meditation
+              </Typography>
 
-                        <Select
-                            labelId="customized-menu"
-                            value={selectedOption}
-                            onChange={(e) => {
-                                setCurrentAudio(audioFiles[e.target.value]);
-                                setSelectedOption(e.target.value);
-                            }}
-                            onMouseEnter={handleMenuOpen}
-                            onMouseOut={handleMenuClose}
-                            MenuProps={{
-                                onMouseLeave: handleMenuClose,
-                            }}
-                            sx={{ width: 300, mt: 2 }}
-                        >
-                            {audioFiles.map((audio, index) => (
-                                <MenuItem key={audio.url} value={index}>
-                                    {formatDisplayName(audio.url)}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </div>
-                    <div className="guidedMeditation_audio">
-                        <Sound
-                            url={currentAudio.url}
-                            playStatus={isPlaying}
-                            onFinishedPlaying={handleAudioEnd}
-                            onLoading={handleAudioStart}
-                            onPlaying={handleProgress}
-                            onSeek={handleProgress}
-                            listenInterval={1000}
-                            volume={100}
-                            loop={false}
-                            autoLoad={true}
-                            muted={false}
-                        />
-
-                        <div className="guidedMeditation_audio__progress">
-                            <CircularProgressbarWithChildren
-                                value={position}
-                                text={``}
-                                strokeWidth={20}
-                                maxValue={duration || 100}
-                                styles={{
-                                    path: {
-                                        transition:
-                                            "stroke-dashoffset 1s ease 0s",
-                                        stroke: "#009083",
-                                        strokeWidth: 5,
-                                        strokeLinecap: "round",
-                                        strokeLinejoin: "round",
-                                    },
-                                    trail: {
-                                        stroke: "#ddd",
-                                        strokeWidth: 5,
-                                        strokeLinecap: "round",
-                                        strokeLinejoin: "round",
-                                    },
-                                    text: {
-                                        fill: "#2ECC71",
-                                        fontSize: "1.3rem",
-                                        dominantBaseline: "central",
-                                        textAnchor: "middle",
-                                    },
-                                }}
-                            >
-                                <Button onClick={handlePlayPause}>
-                                    {isPlaying === Sound.status.PLAYING ? (
-                                        <PauseIcon
-                                            style={{
-                                                fontSize: "5rem",
-                                                color: "#009083",
-                                            }}
-                                        />
-                                    ) : (
-                                        <PlayIcon
-                                            style={{
-                                                fontSize: "5rem",
-                                                color: "#009083",
-                                            }}
-                                        />
-                                    )}
-                                </Button>
-                            </CircularProgressbarWithChildren>
-                        </div>
-                    </div>
-                </motion.div>
+              <Select
+                labelId="customized-menu"
+                value={selectedOption}
+                onChange={(e) => {
+                  setCurrentAudio(audioFiles[e.target.value]);
+                  setSelectedOption(e.target.value);
+                }}
+                onMouseEnter={handleMenuOpen}
+                onMouseOut={handleMenuClose}
+                MenuProps={{
+                  onMouseLeave: handleMenuClose,
+                }}
+                sx={{ width: 300, mt: 2, color: "black" }}
+              >
+                {audioFiles.map((audio, index) => (
+                  <MenuItem key={audio.url} value={index}>
+                    {formatDisplayName(audio.url)}
+                  </MenuItem>
+                ))}
+              </Select>
             </div>
-        </AnimatePresence>
+            <div className="guidedMeditation_audio">
+              <Sound
+                url={currentAudio.url}
+                playStatus={isPlaying}
+                onFinishedPlaying={handleAudioEnd}
+                onLoading={handleAudioStart}
+                onPlaying={handleProgress}
+                onSeek={handleProgress}
+                listenInterval={1000}
+                volume={100}
+                loop={false}
+                autoLoad={true}
+                muted={false}
+              />
+
+              <div className="guidedMeditation_audio__progress">
+                <CircularProgressbarWithChildren
+                  value={position}
+                  text={``}
+                  strokeWidth={20}
+                  maxValue={duration || 100}
+                  styles={{
+                    path: {
+                      transition: "stroke-dashoffset 1s ease 0s",
+                      stroke: "#009083",
+                      strokeWidth: 5,
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                    },
+                    trail: {
+                      stroke: "#ddd",
+                      strokeWidth: 5,
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                    },
+                    text: {
+                      fontSize: "1.3rem",
+                      dominantBaseline: "central",
+                      textAnchor: "middle",
+                    },
+                  }}
+                >
+                  <Button onClick={handlePlayPause}>
+                    {isPlaying === Sound.status.PLAYING ? (
+                      <PauseIcon
+                        style={{
+                          fontSize: "5rem",
+                        }}
+                      />
+                    ) : (
+                      <PlayIcon
+                        style={{
+                          fontSize: "5rem",
+                        }}
+                      />
+                    )}
+                  </Button>
+                </CircularProgressbarWithChildren>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </AnimatePresence>
     );
 };
 
