@@ -1,55 +1,49 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import firebase from "../../../utils/firebase";
-import { login } from "../../../store/features/auth/authSlice.js";
-import { styled } from "@mui/material/styles";
+import styled from "@mui/material/styles/styled";
 import { Button, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import firebase from "../../../utils/firebase";
+import { login } from "../../../store/features/auth/authSlice.js";
 import logo from "../../../assets/images/logo.svg";
 
-const Container = styled(Box)({
+const Container = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   height: "100vh",
-  backgroundColor: "#F9FAFB",
-});
+}));
 
-const Logo = styled("img")({
+const Logo = styled("img")(({ theme }) => ({
   width: "200px",
   marginBottom: "48px",
-});
+}));
 
-const Form = styled(Box)({
+const Form = styled(Box)(({ theme }) => ({
   width: "100%",
   maxWidth: "400px",
-  backgroundColor: "#FFFFFF",
   borderRadius: "8px",
+  backgroundColor: theme.palette.background.box,
   padding: "32px",
-  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-});
+  boxShadow: theme.shadows[1],
+}));
 
-const StyledTextField = styled(TextField)({
+const StyledTextField = styled(TextField)(({ theme }) => ({
   marginBottom: "24px",
-});
+}));
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ theme }) => ({
   width: "100%",
   marginTop: "24px",
-  backgroundColor: "#1E86FF",
-  color: "#FFFFFF",
-  "&:hover": {
-    backgroundColor: "#145FB9",
-  },
-});
+}));
 
-const ErrorMessage = styled(Typography)({
-  color: "#FF4136",
+const ErrorMessage = styled(Typography)(({ theme }) => ({
+  color: theme.palette.error.main,
   marginBottom: "24px",
-});
+}));
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -61,9 +55,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { user } = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      const { user } = await firebase.auth().signInWithEmailAndPassword(email, password);
       dispatch(
         login({
           uid: user.uid,
@@ -76,8 +68,6 @@ const Login = () => {
       setError(error.message);
     }
   };
-
-  // navigate logged in users to home page
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -95,14 +85,7 @@ const Login = () => {
           Login
         </Typography>
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <StyledTextField
-          id="email"
-          label="Email"
-          variant="outlined"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <StyledTextField id="email" label="Email" variant="outlined" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
         <StyledTextField
           id="password"
           label="Password"

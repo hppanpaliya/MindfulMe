@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import firebase from "../../../utils/firebase";
-import { styled } from "@mui/material/styles";
+import styled from "@mui/material/styles/styled";
 import { Button, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -9,47 +9,41 @@ import logo from "../../../assets/images/logo.svg";
 import { useDispatch } from "react-redux";
 //import { logout } from "../../../store/features/auth/authSlice.js";
 
-const Container = styled(Box)({
+const Container = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   height: "100vh",
-  backgroundColor: "#F9FAFB",
-});
+}));
 
-const Logo = styled("img")({
+const Logo = styled("img")(({ theme }) => ({
   width: "200px",
   marginBottom: "48px",
-});
+}));
 
-const Form = styled(Box)({
+const Form = styled(Box)(({ theme }) => ({
   width: "100%",
   maxWidth: "400px",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: theme.palette.background.box,
   borderRadius: "8px",
   padding: "32px",
-  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-});
+  boxShadow: theme.shadows[1],
+}));
 
-const StyledTextField = styled(TextField)({
+const StyledTextField = styled(TextField)(({ theme }) => ({
   marginBottom: "24px",
-});
+}));
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ theme }) => ({
   width: "100%",
   marginTop: "24px",
-  backgroundColor: "#1E86FF",
-  color: "#FFFFFF",
-  "&:hover": {
-    backgroundColor: "#145FB9",
-  },
-});
+}));
 
-const ErrorMessage = styled(Typography)({
-  color: "#FF4136",
+const ErrorMessage = styled(Typography)(({ theme }) => ({
+  color: theme.palette.error.main,
   marginBottom: "24px",
-});
+}));
 
 const Join = () => {
   const [email, setEmail] = useState("");
