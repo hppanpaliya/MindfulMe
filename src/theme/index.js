@@ -74,6 +74,8 @@ const theme = createTheme({
     },
     error: {
       main: "#f44336",
+      light: "#fce4ec",
+      dark: "#c62828",
     },
   },
   components: {

@@ -97,6 +97,11 @@ const darkTheme = createTheme({
             backgroundColor: "#008579",
           },
         },
+        error: {
+          main: "#f44336",
+          light: "#fce4ec",
+          dark: "#c62828",
+        },
       },
     },
     MuiBox: {
