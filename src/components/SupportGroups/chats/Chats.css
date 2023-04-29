@@ -8,7 +8,7 @@
   flex-grow: 1;
   padding: 10px;
   overflow-y: auto;
-  background-image: url("../../../assets/images/4689-min.jpg");
+  /* background-image: url("../../../assets/images/4689-min.jpg"); */
   background-repeat: no-repeat;
   background-size: cover
 }
@@ -20,12 +20,10 @@
 }
 
 .sent {
-  background-color: #28b5a9;
   align-self: flex-end;
 }
 
 .received {
-  background-color: #78efe3;
   align-self: flex-start;
 }
 

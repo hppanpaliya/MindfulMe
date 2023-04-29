@@ -1,9 +1,64 @@
-import React, { useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import app from "../../../utils/firebase";
 import { Button, TextField, InputAdornment } from "@mui/material";
+import styled from "@emotion/styled";
 
-import "./Chats.css";
+const Container = styled.div(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
+}));
+
+const ChatList = styled.div(({ theme }) => ({
+  flexGrow: 1,
+  padding: "10px",
+  overflowY: "auto",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+}));
+
+const ChatMessage = styled.div(({ theme, sent }) => ({
+  margin: "10px",
+  padding: "10px",
+  borderRadius: "16px",
+  alignSelf: sent ? "flex-end" : "flex-start",
+  backgroundColor: sent ? theme.palette.primary.main : theme.palette.background.box,
+  "&.flagged": {
+    backgroundColor: sent ? theme.palette.error.light : theme.palette.error.dark,
+  },
+  color: sent ? theme.palette.primary.contrastText : theme.palette.text.primary,
+  width: "fit-content",
+  borderBottomRightRadius: sent ? 0 : "16px",
+  borderBottomLeftRadius: sent ? "16px" : 0,
+}));
+
+const ChatText = styled.p(({ theme }) => ({
+  margin: 0,
+}));
+
+const ChatMeta = styled.p(({ theme }) => ({
+  fontSize: "12px",
+
+  marginTop: "5px",
+}));
+
+const ChatInputContainer = styled.div(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: "10px",
+  borderTop: "1px solid #ccc",
+}));
+
+const ChatInput = styled(TextField)(({ theme }) => ({
+  flexGrow: 1,
+  padding: "10px",
+  fontSize: "1rem",
+  border: "1px solid #ccc",
+  borderRadius: "5px",
+  marginRight: "10px",
+}));
 
 const Chats = ({ groupId }) => {
   const user = useSelector((state) => state.auth.user);
@@ -38,9 +93,6 @@ const Chats = ({ groupId }) => {
     }
   }, [chats]);
 
-
-
-
   const handleChatTextChange = (event) => {
     setChatText(event.target.value);
   };
@@ -68,59 +120,47 @@ const Chats = ({ groupId }) => {
   };
 
   const getMessageClassName = (chat) => {
-    if (chat.isFlagged) {
-      return chat.userId === user.uid ? "sent flagged" : "received flagged";
-    } else {
-      return chat.userId === user.uid ? "sent" : "received";
-    }
+    let className = chat.isFlagged ? "flagged" : "";
+    className += chat.userId === user.uid ? " sent" : " received";
+    return className.trim();
   };
 
   return (
-    <div className="chats-container" style={{ height: "calc(100svh - 64px)" }}>
-      <div className="chats-list">
+    <Container style={{ height: "calc(100svh - 64px)" }}>
+      <ChatList>
         {chats.map((chat, index) => (
-          <div
+          <ChatMessage
             key={chat.id}
-            className={`chat-message ${getMessageClassName(chat)}`}
+            className={getMessageClassName(chat)}
+            sent={chat.userId === user.uid}
             ref={index === chats.length - 1 ? lastMessageRef : null}
           >
-            <p className="chat-text">
-              {chat.isFlagged ? "Message flagged" : chat.text}
-            </p>
-            <p className="chat-meta">
-              {chat.timestamp
-                ? chat.timestamp.toDate().toLocaleString()
-                : null}{" "}
-              - {chat.userId === user.uid ? "You" : chat.displayName}
-            </p>
-          </div>
+            <ChatText>{chat.isFlagged ? "Message flagged" : chat.text}</ChatText>
+            <ChatMeta>
+              {chat.timestamp ? chat.timestamp.toDate().toLocaleString() : null} - {chat.userId === user.uid ? "You" : chat.displayName}
+            </ChatMeta>
+          </ChatMessage>
         ))}
-      </div>
+      </ChatList>
       <form onSubmit={handleChatSubmit}>
-        <div className="chat-input-container">
-          <TextField
-            className="chat-input"
+        <ChatInputContainer>
+          <ChatInput
             placeholder="Type a message..."
             value={chatText}
             onChange={handleChatTextChange}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    className="chat-send-button"
-                    size="large"
-                  >
+                  <Button variant="contained" type="submit" className="chat-send-button" size="large">
                     Send
                   </Button>
                 </InputAdornment>
               ),
             }}
           />
-        </div>
+        </ChatInputContainer>
       </form>
-    </div>
+    </Container>
   );
 };
 
