@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
 import { Avatar, Box, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 
-const UsersList = styled(Box)({
+const UsersList = styled(Box)(({ theme }) => ({
   width: "100%",
   ".user-link": {
     textDecoration: "none",
@@ -27,10 +27,11 @@ const UsersList = styled(Box)({
     borderBottom: "1px solid #eee",
     cursor: "pointer",
     "&:hover": {
-      backgroundColor: "#f9f9f9",
+      backgroundColor: theme.palette.action.hover,
     },
   },
-});
+}));
+  
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
