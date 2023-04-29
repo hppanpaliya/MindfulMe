@@ -1,10 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FormControlLabel, Switch } from "@mui/material";
 import { setDarkMode, selectDarkMode } from "../../../../store/features/darkMode/darkModeSlice";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { IconButton } from "@mui/material";
+import styled from "@emotion/styled";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+`;
+
 const DarkModeSwitch = () => {
   const dispatch = useDispatch();
   let darkMode = useSelector(selectDarkMode);
@@ -29,9 +40,11 @@ const DarkModeSwitch = () => {
     //     },
     //   }}
     // />
-    <IconButton sx={{ ml: 1 }} onClick={handleDarkModeChange} color="inherit">
-      {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-    </IconButton>
+    <Container>
+      <IconButton sx={{ ml: 1 }} onClick={handleDarkModeChange}>
+        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
+    </Container>
   );
 };
 

@@ -68,6 +68,10 @@ const darkTheme = createTheme({
     background: {
       default: "#121212",
       paper: "#1e1e1e",
+      box: "#1e1e1e",
+    },
+    error: {
+      main: "#ff0000",
     },
   },
   components: {

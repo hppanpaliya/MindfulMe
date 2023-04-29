@@ -21,6 +21,7 @@ import AdminSurveyReplies from "../components/Survey/AdminSurveyReplies.js";
 import HabitTracker from "../components/HabitTracker";
 import Chatbot from "../components/Chatbot";
 import Profile from "../components/Profile";
+import ChangePassword from "../components/Profile/ChangePassword";
 
 const AppRoutes = () => {
   return (
@@ -47,6 +48,7 @@ const AppRoutes = () => {
         <Route path="/habit-tracker" Component={HabitTracker} />
         <Route path="/chatbot" Component={Chatbot} />
         <Route path="/profile" Component={Profile} />
+        <Route path="/change-password" Component={ChangePassword} />
       </Route>
     </Routes>
   );

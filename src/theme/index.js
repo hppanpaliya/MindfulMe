@@ -70,6 +70,10 @@ const theme = createTheme({
     background: {
       default: "#f0f2f5",
       paper: teal[100],
+      box: "#fff",
+    },
+    error: {
+      main: "#f44336",
     },
   },
   components: {
