@@ -9,7 +9,7 @@ const MessageBubble = styled(Box)(({ theme, iscurrentuser }) => ({
   padding: theme.spacing(1),
   marginBottom: theme.spacing(1),
   alignSelf: iscurrentuser ? "flex-end" : "flex-start",
-  backgroundColor: iscurrentuser ? theme.palette.primary.main : theme.palette.grey[300],
+  backgroundColor: iscurrentuser ? theme.palette.primary.main : theme.palette.background.box,
   color: iscurrentuser ? theme.palette.primary.contrastText : theme.palette.text.primary,
   borderBottomRightRadius: iscurrentuser ? 0 : 16,
   borderBottomLeftRadius: iscurrentuser ? 16 : 0,
