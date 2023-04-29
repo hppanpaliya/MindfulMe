@@ -54,6 +54,7 @@
       ]
     },
     { "path": "/survey", "text": "Survey" },
+    { "path": "/profile", "text": "Settings" },
     { "path": "/logout", "text": "Logout" }
   ]
 }
