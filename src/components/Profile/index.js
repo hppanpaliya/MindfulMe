@@ -2,6 +2,10 @@ import React from "react";
 import DarkModeSwitch from "./settings/DarkModeSwitch";
 import styled from "@emotion/styled";
 import Typography from "@mui/material/Typography";
+import EmailNotificationToggle from "./settings/EmailNotificationToggle";
+import PushNotificationToggle from "./settings/PushNotificationToggle";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -13,15 +17,23 @@ const Container = styled.div`
   margin: auto;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const Profile = () => {
   return (
     <Container>
-      <div>
-        <Typography variant="h2" gutterBottom>
-          Profile
-        </Typography>
-        <DarkModeSwitch />
-      </div>
+      <Typography variant="h2" gutterBottom>
+        Profile
+      </Typography>
+      <DarkModeSwitch />
+      <EmailNotificationToggle />
+      <PushNotificationToggle />
+      <Button variant="contained" color="primary">
+        <StyledLink to="/change-password">Change Password</StyledLink>
+      </Button>
     </Container>
   );
 };
