@@ -10,7 +10,7 @@ import {
 } from "./StyledComponent";
 import darkTheme from "../../theme/darkTheme";
 import lightTheme from "../../theme";
-import DarkModeSwitch from "../Profile/settings/DarkModeSwitch";
+
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   height: theme.customAppBarHeight,
@@ -48,8 +48,6 @@ const NavigationBar = () => {
       <Toolbar>
         <NavigationBarMenu isOpenMenu={isOpenMenu} openDrawer={openDrawer} myTheme={myTheme} />
         <NavigationBarTitle />
-        <DarkModeSwitch />
-
         <NavigationLinks user={user} myTheme={myTheme} />
       </Toolbar>
       <NavigationDrawer user={user} isOpenMenu={isOpenMenu} closeDrawer={closeDrawer} myTheme={myTheme} />
