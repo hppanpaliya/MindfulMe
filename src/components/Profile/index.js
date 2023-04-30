@@ -15,7 +15,9 @@ const Container = styled.div`
   width: 100%;
   max-width: 400px;
   margin: auto;
+  height: 60svh;
 `;
+
 
 const StyledLink = styled(Link)`
   text-decoration: none;

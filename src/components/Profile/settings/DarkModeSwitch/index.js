@@ -13,7 +13,6 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: 400px;
-  margin: auto;
 `;
 
 const DarkModeSwitch = () => {
@@ -33,7 +32,7 @@ const DarkModeSwitch = () => {
         control={<Switch checked={darkMode} onChange={handleDarkModeChange} />}
         label={
           <Box display="flex" alignItems="center">
-            <Box mr={4}>{darkMode ? "Dark Mode" : "Light Mode"}</Box>
+            <Box mr={4}>Dark Mode </Box>
             {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </Box>
         }
