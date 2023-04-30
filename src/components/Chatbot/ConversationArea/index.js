@@ -31,6 +31,17 @@ function ConversationArea({ conversation }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [conversation]);
 
+  const initialBotMessage2 = {
+    content: "Please note that you are interacting with an AI therapy bot designed to provide support and coping skills, not a human therapist.",
+    role: "bot",
+  };
+
+  const initialBotMessage = {
+    content:
+      "Welcome to the Mental Health Support AI Therapist. Our goal is to provide you with a secure and empathetic space to share your concerns. We specialize in guiding individuals through challenges such as stress, anxiety, depression, relationships, and personal growth. Please feel free to start the conversation whenever you're ready.",
+    role: "bot",
+  };
+
   return (
     <Box height="80%" display="flex" flexDirection="column" justifyContent="flex-end" alignItems="center" bgcolor="background.paper">
       <Box
@@ -44,8 +55,8 @@ function ConversationArea({ conversation }) {
         maxHeight="100%"
         overflow="auto"
       >
-        {conversation.map((msg, index) => (
-          <Message key={index} msg={msg} ref={index === conversation.length - 1 ? messagesEndRef : null} />
+        {[initialBotMessage, initialBotMessage2, ...conversation].map((msg, index) => (
+          <Message key={index} msg={msg} ref={index === conversation.length ? messagesEndRef : null} />
         ))}
       </Box>
       <div ref={messagesEndRef} />
