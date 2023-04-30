@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import questions from "./questions.json";
 import { Typography, Button, Box, FormControl, RadioGroup, FormControlLabel, Radio } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
+import ScoreModal from "./ScoreModal";
 const StyledLabel = styled("label")({
   display: "block",
 });
@@ -11,9 +11,19 @@ function SelfAssessment() {
   const initialSelectedAnswers = questions.reduce((acc, question) => ({ ...acc, [question.id]: null }), {});
   const [score, setScore] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState(initialSelectedAnswers);
+  const [modalOpen, setModalOpen] = useState(false);
 
   function handleOptionSelect(questionId, optionValue) {
     setSelectedAnswers({ ...selectedAnswers, [questionId]: Number(optionValue) });
+  }
+
+  function openModal() {
+    calculateScore();
+    setModalOpen(true);
+  }
+
+  function closeModal() {
+    setModalOpen(false);
   }
 
   function calculateScore() {
@@ -52,12 +62,13 @@ function SelfAssessment() {
           </RadioGroup>
         </FormControl>
       ))}
-      <Button variant="contained" onClick={calculateScore} sx={{ mt: 2, maxWidth: "200px", alignSelf: "center" }}>
+      <Button variant="contained" onClick={openModal} sx={{ mt: 2, maxWidth: "200px", alignSelf: "center" }}>
         Calculate Score
       </Button>
       <Typography variant="body1" sx={{ mt: 2, alignSelf: "center" }}>
-        Your score: {score}
+        Your score: {score / 4}
       </Typography>
+      <ScoreModal open={modalOpen} score={score} handleClose={closeModal} />
     </Box>
   );
 }
