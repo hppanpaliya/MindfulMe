@@ -6,6 +6,7 @@ import ConversationArea from "./ConversationArea";
 import InputArea from "./InputArea";
 import { Box } from "@mui/material";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { useEffect } from "react";
 
 function Chatbot() {
   const [message, setMessage] = useState("");
@@ -13,6 +14,10 @@ function Chatbot() {
   const user = useSelector((state) => state.auth.user);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    document.title = "AI Counselor";
+  }, []);
 
   const sendMessage = async () => {
     if (message.trim() !== "") {
@@ -48,7 +53,6 @@ function Chatbot() {
         overflow="hidden"
         sx={{ backgroundColor: theme.palette.background.paper }}
       >
-        {" "}
         <Header />
         <ConversationArea conversation={conversation} />
         <InputArea message={message} setMessage={setMessage} sendMessage={sendMessage} />
