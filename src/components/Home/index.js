@@ -52,6 +52,7 @@ const Home = () => {
                     borderRadius: 2,
                     maxWidth: 500,
                     margin: "auto",
+                    minHeight: 230,
                   }}
                 >
                   <CardContent sx={{ flexGrow: 1, height: "100%" }}>
