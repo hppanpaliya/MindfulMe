@@ -57,7 +57,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: teal[100],
+      main: teal[300],
     },
     secondary: {
       main: green[700],
@@ -69,7 +69,7 @@ const theme = createTheme({
 
     background: {
       default: "#f0f2f5",
-      paper: teal[100],
+      paper: teal[50],
       box: "#fff",
     },
     error: {
