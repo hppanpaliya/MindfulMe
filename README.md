@@ -19,6 +19,9 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [X] Mindful Meditation: Practice guided meditations and mindfulness exercises.
 - [X] AI Counselor: Access 24/7 support and assistance with coping skills and self-care from an AI chatbot.
 - [ ] Multi-language support
+- [X] Dark Mode
+- [X] Email Notifications
+- [X] Push Notifications
 
 ### Technology Stack
 - [x] React
