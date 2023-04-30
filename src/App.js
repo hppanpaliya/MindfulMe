@@ -13,21 +13,27 @@ import { useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./App.css";
 import { styled } from "@mui/material/styles";
+import pathJson from "./utils/path.json";
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const darkMode = useSelector((state) => state.darkMode.darkMode);
-  console.log(darkMode);
 
   useFirebaseAnalytics(); // Hook for Firebase Analytics
+
+  useEffect(() => {
+    const page = pathJson.find((path) => path.path === location.pathname);
+    if (page) {
+      document.title = page.text;
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const auth = getAuth(); // Firebase authentication object
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         // If user is logged in, dispatch login action
-
         dispatch(login({ uid: user.uid, email: user.email, displayName: user.displayName }));
       } else {
         // Otherwise, dispatch logout action and setLoading(false) action
@@ -58,4 +64,5 @@ function App() {
     </ThemeProvider>
   );
 }
+
 export default App;

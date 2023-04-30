@@ -1,0 +1,20 @@
+[
+  { "path": "/", "text": "Mental Health Support" },
+  { "path": "/memory-match", "text": "Memory Booster" },
+  { "path": "/draw", "text": "Creative Canvas" },
+  { "path": "/coping-strategies", "text": "Coping Toolbox" },
+  { "path": "/cbt", "text": "CBT Fundamentals" },
+  { "path": "/support-groups", "text": "Support Circles" },
+  { "path": "/chat", "text": "Peer Chat" },
+  { "path": "/mood-tracker", "text": "Mood Journal" },
+  { "path": "/goal-setting", "text": "Goal Planner" },
+  { "path": "/self-assessment", "text": "Wellness Quiz" },
+  { "path": "/habit-tracker", "text": "Habit Organizer" },
+  { "path": "/guided-meditation", "text": "Mindful Meditation" },
+  { "path": "/chatbot", "text": "AI Counselor" },
+  { "path": "/survey", "text": "Survey" },
+  { "path": "/profile", "text": "Settings" },
+  { "path": "/login", "text": "Login" },
+  { "path": "/join", "text": "Join" },
+  { "path": "/logout", "text": "Logout" }
+]
