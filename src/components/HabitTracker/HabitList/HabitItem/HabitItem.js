@@ -113,7 +113,7 @@ const HabitItem = (props) => {
         <TextField value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} fullWidth size="small" />
       ) : (
         <>
-          <Tooltip title="Click to mark as completed" placement="top">
+          <Tooltip title={props.isCompleted ? "Click to mark as incompleted" : "Click to mark as completed"} placement="top">
             <Button onClick={handleToggleCompletion} size="small" color="primary">
               {props.name}
             </Button>
