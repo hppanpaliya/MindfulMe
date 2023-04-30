@@ -18,7 +18,6 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [X] Habit Organizer: Manage and track your habits for better mental well-being.
 - [X] Mindful Meditation: Practice guided meditations and mindfulness exercises.
 - [X] AI Counselor: Access 24/7 support and assistance with coping skills and self-care from an AI chatbot.
-- 
 - [ ] Multi-language support
 
 ### Technology Stack
