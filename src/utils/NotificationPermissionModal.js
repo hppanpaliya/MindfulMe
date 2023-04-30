@@ -63,26 +63,34 @@ const NotificationPermissionModal = () => {
     return doc.exists && doc.data().hasOwnProperty("remindNotification") ? doc.data().remindNotification.toDate() : null;
   }
 
+  function savePermissionStatus(status) {
+    sessionStorage.setItem("notificationPermission", status);
+  }
+
   // Check notification permissions and reminder timestamp
   useEffect(() => {
-    const checkPermissionAndTimestamp = async () => {
-      if (user) {
-        const remindTimestamp = await getReminderTimestamp();
+    // Check if the user has granted notification permissions
+    const permission = sessionStorage.getItem("notificationPermission");
+    if (permission !== "denied") {
+      const checkPermissionAndTimestamp = async () => {
+        if (user) {
+          const remindTimestamp = await getReminderTimestamp();
 
-        if (!remindTimestamp || new Date() > remindTimestamp) {
-          setOpen(true);
-          const timer = setTimeout(() => {
-            setOpen(false);
-            console.warn("Notification permission not granted.");
-          }, 15000);
-          return () => clearTimeout(timer);
+          if (!remindTimestamp || new Date() > remindTimestamp) {
+            setOpen(true);
+            const timer = setTimeout(() => {
+              setOpen(false);
+              console.warn("Notification permission not granted.");
+            }, 15000);
+            return () => clearTimeout(timer);
+          }
+        } else {
+          setOpen(false);
         }
-      } else {
-        setOpen(false);
-      }
-    };
+      };
 
-    checkPermissionAndTimestamp();
+      checkPermissionAndTimestamp();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -106,6 +114,7 @@ const NotificationPermissionModal = () => {
   const handleDeclineClick = () => {
     setOpen(false);
     console.warn("Notification permission not granted.");
+    savePermissionStatus("denied");
 
     if (remindLater) {
       const remindTimestamp = new Date();
