@@ -21,10 +21,24 @@
   "user": [
     { "path": "/", "text": "Home" },
     {
+      "category": "Therapeutic Games",
+      "items": [
+        { "path": "/memory-match", "text": "Memory Booster" },
+        { "path": "/draw", "text": "Creative Canvas" }
+      ]
+    },
+    {
       "category": "Community",
       "items": [
         { "path": "/support-groups", "text": "Support Circles" },
         { "path": "/chat", "text": "Peer Chat" }
+      ]
+    },
+    {
+      "category": "Learning Center",
+      "items": [
+        { "path": "/coping-strategies", "text": "Coping Toolbox" },
+        { "path": "/cbt", "text": "CBT Fundamentals" }
       ]
     },
     {
@@ -35,21 +49,6 @@
         { "path": "/self-assessment", "text": "Wellness Quiz" },
         { "path": "/habit-tracker", "text": "Habit Organizer" },
         { "path": "/guided-meditation", "text": "Mindful Meditation" },
-        { "path": "/chatbot", "text": "AI Counselor" }
-      ]
-    },
-    {
-      "category": "Therapeutic Games",
-      "items": [
-        { "path": "/memory-match", "text": "Memory Booster" },
-        { "path": "/draw", "text": "Creative Canvas" }
-      ]
-    },
-    {
-      "category": "Learning Center",
-      "items": [
-        { "path": "/coping-strategies", "text": "Coping Toolbox" },
-        { "path": "/cbt", "text": "CBT Fundamentals" },
         { "path": "/chatbot", "text": "AI Counselor" }
       ]
     },
