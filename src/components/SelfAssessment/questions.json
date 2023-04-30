@@ -1,392 +1,114 @@
 [
   {
-    "id": 1,
-    "text": "How often do you experience difficulty falling or staying asleep?",
+    "id": "question1",
+    "text": "How well did you sleep last night?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Very well", "value": 4 },
+      { "text": "Well", "value": 3 },
+      { "text": "Average", "value": 2 },
+      { "text": "Poorly", "value": 1 },
+      { "text": "Very poorly", "value": 0 }
     ]
   },
   {
-    "id": 2,
-    "text": "How often do you feel nervous or anxious?",
+    "id": "question2",
+    "text": "How would you rate your mood today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Very happy", "value": 4 },
+      { "text": "Happy", "value": 3 },
+      { "text": "Neutral", "value": 2 },
+      { "text": "Sad", "value": 1 },
+      { "text": "Very sad", "value": 0 }
     ]
   },
   {
-    "id": 3,
-    "text": "How often do you feel depressed or hopeless?",
+    "id": "question3",
+    "text": "How is your energy level today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Very high", "value": 4 },
+      { "text": "High", "value": 3 },
+      { "text": "Average", "value": 2 },
+      { "text": "Low", "value": 1 },
+      { "text": "Very low", "value": 0 }
     ]
   },
   {
-    "id": 4,
-    "text": "How often do you feel irritable or easily annoyed?",
+    "id": "question4",
+    "text": "How stressed do you feel today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Not stressed at all", "value": 4 },
+      { "text": "A little stressed", "value": 3 },
+      { "text": "Moderately stressed", "value": 2 },
+      { "text": "Very stressed", "value": 1 },
+      { "text": "Extremely stressed", "value": 0 }
     ]
   },
   {
-    "id": 5,
-    "text": "How often do you experience sudden and intense fear or panic?",
+    "id": "question5",
+    "text": "How much physical activity did you do today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "More than 60 minutes", "value": 4 },
+      { "text": "30-60 minutes", "value": 3 },
+      { "text": "10-30 minutes", "value": 2 },
+      { "text": "Less than 10 minutes", "value": 1 },
+      { "text": "None", "value": 0 }
     ]
   },
   {
-    "id": 6,
-    "text": "How often do you feel detached or disconnected from your surroundings?",
+    "id": "question6",
+    "text": "How well did you eat today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Very healthy", "value": 4 },
+      { "text": "Healthy", "value": 3 },
+      { "text": "Average", "value": 2 },
+      { "text": "Unhealthy", "value": 1 },
+      { "text": "Very unhealthy", "value": 0 }
     ]
   },
   {
-    "id": 7,
-    "text": "How often do you have difficulty concentrating or staying focused?",
+    "id": "question7",
+    "text": "How well did you practice self-care today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Excellent", "value": 4 },
+      { "text": "Good", "value": 3 },
+      { "text": "Average", "value": 2 },
+      { "text": "Poor", "value": 1 },
+      { "text": "Very poor", "value": 0 }
     ]
   },
   {
-    "id": 8,
-    "text": "How often do you engage in self-destructive behavior (such as substance abuse, self-harm, or risky sexual behavior)?",
+    "id": "question8",
+    "text": "How connected did you feel with others today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Very connected", "value": 4 },
+      { "text": "Connected", "value": 3 },
+      { "text": "Neutral", "value": 2 },
+      { "text": "Disconnected", "value": 1 },
+      { "text": "Very disconnected", "value": 0 }
     ]
   },
   {
-    "id": 9,
-    "text": "How often do you experience physical symptoms without a clear medical cause (such as headaches, stomachaches, or muscle pain)?",
+    "id": "question9",
+    "text": "How productive were you today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "Very productive", "value": 4 },
+      { "text": "Productive", "value": 3 },
+      { "text": "Somewhat productive", "value": 2 },
+      { "text": "Not very productive", "value": 1 },
+      { "text": "Not at all productive", "value": 0 }
     ]
   },
   {
-    "id": 10,
-    "text": "How often do you feel like you're not in control of your thoughts or actions?",
+    "id": "question10",
+    "text": "How much time did you spend on relaxation or leisure activities today?",
     "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
-    ]
-  },
-  {
-    "id": 11,
-    "text": "How often do you feel like your thoughts are racing or hard to slow down?",
-    "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
-    ]
-  },
-  {
-    "id": 12,
-    "text": "How often do you have trouble sleeping (such as difficulty falling asleep, staying asleep, or waking up too early)?",
-    "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
-    ]
-  },
-  {
-    "id": 13,
-    "text": "How often do you feel nervous, anxious, or on edge?",
-    "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "text": "How often do you have trouble controlling your worries or feelings of anxiety?",
-    "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
-    ]
-  },
-  {
-    "id": 15,
-    "text": "How often do you feel like you're on an emotional rollercoaster?",
-    "options": [
-      {
-        "text": "Never",
-        "value": 0
-      },
-      {
-        "text": "Rarely",
-        "value": 1
-      },
-      {
-        "text": "Sometimes",
-        "value": 2
-      },
-      {
-        "text": "Often",
-        "value": 3
-      },
-      {
-        "text": "Always",
-        "value": 4
-      }
+      { "text": "More than 2 hours", "value": 4 },
+      { "text": "1-2 hours", "value": 3 },
+      { "text": "30 minutes to 1 hour", "value": 2 },
+      { "text": "Less than 30 minutes", "value": 1 },
+      { "text": "None", "value": 0 }
     ]
   }
 ]
+  
+  

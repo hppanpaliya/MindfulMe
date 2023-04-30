@@ -5,7 +5,6 @@ import { styled } from "@mui/material/styles";
 
 const StyledLabel = styled("label")({
   display: "block",
-  marginTop: "10px",
 });
 
 function SelfAssessment() {
@@ -14,7 +13,7 @@ function SelfAssessment() {
   const [selectedAnswers, setSelectedAnswers] = useState(initialSelectedAnswers);
 
   function handleOptionSelect(questionId, optionValue) {
-    setSelectedAnswers({ ...selectedAnswers, [questionId]: optionValue });
+    setSelectedAnswers({ ...selectedAnswers, [questionId]: Number(optionValue) });
   }
 
   function calculateScore() {
@@ -31,11 +30,13 @@ function SelfAssessment() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", maxWidth: "600px", margin: "0 auto" }}>
-      {questions.map((question) => (
-        <FormControl key={question.id} component="fieldset" sx={{ mt: 2 }}>
-          <Typography variant="body1">{question.text}</Typography>
+      {questions.map((question, index) => (
+        <FormControl key={question.id} component="fieldset" sx={{ mt: 6 }}>
+          <Typography variant="body1">
+            {index + 1}. {question.text}
+          </Typography>
           <RadioGroup
-            aria-label={question.text}
+            aria-label={index + 1 + ". " + question.text}
             name={question.id}
             value={selectedAnswers[question.id]}
             onChange={(event) => handleOptionSelect(question.id, event.target.value)}
