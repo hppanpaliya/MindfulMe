@@ -1,8 +1,17 @@
 import { Box, TextField, Button, InputAdornment } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 function InputArea({ message, setMessage, sendMessage }) {
+  const theme = useTheme();
   return (
-    <Box height="10%" display="flex" alignItems="center" p={1} justifyContent="center" bgcolor="background.default" padding="2px">
+    <Box
+      height="10%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      padding="2px"
+      sx={{ backgroundColor: theme.palette.background.paper }}
+    >
       <Box display="flex" flexDirection="row" alignItems="center" width="100%" maxWidth="600px">
         <TextField
           fullWidth
