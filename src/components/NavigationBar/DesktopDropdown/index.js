@@ -37,10 +37,11 @@ const DesktopDropdown = ({ title, items }) => {
         sx={{
           cursor: "pointer",
           padding: "0 16px",
+          marginTop: "0.5rem",
           fontWeight: "bold",
         }}
       >
-        {title} <ExpandMoreIcon />
+        {title}
       </Typography>
       <Menu open={openDesktop} anchorEl={anchorEl} onClose={handleMouseLeave} MenuListProps={{ onMouseLeave: handleMouseLeave }}>
         {items.map((item) => (
