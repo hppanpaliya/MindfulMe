@@ -6,17 +6,19 @@
 This is a Mental Health Support Web App that provides resources and tools to help users manage their mental health and well-being.
 
 ### Features
-- [X] Mood tracking and journaling with data visualization
-- [X] Virtual support groups 
-- [X] MemoryMatching game for improving memory and concentration
-- [X] Cognitive-behavioral therapy (CBT) techniques and resources
-- [X] Coping strategies for managing stress and anxiety
-- [X] Personalized goal setting and progress tracking with reminders
-- [X] Personalized self-assessment tools and diagnostic quizzes
-- [X] Guided meditations and mindfulness exercises
-- [X] Peer-to-peer communication
-- [X] AI chatbot for 24/7 support and assistance with coping skills and self-care
-- [ ] Educational resources and articles on mental health topics with gamification elements
+- [X] Mood Journal: Track your mood and journal your thoughts with data visualization.
+- [X] Support Circles: Join virtual support groups with text moderation, suicide prevention support, and abuse prevention.
+- [X] Peer Chat: Communicate with peers to share experiences and provide support.
+- [X] Memory Booster: An interactive game designed to improve memory and concentration.
+- [X] Creative Canvas: A therapeutic game for artistic expression and stress relief.
+- [X] Coping Toolbox: Discover valuable information on coping mechanisms for managing stress and anxiety.
+- [X] CBT Fundamentals: Learn about cognitive-behavioral therapy (CBT) techniques and resources.
+- [X] Goal Planner: Set personalized goals and track your progress with reminders.
+- [X] Wellness Quiz: Assess your mental health with personalized self-assessment tools and diagnostic quizzes.
+- [X] Habit Organizer: Manage and track your habits for better mental well-being.
+- [X] Mindful Meditation: Practice guided meditations and mindfulness exercises.
+- [X] AI Counselor: Access 24/7 support and assistance with coping skills and self-care from an AI chatbot.
+- 
 - [ ] Multi-language support
 
 ### Technology Stack
