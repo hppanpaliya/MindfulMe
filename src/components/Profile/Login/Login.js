@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import firebase from "../../../utils/firebase";
 import { login } from "../../../store/features/auth/authSlice.js";
 import logo from "../../../assets/images/logo.svg";
+import { useLocation } from "react-router-dom";
 
 const Container = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -52,6 +53,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const from = location.state?.from.pathname || "/";
+
+  console.log(from);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -72,7 +78,7 @@ const Login = () => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        navigate("/");
+        navigate(from);
       }
     });
   }, [navigate]);
