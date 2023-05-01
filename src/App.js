@@ -14,6 +14,11 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./App.css";
 import { styled } from "@mui/material/styles";
 import pathJson from "./utils/path.json";
+import FAQButton from "./components/utils/FAQButton";
+
+
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +65,7 @@ function App() {
           </CSSTransition>
         </TransitionGroup>
         <NotificationPermissionModal /> {/* Notification permission modal component */}
+        <FAQButton />
       </Wrapper>
     </ThemeProvider>
   );

@@ -1,0 +1,87 @@
+[
+  {
+    "path": "/",
+    "text": "Mental Health Support",
+    "faq": "This is the homepage for the Mental Health Support Web App. It provides an overview of the available features and tools to help users manage their mental health and well-being."
+  },
+  {
+    "path": "/memory-match",
+    "text": "Memory Booster",
+    "faq": "Memory Booster is a game designed to help improve memory and concentration. Users can play this interactive game to challenge their cognitive abilities and track their progress."
+  },
+  {
+    "path": "/draw",
+    "text": "Creative Canvas",
+    "faq": "Creative Canvas is a therapeutic game for artistic expression and stress relief. Users can draw and create art to help manage their emotions and reduce stress levels."
+  },
+  {
+    "path": "/coping-strategies",
+    "text": "Coping Toolbox",
+    "faq": "Coping Toolbox provides valuable information on various coping mechanisms for managing stress and anxiety. Users can explore different strategies to find the best fit for their needs."
+  },
+  {
+    "path": "/cbt",
+    "text": "CBT Fundamentals",
+    "faq": "CBT Fundamentals offers resources and information about cognitive-behavioral therapy (CBT) techniques. Users can learn about this evidence-based approach to improve mental health and well-being."
+  },
+  {
+    "path": "/support-groups",
+    "text": "Support Circles",
+    "faq": "Support Circles allow users to join virtual support groups where they can connect with others, share experiences, and provide support. The platform offers text moderation, suicide prevention support, and abuse prevention features."
+  },
+  {
+    "path": "/chat",
+    "text": "Peer Chat",
+    "faq": "Peer Chat enables users to communicate with peers in a safe and supportive environment. Users can share their experiences, provide support to others, and engage in meaningful conversations."
+  },
+  {
+    "path": "/mood-tracker",
+    "text": "Mood Journal",
+    "faq": "Mood Journal is a tool for users to track their mood. The platform offers data visualization to help users better understand their emotions and mental health patterns."
+  },
+  {
+    "path": "/goal-setting",
+    "text": "Goal Planner",
+    "faq": "Goal Planner allows users to set personalized goals and track their progress. Users can set progress to stay on track and monitor their achievements over time."
+  },
+  {
+    "path": "/self-assessment",
+    "text": "Wellness Quiz",
+    "faq": "Wellness Quiz offers personalized self-assessment tools and diagnostic quizzes to help users better understand their mental health. Users can gain insights into their well-being and identify areas for improvement."
+  },
+  {
+    "path": "/habit-tracker",
+    "text": "Habit Organizer",
+    "faq": "Habit Organizer is a tool for users to manage and track their habits for better mental well-being. Users can create and monitor habits, and track their progress over time."
+  },
+  {
+    "path": "/guided-meditation",
+    "text": "Mindful Meditation",
+    "faq": "Mindful Meditation offers meditations sounds users to practice mediation. This resource can help users improve their focus, reduce stress, and enhance overall mental well-being."
+  },
+  {
+    "path": "/chatbot",
+    "text": "AI Counselor",
+    "faq": "AI Counselor is an AI-powered chatbot designed to assist users with mental health support. The chatbot can help answer questions, provide resources, and offer guidance on various mental health topics."
+  },
+  {
+    "path": "/survey",
+    "text": "Survey",
+    "faq": "The Survey section allows users to participate in anonymous surveys related to mental health and well-being. By taking part in these surveys, users can contribute valuable data to help improve mental health support and services."
+  },
+  {
+    "path": "/profile",
+    "text": "Settings",
+    "faq": "In the Settings section, users can adjust preferences, and customize their experience on the platform. This includes changing their password, updating their theme to dark mode, and enabling or disabling email and push notifications."
+  },
+  {
+    "path": "/login",
+    "text": "Login",
+    "faq": "The Login page allows existing users to log in to their account using their email address and password. After logging in, users can access their personalized dashboard and features within the Mental Health Support Web App."
+  },
+  {
+    "path": "/join",
+    "text": "Join",
+    "faq": "The Join page enables new users to create an account for the Mental Health Support Web App. Users need to provide their email address, create a password, and set a display name to sign up."
+  }
+]
