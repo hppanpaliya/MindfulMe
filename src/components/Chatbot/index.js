@@ -47,7 +47,7 @@ function Chatbot() {
   return (
     <>
       <Box
-        height={isSmallScreen ? `calc(${window.innerHeight} - 58px)` : `calc(${window.innerHeight} - 64px)`} // 100svh - 58px --
+        height={isSmallScreen ? window.innerHeight - 58 : window.innerHeight - 64} // 100svh - 58px --
         display="flex"
         flexDirection="column"
         overflow="hidden"

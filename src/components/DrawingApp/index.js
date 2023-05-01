@@ -30,7 +30,7 @@ const DrawingApp = () => {
   } = useDrawing(color, brushSize);
 
   return (
-    <div className="drawingApp" ref={containerRef} style={{ height: `calc(${window.innerHeight}) - 50px - 1rem` }}>
+    <div className="drawingApp" ref={containerRef} style={{ height: `calc(${window.innerHeight}px - 50px - 1rem)` }}>
       <div ref={topRef}></div>
       <Box
         sx={{
