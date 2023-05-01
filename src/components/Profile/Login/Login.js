@@ -15,7 +15,7 @@ const Container = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  height: "100vh",
+  height: window.innerHeight - 64,
 }));
 
 const Logo = styled("img")(({ theme }) => ({

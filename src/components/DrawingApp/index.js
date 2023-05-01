@@ -30,7 +30,7 @@ const DrawingApp = () => {
   } = useDrawing(color, brushSize);
 
   return (
-    <div className="drawingApp" ref={containerRef}>
+    <div className="drawingApp" ref={containerRef} style={{ height: `calc(${window.innerHeight}) - 50px - 1rem` }}>
       <div ref={topRef}></div>
       <Box
         sx={{
@@ -40,9 +40,7 @@ const DrawingApp = () => {
           right: 0,
         }}
       >
-        <IconButton
-          onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}
-        >
+        <IconButton onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}>
           <ArrowUpwardIcon />
         </IconButton>
       </Box>
@@ -54,11 +52,7 @@ const DrawingApp = () => {
           right: 0,
         }}
       >
-        <IconButton
-          onClick={() =>
-            bottomRef.current.scrollIntoView({ behavior: "smooth" })
-          }
-        >
+        <IconButton onClick={() => bottomRef.current.scrollIntoView({ behavior: "smooth" })}>
           <ArrowDownwardIcon />
         </IconButton>
       </Box>
@@ -74,13 +68,7 @@ const DrawingApp = () => {
         undo={undo}
         redo={redo}
       />
-      <Canvas
-        canvasRef={canvasRef}
-        startDrawing={startDrawing}
-        finishDrawing={finishDrawing}
-        draw={draw}
-        handleTouchEvent={handleTouchEvent}
-      />
+      <Canvas canvasRef={canvasRef} startDrawing={startDrawing} finishDrawing={finishDrawing} draw={draw} handleTouchEvent={handleTouchEvent} />
       <div ref={bottomRef}></div>
     </div>
   );

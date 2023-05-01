@@ -126,7 +126,7 @@ const Chats = ({ groupId }) => {
   };
 
   return (
-    <Container style={{ height: "calc(100svh - 64px)" }}>
+    <Container style={{ height: window.innerHeight - 64 }}>
       <ChatList>
         {chats.map((chat, index) => (
           <ChatMessage

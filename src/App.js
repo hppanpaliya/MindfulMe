@@ -52,7 +52,7 @@ function App() {
 
   const Wrapper = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.background.default,
-    minHeight: "100svh",
+    minHeight: window.innerHeight, // 100svh --
   }));
 
   return (

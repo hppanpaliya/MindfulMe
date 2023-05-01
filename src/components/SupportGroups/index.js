@@ -49,13 +49,19 @@ const SupportGroups = () => {
         display: "flex",
         margin: 0,
         minWidth: "100%",
-        height: "calc(100svh - 64px)",
+        height: `calc(${window.innerHeight} - 64px)`, // 100vh - 64px --
       }}
     >
       <Grid container spacing={2}>
         <Grid item xs={12} sm={4} md={3}>
           <AnimatePresence>
-            <motion.div key={selectedGroup} initial={isMobile? "hidden" : false} animate="visible" exit={isMobile? "exit" : false} variants={chatAnimation}>
+            <motion.div
+              key={selectedGroup}
+              initial={isMobile ? "hidden" : false}
+              animate="visible"
+              exit={isMobile ? "exit" : false}
+              variants={chatAnimation}
+            >
               <Box
                 sx={{
                   display: { xs: selectedGroup ? "none" : "block", sm: "block" },
@@ -67,7 +73,7 @@ const SupportGroups = () => {
                 <CreateGroup style={{ position: "fixed", top: 0, left: 0 }} />
                 <Box
                   sx={{
-                    maxHeight: "calc(100svh - 174px)",
+                    maxHeight: `calc(${window.innerHeight} - 174px)`, // 100vh - 64px - 50px - 60px
                     overflowY: "auto",
                   }}
                 >
