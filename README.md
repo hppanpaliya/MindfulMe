@@ -6,6 +6,7 @@
 This is a Mental Health Support Web App that provides resources and tools to help users manage their mental health and well-being.
 
 ### Features
+- [X] Homepage: Get an overview of the available features and tools to manage mental health and well-being.
 - [X] Mood Journal: Track your mood and journal your thoughts with data visualization.
 - [X] Support Circles: Join virtual support groups with text moderation, suicide prevention support, and abuse prevention.
 - [X] Peer Chat: Communicate with peers to share experiences and provide support.
@@ -18,6 +19,7 @@ This is a Mental Health Support Web App that provides resources and tools to hel
 - [X] Habit Organizer: Manage and track your habits for better mental well-being.
 - [X] Mindful Meditation: Practice guided meditations and mindfulness exercises.
 - [X] AI Counselor: Access 24/7 support and assistance with coping skills and self-care from an AI chatbot.
+- [X] Survey: Participate in surveys related to mental health app.
 - [ ] Multi-language support
 - [X] Dark Mode
 - [X] Email Notifications

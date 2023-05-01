@@ -41,7 +41,9 @@ function FAQButton() {
       <Dialog open={open} onClose={handleClose} maxWidth="sm">
         <DialogTitle>FAQ</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">{faqContent}</Typography>
+          <Typography variant="body1" style={{ whiteSpace: "pre-wrap" }} gutterBottom>
+            {faqContent}
+          </Typography>
           <Button variant="contained" color="primary" onClick={handleClose} fullWidth>
             Close
           </Button>
