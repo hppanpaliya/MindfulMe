@@ -21,6 +21,7 @@ const NotificationPermissionModal = () => {
       const userRef = firebase.firestore().collection("users").doc(userId);
       await userRef.update({
         notificationToken: token,
+        pushNotifications: true,
       });
       //setToken(token);
       console.log("Token saved to Firestore.");
@@ -71,7 +72,7 @@ const NotificationPermissionModal = () => {
   useEffect(() => {
     // Check if the user has granted notification permissions
     const permission = sessionStorage.getItem("notificationPermission");
-    if (permission !== "denied") {
+    if (permission !== "denied" && permission !== "granted") {
       const checkPermissionAndTimestamp = async () => {
         if (user) {
           const remindTimestamp = await getReminderTimestamp();
@@ -103,6 +104,7 @@ const NotificationPermissionModal = () => {
       const token = await messaging.getToken({
         vapidKey: "BLJxHQPsdXGM_1xpsoA2xq6pgChoPBSGjIzzrwbGHlkV7R-R7k6dBAVDP6JdjgjhdXOETcQnJpHwY3cFx7-mW8o",
       });
+      savePermissionStatus("granted");
       saveTokenToFirestore(token);
       console.log(token);
     } else {
