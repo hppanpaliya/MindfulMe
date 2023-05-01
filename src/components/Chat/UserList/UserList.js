@@ -32,7 +32,15 @@ const UsersList = () => {
       {/* Loading indicator */}
       {loading ? <UsersListSkeleton /> : ""}
       {/* List of filtered users */}
-      {!loading && <UsersListItems users={filteredUsers} />}
+      {!loading && filteredUsers.length > 0 ? (
+        <UsersListItems users={filteredUsers} />
+      ) : (
+        !loading && (
+          <Typography variant="body1" className="no-users-message" paddingTop={5}>
+            Search a username to send message
+          </Typography>
+        )
+      )}
     </div>
   );
 };
