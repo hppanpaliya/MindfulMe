@@ -16,5 +16,6 @@
   { "path": "/profile", "text": "Settings" },
   { "path": "/login", "text": "Login" },
   { "path": "/join", "text": "Join" },
-  { "path": "/logout", "text": "Logout" }
+  { "path": "/logout", "text": "Logout" },
+  { "path": "/change-password", "text": "Change Password" }
 ]
