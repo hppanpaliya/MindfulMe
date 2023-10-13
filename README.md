@@ -1,42 +1,68 @@
-# CS-545
+# Mental Health Support Web App
 
-## Mental Health Support Web App
+## Overview
+A comprehensive web application that offers resources and tools to aid users in managing their mental health and wellbeing. Created as part of CS-545, this application emphasizes user interaction, support, and education.
 
-### Overview
-This is a Mental Health Support Web App that provides resources and tools to help users manage their mental health and well-being.
+## Features
 
-### Features
-- [X] Homepage: Get an overview of the available features and tools to manage mental health and well-being.
-- [X] Mood Journal: Track your mood and journal your thoughts with data visualization.
-- [X] Support Circles: Join virtual support groups with text moderation, suicide prevention support, and abuse prevention.
-- [X] Peer Chat: Communicate with peers to share experiences and provide support.
-- [X] Memory Booster: An interactive game designed to improve memory and concentration.
-- [X] Creative Canvas: A therapeutic game for artistic expression and stress relief.
-- [X] Coping Toolbox: Discover valuable information on coping mechanisms for managing stress and anxiety.
-- [X] CBT Fundamentals: Learn about cognitive-behavioral therapy (CBT) techniques and resources.
-- [X] Goal Planner: Set personalized goals and track your progress with reminders.
-- [X] Wellness Quiz: Assess your mental health with personalized self-assessment tools and diagnostic quizzes.
-- [X] Habit Organizer: Manage and track your habits for better mental well-being.
-- [X] Mindful Meditation: Practice guided meditations and mindfulness exercises.
-- [X] AI Counselor: Access 24/7 support and assistance with coping skills and self-care from an AI chatbot.
-- [X] Survey: Participate in surveys related to mental health app.
-- [ ] Multi-language support
-- [X] Dark Mode
-- [X] Email Notifications
-- [X] Push Notifications
+- **Homepage**: Overview of available features.
+- **Mood Journal**: Mood tracking, journaling with data visualization.
+- **Support Circles**: Virtual peer support groups with text moderation, suicide prevention, and abuse prevention measures.
+- **Peer Chat**: Forums for peer support and shared experiences.
+- **Memory Booster**: Interactive game to boost memory and focus.
+- **Creative Canvas**: Therapeutic art tool for expression and stress relief.
+- **Coping Toolbox**: Resources on coping mechanisms for managing stress and anxiety.
+- **CBT Fundamentals**: Introduction to cognitive-behavioral therapy techniques.
+- **Goal Planner**: Personalized goal setting and progress tracking.
+- **Wellness Quiz**: Mental health self-assessment tools and quizzes.
+- **Habit Organizer**: Habit management and tracking.
+- **Mindful Meditation**: Guided meditations and mindfulness practices.
+- **AI Counselor**: 24/7 AI chatbot support for coping and self-care.
+- **Survey**: Participate in mental health-related surveys.
+- **Dark Mode**, **Email Notifications**, **Push Notifications**.
 
-### Technology Stack
-- [x] React
-- [x] Firebase
-- [x] Redux/Context API
+## Technologies
 
-### Getting Started
-1. Clone the repository: `git clone https://github.com/hppanpaliya/CS-545`
-2. Install dependencies: `npm install` or `yarn install`
-3. Start the server: `npm start` or `yarn start`
+- **React**: Frontend framework.
+- **Firebase**: Backend database, authentication, and more.
+- **Redux**: State management.
+- **Framer Motion**: For animations.
+- **Material UI**: UI component library.
+  
+### Backend for AI Chatbot & Peer Chat Moderation
 
-### Contributing
-If you would like to contribute to the project, please create a pull request and describe the changes you are proposing.
+The chatbot leverages the power of OpenAI for 24/7 support and assistance. The peer chat feature also integrates a moderation server for enhanced user safety. Find more details [here](https://github.com/hppanpaliya/openai-text-moderation-server).
 
-### License
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+## Getting Started
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/hppanpaliya/CS-545-Mental-Health-Support/
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the Development Server**
+   ```bash
+   npm start
+   ```
+
+## Code Overview
+
+The app is structured with various components:
+
+- **`App.js`**: Handles themes, routes, and authentication.
+- **`store`**: Redux store and slices for state management.
+- Sub-folders in **`components`**: Different features like Mood Tracker, Peer Chat, Goal Planner, etc.
+- **`utils`**: Helper functions, Firebase setup, and more.
+
+## Contributing
+
+Your contributions are always welcome! Open an issue for bugs or feature requests and feel free to submit pull requests.
+
+## License
+
+This project is under the [MIT License](https://opensource.org/licenses/MIT). See [LICENSE](LICENSE) for more details.
