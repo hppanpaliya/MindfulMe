@@ -5,8 +5,11 @@ A comprehensive web application that offers resources and tools to aid users in 
 
 ## Presentation and Demo
 
-- [Download Presentation PDF](https://github.com/hppanpaliya/CS-545-Mental-Health-Support/raw/main/HCI%20Presentation.pdf)
-- [Download Demo Video](https://github.com/hppanpaliya/CS-545-Mental-Health-Support/raw/main/HCI-Demo.mp4)
+- [View Presentation PDF](https://github.com/hppanpaliya/CS-545-Mental-Health-Support/raw/main/HCI%20Presentation.pdf)
+
+  
+[![Demo Video](https://img.youtube.com/vi/weAp2bFLJDM/0.jpg)](https://www.youtube.com/watch?v=weAp2bFLJDM)
+
 
 
 ## Features
