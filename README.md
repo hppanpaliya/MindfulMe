@@ -3,6 +3,12 @@
 ## Overview
 A comprehensive web application that offers resources and tools to aid users in managing their mental health and wellbeing. Created as part of CS-545, this application emphasizes user interaction, support, and education.
 
+## Presentation and Demo
+
+- [Download Presentation PDF](https://github.com/hppanpaliya/CS-545-Mental-Health-Support/raw/main/HCI%20Presentation.pdf)
+- [Download Demo Video](https://github.com/hppanpaliya/CS-545-Mental-Health-Support/raw/main/HCI-Demo.mp4)
+
+
 ## Features
 
 - **Homepage**: Overview of available features.
