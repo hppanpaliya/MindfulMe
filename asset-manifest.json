@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5b43b129.css",
+    "main.js": "/static/js/main.c3c34a4c.js",
+    "static/media/Nature_Sounds_Birdsong_River_Sounds.mp3": "/static/media/Nature_Sounds_Birdsong_River_Sounds.bbc36e2ac89de65f38d4.mp3",
+    "static/media/Peaceful_Music_for_Meditation.mp3": "/static/media/Peaceful_Music_for_Meditation.04fdbf26eb772ca060e2.mp3",
+    "static/media/Gentle_Water_Sounds.mp3": "/static/media/Gentle_Water_Sounds.da4317981a90f4b4c262.mp3",
+    "static/media/Calm_Meditation_Music.mp3": "/static/media/Calm_Meditation_Music.a218760cde330760915b.mp3",
+    "static/media/Vishuddha_Throat_Chakra_Chakra_Meditation_Music.mp3": "/static/media/Vishuddha_Throat_Chakra_Chakra_Meditation_Music.f3b5e0cc7b148a13821a.mp3",
+    "static/media/Tibetan_Bowls.mp3": "/static/media/Tibetan_Bowls.5d4505218d213ec9b09f.mp3",
+    "static/media/Muladhara_Root_Chakra_Skyful_of_Dreams.mp3": "/static/media/Muladhara_Root_Chakra_Skyful_of_Dreams.706264c889701d290fef.mp3",
+    "static/media/game-win.wav": "/static/media/game-win.57fe6abc78a419553ee3.wav",
+    "static/media/background5.jpg": "/static/media/background5.8217e3b248cda0d4d3dc.jpg",
+    "static/media/background2.jpg": "/static/media/background2.19ba15f8a792404fb056.jpg",
+    "static/media/background1.jpg": "/static/media/background1.93392af1538057af7fa1.jpg",
+    "static/media/background6.jpg": "/static/media/background6.2a5ade273cb91bd2f5fd.jpg",
+    "static/media/cardMatch.mp3": "/static/media/cardMatch.81a099a67a2356730b6f.mp3",
+    "static/media/background4.jpg": "/static/media/background4.79dfcea48e25db805fa7.jpg",
+    "static/media/background3.jpg": "/static/media/background3.5aa16b26b2011b0a8aab.jpg",
+    "static/media/background7.jpg": "/static/media/background7.ad979d32ac07dd45fdd3.jpg",
+    "static/media/flipcard.mp3": "/static/media/flipcard.482865a614fed3add746.mp3",
+    "static/media/shuffling-cards.mp3": "/static/media/shuffling-cards.1f79c61b0d48a97eea29.mp3",
+    "static/media/cardflip.mp3": "/static/media/cardflip.47a5e52c776760b4f347.mp3",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "static/media/eraser.svg": "/static/media/eraser.98877d8a5364f91c300edd36dce40cd6.svg",
+    "main.5b43b129.css.map": "/static/css/main.5b43b129.css.map",
+    "main.c3c34a4c.js.map": "/static/js/main.c3c34a4c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5b43b129.css",
+    "static/js/main.c3c34a4c.js"
+  ]
+}
