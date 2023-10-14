@@ -10,6 +10,16 @@ A comprehensive web application that offers resources and tools to aid users in 
   
 [![Demo Video](https://img.youtube.com/vi/weAp2bFLJDM/0.jpg)](https://www.youtube.com/watch?v=weAp2bFLJDM)
 
+## Live Demo
+
+You can explore a live demo of the application [here](https://cs-545-mental-health-support.vercel.app/).
+
+**Demo Login Credentials:**
+- Username: demo@example.com
+- Password: demo1234
+
+> Note: The Chat Moderation and AI Chat features are disabled in the live demo to avoid incurring OpenAI charges.
+
 
 
 ## Features
@@ -58,17 +68,6 @@ The chatbot leverages the power of OpenAI for 24/7 support and assistance. The p
    ```bash
    npm start
    ```
-
-## Live Demo
-
-You can explore a live demo of the application [here](https://cs-545-mental-health-support.vercel.app/).
-
-**Demo Login Credentials:**
-- Username: demo@example.com
-- Password: demo1234
-
-> Note: The Chat Moderation and AI Chat features are disabled in the live demo to avoid incurring OpenAI charges.
-
 
 ## Code Overview
 
