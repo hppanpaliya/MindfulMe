@@ -15,6 +15,7 @@
         { "path": "/cbt", "text": "CBT Fundamentals" }
       ]
     },
+    { "path": "/profile", "text": "Settings" },
     { "path": "/login", "text": "Login" },
     { "path": "/join", "text": "Join" }
   ],

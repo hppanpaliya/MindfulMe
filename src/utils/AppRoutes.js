@@ -37,6 +37,7 @@ const AppRoutes = () => {
       <Route path="/guided-meditation" Component={GuidedMeditation} />
       <Route path="/self-assessment" Component={SelfAssessment} />
       <Route path="/Draw" Component={DrawingApp} />
+      <Route path="/profile" Component={Profile} />
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/mood-tracker" Component={MoodTracker} />
         <Route path="/support-groups" Component={SupportGroups} />
@@ -47,7 +48,6 @@ const AppRoutes = () => {
         <Route path="/survey-list" Component={AdminSurveyReplies} />
         <Route path="/habit-tracker" Component={HabitTracker} />
         <Route path="/chatbot" Component={Chatbot} />
-        <Route path="/profile" Component={Profile} />
         <Route path="/change-password" Component={ChangePassword} />
       </Route>
     </Routes>

@@ -6,6 +6,9 @@ import EmailNotificationToggle from "./settings/EmailNotificationToggle";
 import PushNotificationToggle from "./settings/PushNotificationToggle";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+
 
 const Container = styled.div`
   display: flex;
@@ -25,17 +28,23 @@ const StyledLink = styled(Link)`
 `;
 
 const Profile = () => {
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
   return (
     <Container>
       <Typography variant="h2" gutterBottom>
         Profile
       </Typography>
       <DarkModeSwitch />
-      <EmailNotificationToggle />
+      {user ? <>      <EmailNotificationToggle />
       <PushNotificationToggle />
       <Button variant="contained" color="primary">
         <StyledLink to="/change-password">Change Password</StyledLink>
-      </Button>
+        </Button>
+      </> : <>
+      </>
+
+      }
     </Container>
   );
 };

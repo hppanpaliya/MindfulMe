@@ -50,6 +50,17 @@ The chatbot leverages the power of OpenAI for 24/7 support and assistance. The p
    npm start
    ```
 
+## Live Demo
+
+You can explore a live demo of the application [here](https://cs-545-mental-health-support.vercel.app/).
+
+**Demo Login Credentials:**
+- Username: demo@example.com
+- Password: demo1234
+
+> Note: The Chat Moderation and AI Chat features are disabled in the live demo to avoid incurring OpenAI charges.
+
+
 ## Code Overview
 
 The app is structured with various components:
