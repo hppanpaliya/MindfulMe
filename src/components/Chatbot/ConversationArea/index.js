@@ -38,7 +38,7 @@ function ConversationArea({ conversation }) {
 
   const initialBotMessage = {
     content:
-      "Welcome to the Mental Health Support AI Therapist. Our goal is to provide you with a secure and empathetic space to share your concerns. We specialize in guiding individuals through challenges such as stress, anxiety, depression, relationships, and personal growth. Please feel free to start the conversation whenever you're ready.",
+      "Welcome to the MindfulMe: Your Companion for Mental Well-being AI Therapist. Our goal is to provide you with a secure and empathetic space to share your concerns. We specialize in guiding individuals through challenges such as stress, anxiety, depression, relationships, and personal growth. Please feel free to start the conversation whenever you're ready.",
     role: "bot",
   };
 

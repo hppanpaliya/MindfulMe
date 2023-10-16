@@ -209,23 +209,13 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar
-      position="static"
-      sx={{ backgroundColor: "#87CEFA" }}
-      onMouseLeave={handleMouseLeave}
-    >
+    <AppBar position="static" sx={{ backgroundColor: "#87CEFA" }} onMouseLeave={handleMouseLeave}>
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={openDrawer}
-          sx={{ display: { xs: "block", sm: "none" } }}
-        >
+        <IconButton edge="start" color="inherit" aria-label="menu" onClick={openDrawer} sx={{ display: { xs: "block", sm: "none" } }}>
           <MenuIcon />
         </IconButton>
         <Typography variant="h6">
-          <NavLink to="/">Mental Health App</NavLink>
+          <NavLink to="/">MindfulMe</NavLink>
         </Typography>
         {/* Wrap the links in a flex container */}
         <Box
@@ -238,12 +228,7 @@ const NavBar = () => {
           {user ? renderLinks(links.user) : renderLinks(links.guest)}
         </Box>
       </Toolbar>
-      <Drawer
-        anchor="left"
-        open={isOpenMenu}
-        onClose={closeDrawer}
-        sx={{ background: "lightgrey" }}
-      >
+      <Drawer anchor="left" open={isOpenMenu} onClose={closeDrawer} sx={{ background: "lightgrey" }}>
         <div>
           <List
             component={Box}
@@ -255,9 +240,7 @@ const NavBar = () => {
               width: "250px",
             }}
           >
-            {user
-              ? renderLinks(links.user, closeDrawer)
-              : renderLinks(links.guest, closeDrawer)}
+            {user ? renderLinks(links.user, closeDrawer) : renderLinks(links.guest, closeDrawer)}
           </List>
         </div>
       </Drawer>

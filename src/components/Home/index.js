@@ -32,7 +32,7 @@ const Home = () => {
       <Container maxWidth="lg">
         <motion.div initial="hidden" animate="visible" variants={cardVariants} transition={{ duration: 1 }}>
           <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: "bold" }} mt={2}>
-            Welcome to our Mental Health Support Web App!
+            Welcome to MindfulMe: Your Companion for Mental Well-being!
           </Typography>
           <Typography variant="h5" align="center" gutterBottom sx={{ fontWeight: "medium" }} mt={2}>
             The app is divided into the following categories:

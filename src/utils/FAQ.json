@@ -1,8 +1,8 @@
 [
   {
     "path": "/",
-    "text": "Mental Health Support",
-    "faq": "This is the homepage for the Mental Health Support Web App. It provides an overview of the available features and tools to help users manage their mental health and well-being."
+    "text": "MindfulMe: Your Companion for Mental Well-being",
+    "faq": "This is the homepage for the MindfulMe: Your Companion for Mental Well-being Web App. It provides an overview of the available features and tools to help users manage their mental health and well-being."
   },
   {
     "path": "/memory-match",
@@ -37,7 +37,7 @@
   {
     "path": "/mood-tracker",
     "text": "Mood Journal",
-    "faq": "Mood Journal is a feature on this platform that allows users to track their mood over time. By using the Mood Logging component, users can log their mood on a scale from 1 to 10, which is represented by a range of emoticons from crying face 😭 to heart eyes 😍. \n\nThe platform saves this data in the backend, and the Mood Visualize component displays a visualization of the user's mood data, allowing them to better understand their emotional patterns and mental health over time.\n\nUsers can filter the visualization by year and month to see how their mood has changed over time. The feature provides a useful tool for users to keep track of their emotional well-being and identify any patterns or triggers that may affect their mood. By better understanding their mood and mental health, users can take steps towards improving their overall well-being."
+    "faq": "Mood Journal is a feature on this platform that allows users to track their mood over time. By using the Mood Logging component, users can log their mood on a scale from 1 to 10, which is represented by a range of emoticons from crying face 😭 to heart eyes 😍. \n\nThe platform saves this data in the backend, and the Mood Visualize component displays a visualization of the user's mood data, allowing them to better understand their emotional patterns and mental well-being over time.\n\nUsers can filter the visualization by year and month to see how their mood has changed over time. The feature provides a useful tool for users to keep track of their emotional well-being and identify any patterns or triggers that may affect their mood. By better understanding their mood and mental well-being, users can take steps towards improving their overall well-being."
   },
   {
     "path": "/goal-setting",
@@ -47,7 +47,7 @@
   {
     "path": "/self-assessment",
     "text": "Wellness Quiz",
-    "faq": "Wellness Quiz offers personalized self-assessment tools and diagnostic quizzes to help users better understand their mental health.\n\nUsers can gain insights into their well-being and identify areas for improvement. After completing the quiz, users will receive a mood score based on their responses. They have the option to log their mood, which will be saved in their Mood Journal. Users can also choose to visit their Mood Journal or close both modals.\n\nThe Mood Journal can be used to track daily moods and reflect on how they change over time. This can help users gain a better understanding of their emotional patterns and make more informed decisions about their mental health."
+    "faq": "Wellness Quiz offers personalized self-assessment tools and diagnostic quizzes to help users better understand their mental well-being.\n\nUsers can gain insights into their well-being and identify areas for improvement. After completing the quiz, users will receive a mood score based on their responses. They have the option to log their mood, which will be saved in their Mood Journal. Users can also choose to visit their Mood Journal or close both modals.\n\nThe Mood Journal can be used to track daily moods and reflect on how they change over time. This can help users gain a better understanding of their emotional patterns and make more informed decisions about their mental well-being."
   },
   {
     "path": "/habit-tracker",
@@ -62,12 +62,12 @@
   {
     "path": "/chatbot",
     "text": "AI Counselor",
-    "faq": "AI Counselor is an AI-powered chatbot designed to assist users with mental health support. The chatbot can help answer questions, provide resources, and offer guidance on various mental health topics.\n\nQ: How do I start a conversation with AI Counselor?\nA: To start a conversation, simply type your question or concern in the chat input field and press 'Enter' or click the 'Send' button.\n\nQ: What topics can AI Counselor help with?\nA: AI Counselor can help with a variety of mental health topics, including stress, anxiety, depression, mindfulness, and coping strategies. \n\nPlease note that AI Counselor is not a replacement for professional mental health care. \n\nIf you are experiencing a mental health crisis, please contact a mental health professional or call 911."
+    "faq": "AI Counselor is an AI-powered chatbot designed to assist users with Mental Well-being. The chatbot can help answer questions, provide resources, and offer guidance on various mental well-being topics.\n\nQ: How do I start a conversation with AI Counselor?\nA: To start a conversation, simply type your question or concern in the chat input field and press 'Enter' or click the 'Send' button.\n\nQ: What topics can AI Counselor help with?\nA: AI Counselor can help with a variety of mental well-beingtopics, including stress, anxiety, depression, mindfulness, and coping strategies. \n\nPlease note that AI Counselor is not a replacement for professional mental well-being. \n\nIf you are experiencing a mental health crisis, please contact a mental health professional or call 911."
   },
   {
     "path": "/survey",
     "text": "Survey",
-    "faq": "The Survey section allows users to participate in surveys related to mental health app. By taking part in these surveys, users can contribute valuable data to help improve mental health support app and services."
+    "faq": "The Survey section allows users to participate in surveys related to MindfulMe app. By taking part in these surveys, users can contribute valuable data to help improve MindfulMe app and services."
   },
   {
     "path": "/profile",
@@ -77,11 +77,11 @@
   {
     "path": "/login",
     "text": "Login",
-    "faq": "The Login page allows existing users to log in to their account using their email address and password. After logging in, users can access their personalized dashboard and features within the Mental Health Support Web App."
+    "faq": "The Login page allows existing users to log in to their account using their email address and password. After logging in, users can access their personalized dashboard and features within the MindfulMe Web App."
   },
   {
     "path": "/join",
     "text": "Join",
-    "faq": "The Join page enables new users to create an account for the Mental Health Support Web App. Users need to provide their email address, create a password, and set a display name to sign up."
+    "faq": "The Join page enables new users to create an account for the MindfulMe Web App. Users need to provide their email address, create a password, and set a display name to sign up."
   }
 ]

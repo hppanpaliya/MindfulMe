@@ -7,7 +7,7 @@
   },
   {
     "title": "Community",
-    "description": "Join our supportive network to connect with others on your mental health journey.",
+    "description": "Join our supportive network to connect with others on your mental well-being journey.",
     "items": ["Support Circles", "Peer Chat"],
     "links": ["/support-groups", "/chat"]
   },
@@ -19,7 +19,7 @@
   },
   {
     "title": "Self-Care Tools",
-    "description": "Enhance your mental health journey with personalized tools and resources.",
+    "description": "Enhance your mental well-being journey with personalized tools and resources.",
     "items": ["Mood Journal", "Goal Planner", "Wellness Quiz", "Habit Organizer", "Mindful Meditation", "AI Counselor"],
     "links": ["/mood-tracker", "/goal-setting", "/self-assessment", "/habit-tracker", "/guided-meditation", "/chatbot"]
   }

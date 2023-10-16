@@ -36,7 +36,6 @@ yarn-error.log*
 
 package-lock.json
 yarn.json
-yarn.lock
 
 .env
 .env.*
