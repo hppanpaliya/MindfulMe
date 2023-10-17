@@ -3,22 +3,22 @@
 ## Overview
 A comprehensive web application that offers resources and tools to aid users in managing their mental well-being and wellbeing. Created as part of CS-545, this application emphasizes user interaction, support, and education.
 
-## Presentation and Demo
-
-- [View Presentation PDF](https://github.com/hppanpaliya/CS-545-Mental-Health-Support/raw/main/HCI%20Presentation.pdf)
-
-  
-[![Demo Video](https://img.youtube.com/vi/weAp2bFLJDM/0.jpg)](https://www.youtube.com/watch?v=weAp2bFLJDM)
-
 ## Live Demo
 
-You can explore a live demo of the application [here](https://cs-545-mental-health-support.vercel.app/).
+You can explore a live demo of the application [here](https://mindfulme.vercel.app/).
 
 **Demo Login Credentials:**
 - Username: demo@example.com
 - Password: demo1234
 
 > Note: The Chat Moderation and AI Chat features are disabled in the live demo to avoid incurring OpenAI charges.
+
+## Presentation and Demo
+
+- [View Presentation PDF](https://github.com/hppanpaliya/mindfulMe/raw/main/HCI%20Presentation.pdf)
+
+  
+[![Demo Video](https://img.youtube.com/vi/weAp2bFLJDM/0.jpg)](https://www.youtube.com/watch?v=weAp2bFLJDM)
 
 
 
